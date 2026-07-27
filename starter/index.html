@@ -262,20 +262,14 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
       <div class="note warm">This is the step that needs Pro. If you're on the free plan you'll get stopped here, and it's the plan, not anything you did wrong.</div>
 
       <h3 style="margin-top:24px">Your repo isn't in the list?</h3>
-      <p>This catches almost everybody, and the reason is a distinction GitHub never explains.</p>
-      <p><strong>Signing in with GitHub is not the same as giving Claude access to your files.</strong> Signing in only proves who you are. Access is a separate thing called an installation, and it's the part that actually matters here.</p>
-      <p>Open this page and look for Claude:</p>
+      <p>Try these in order.</p>
       <ul>
-        <li><a href="https://github.com/settings/installations" target="_blank" rel="noopener">github.com/settings/installations</a></li>
+        <li>Reload <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>. A repository you made minutes ago sometimes needs one refresh to show up.</li>
+        <li>Check which GitHub account you connected. Claude can see the repositories that account can see, so if you have more than one GitHub login, make sure you connected the one that owns <code>biz-brain</code>.</li>
+        <li>Confirm your Claude plan is Pro or higher. An empty repo list and a plan problem can look the same from the outside.</li>
       </ul>
-
-      <p><strong>Claude isn't on that page at all?</strong> Then it was never installed, which is why your repo list is empty. Go back to <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a> and look for the option to connect or add a GitHub account. That sends you to GitHub to install it. When GitHub asks which repositories, pick <strong>All repositories</strong>, or select <code>biz-brain</code> specifically.</p>
-
-      <p><strong>Claude is on that page?</strong> Then it's installed and just can't see this particular repo. Click <strong>Configure</strong> next to it, find <strong>Repository access</strong>, and either choose <strong>All repositories</strong> or add <code>biz-brain</code> to the selected list. Save, then reload claude.ai/code.</p>
-
-      <div class="note">Worth knowing: if you chose "only selected repositories" at some point, any repo you create <em>afterward</em> does not get added on its own. That's why a brand new repo can be invisible even though everything looks connected.</div>
-
-      <div class="note warm"><strong>Don't ask Claude to fix this one.</strong> Claude cannot grant itself access to your GitHub. That permission lives on GitHub's side and only you can change it. If you ask, it will sound like it's helping and nothing will actually change, which is a genuinely confusing five minutes. Use the steps above instead.</div>
+      <div class="note"><strong>One thing that looks broken and isn't.</strong> If you go poking around in GitHub's settings, you'll probably find Claude listed under authorized applications and not under installed apps. That's normal. Installation is only needed for a separate pull request feature, and it has nothing to do with whether Claude can see your files. Don't spend your evening on it, I already did.</div>
+      <div class="note warm"><strong>Don't ask Claude to fix a connection problem.</strong> Claude can't change your GitHub permissions or your plan from inside a conversation. It will sound like it's helping, and nothing will move. Anything on this list you have to do yourself.</div>
       <div class="note">Buttons move around as things get updated. If a label reads a little differently than what's written here, you're still in the right place. Look for the word <em>connect</em> or <em>repository</em> and follow it.</div>
     </div>
   </div>
