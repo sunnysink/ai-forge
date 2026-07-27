@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI Forge — Soul-Forged Founders</title>
+<meta name="description" content="Free tools and workshop builds for tarot readers, coaches, and spiritual business owners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Hanken+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF;--bg2:#EDEAE4;--bg3:#E5E1DA;
+  --ink:#1A1714;--ink-dim:#4A4540;--ink-faint:#7D786F;
+  --copper:#8C6832;--copper-lt:#755525;--copper-dk:#5E441C;
+  --ember:#B84C14;--gold:#947A20;--mauve:#6E5560;
+  --line:rgba(140,104,50,.18);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Hanken Grotesk',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(ellipse 120% 90% at 50% -10%,var(--bg2) 0%,var(--bg) 50%,var(--bg3) 100%);
+  background-attachment:fixed;min-height:100vh}
+.wrap{max-width:640px;margin:0 auto;padding:80px 22px 70px}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2.4px;
+  text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(40px,8vw,62px);line-height:1.05;margin:0 0 14px;
+  background:linear-gradient(100deg,#755525 0%,#B84C14 35%,#947A20 60%,#6E5560 85%,#8C6832 100%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lede{font-size:19px;color:var(--ink-dim);margin:0 0 44px;max-width:50ch}
+a.tile{display:block;position:relative;text-decoration:none;color:inherit;overflow:hidden;
+  background:rgba(255,253,250,.84);border:1px solid var(--line);border-radius:20px;
+  padding:24px 27px;margin-bottom:16px;box-shadow:0 10px 36px rgba(26,23,20,.06),inset 0 1px 0 rgba(255,255,255,.5);
+  transition:transform .2s,box-shadow .2s}
+a.tile::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:linear-gradient(180deg,var(--copper),var(--ember),var(--gold))}
+a.tile:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(26,23,20,.10)}
+.tile h2{font-family:var(--serif);font-size:26px;font-weight:700;margin:0 0 5px}
+.tile p{margin:0;color:var(--ink-dim);font-size:16px}
+.tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--copper);display:block;margin-bottom:7px}
+.soon{opacity:.55;pointer-events:none}
+footer{margin-top:46px;font-family:var(--mono);font-size:11px;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--ink-faint)}
+footer a{color:var(--copper-lt);text-decoration:none}
+@media(max-width:600px){.wrap{padding:52px 16px 60px}a.tile{padding:20px 20px 20px 23px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Soul-Forged Founders</div>
+  <h1>The AI Forge</h1>
+  <p class="lede">Tools for tarot readers, coaches, and spiritual business owners who'd rather build than wait for permission.</p>
+
+  <a class="tile" href="starter/">
+    <span class="tag">Free Starter</span>
+    <h2>Claude Code Starter</h2>
+    <p>Give Claude a permanent memory of your business. Five steps, in your browser, nothing to install.</p>
+  </a>
+
+  <div class="tile soon">
+    <span class="tag">August 4</span>
+    <h2>Workshop Build</h2>
+    <p>Coming with the live workshop.</p>
+  </div>
+
+  <footer><a href="https://www.skool.com/soul-forged-founders/about">Soul-Forged Founders</a></footer>
+</div>
+</body>
+</html>
