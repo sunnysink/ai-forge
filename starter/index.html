@@ -260,6 +260,19 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
       </ul>
       <p>That last one is deliberate. You're giving Claude a key to one drawer, not the building.</p>
       <div class="note warm">This is the step that needs Pro. If you're on the free plan you'll get stopped here, and it's the plan, not anything you did wrong.</div>
+
+      <h3 style="margin-top:24px">Your repo isn't in the list?</h3>
+      <p>This one catches almost everybody, so read it before you start troubleshooting.</p>
+      <p>When you connect GitHub, it asks whether Claude gets access to <em>all</em> your repositories or only <em>selected</em> ones. If you picked selected, and you made <code>biz-brain</code> at any point after that, Claude cannot see it. New repos don't get added to that list on their own.</p>
+      <p>Fix it on GitHub, not in Claude:</p>
+      <ul>
+        <li>Go to <a href="https://github.com/settings/installations" target="_blank" rel="noopener">github.com/settings/installations</a></li>
+        <li>Click <strong>Configure</strong> next to Claude</li>
+        <li>Find <strong>Repository access</strong></li>
+        <li>Choose <strong>All repositories</strong>, or stay on selected and add <code>biz-brain</code></li>
+        <li><strong>Save</strong>, then reload claude.ai/code</li>
+      </ul>
+      <div class="note warm"><strong>Don't ask Claude to fix this one.</strong> Claude cannot give itself access to your GitHub. That permission lives on GitHub's side and only you can change it. If you ask, it will sound like it's helping and nothing will actually happen, which is a genuinely confusing five minutes. Go straight to the link above.</div>
       <div class="note">Buttons move around as things get updated. If a label reads a little differently than what's written here, you're still in the right place. Look for the word <em>connect</em> or <em>repository</em> and follow it.</div>
     </div>
   </div>
