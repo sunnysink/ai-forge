@@ -139,6 +139,14 @@ code{font-family:var(--mono);font-size:.9em;background:rgba(140,104,50,.08);
   color:#FFFDFA;text-decoration:none;border-radius:30px;padding:15px 36px;
   font-weight:700;font-size:16px;transition:transform .18s,box-shadow .18s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(140,104,50,.22)}
+.btn-ghost{display:inline-block;margin-top:14px;background:transparent;
+  border:1px solid var(--line);color:var(--ink-dim);text-decoration:none;
+  border-radius:30px;padding:14px 32px;font-weight:600;font-size:15px;
+  transition:border-color .2s,color .2s,background .2s}
+.btn-ghost:hover{border-color:var(--copper);color:var(--copper);background:rgba(140,104,50,.04)}
+.btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.when{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--ember);margin-top:16px}
 
 footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
   letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-faint)}
@@ -329,8 +337,12 @@ Save it in my voice folder so you can read it before you write anything for me f
   <div class="card cta">
     <span class="label">What comes next</span>
     <h2>Now that it's running</h2>
-    <p>Having it set up and knowing what to do with it are two different things. We build real tools together inside Soul-Forged Founders: trackers, client artifacts, content systems, the things that actually save you a day a week.</p>
-    <a class="btn" href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">Come build with us</a>
+    <p>Having it set up and knowing what to do with it are two different things. On August 4 we build one real tool together, live, in 90 minutes. It's free, it's in your browser, and you'll leave with something that works.</p>
+    <div class="btn-row">
+      <a class="btn" href="https://preview.mailerlite.io/forms/451137/193633271178855463/share" target="_blank" rel="noopener">Save my seat</a>
+      <a class="btn-ghost" href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">See the community</a>
+    </div>
+    <p class="when">Free · Tuesday August 4 · 4pm PT</p>
   </div>
 
   <footer>Soul-Forged Founders · The AI Forge</footer>
