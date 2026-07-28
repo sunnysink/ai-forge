@@ -252,14 +252,19 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
     </div>
     <div class="step-body">
       <p>Read the step title again, because the word <em>install</em> is doing all the work here. Signing in with GitHub is not the same as installing the app, and only one of them lets Claude see your files.</p>
+
+      <div class="note warm"><strong>Everything here happens in your browser. There is nothing to download.</strong> Follow the exact words below and you'll land in the right place.</div>
+
       <ul>
         <li>Go to <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a> and sign in with your Claude account</li>
-        <li>It prompts you to connect GitHub. <strong>Follow that prompt all the way through to the install screen.</strong> Stopping at the sign-in leaves you with an empty repository list and no explanation.</li>
+        <li>On <strong>"Setup and start coding,"</strong> click <strong>"want to set up apps later, continue on the web."</strong> It sits below the bigger buttons, so look down the page for it.</li>
+        <li>Click <strong>Get Started</strong></li>
+        <li>Click <strong>"connect a different way,"</strong> then <strong>Sign in with GitHub</strong></li>
         <li>GitHub asks which account to install on. Pick the one that owns <code>biz-brain</code>.</li>
         <li>GitHub asks which repositories. Choose <strong>All repositories</strong>, or <strong>Only select repositories</strong> and pick <code>biz-brain</code>.</li>
         <li>Click <strong>Install</strong></li>
       </ul>
-      <p>You'll then be asked to create a cloud environment. The defaults are right for this. Give it any name and click <strong>Create environment</strong>.</p>
+      <p>You may be asked to create a cloud environment. If you are, the defaults are right. Give it any name and click <strong>Create environment</strong>. If you're never asked, nothing is wrong, that screen doesn't always appear.</p>
       <p>Back at claude.ai/code, click the repository selector under the message box and choose <code>biz-brain</code>.</p>
       <div class="note warm">This is the step that needs Pro. If you're on the free plan you'll get stopped here, and it's the plan, not anything you did wrong.</div>
 
@@ -318,7 +323,7 @@ Then create all of it and push straight to main.</div>
       <div class="note"><strong>If it starts asking you questions anyway,</strong> tell it to stop and just make the empty files. There's a reason the prompt says it three different ways. An interview here turns a two minute step into twenty, and you'd be answering big questions about your voice and your clients cold, which is the worst moment to answer them.</div>
       <div class="note warm"><strong>One behavior that will surprise you.</strong> If Claude does ask something and you take a while to reply, the session may carry on without your answer and write the file anyway. Nothing is broken. Tell it what it got wrong and ask it to rewrite that file.</div>
       <div class="note"><strong>Want to skip the prompt entirely?</strong> The same structure exists as a template you can copy in one click: <a href="https://github.com/sunnysink/claude-code-starter-kit" target="_blank" rel="noopener">the Claude Code Starter Kit</a>. Open it, hit <strong>Use this template</strong>, name it <code>biz-brain</code>, click Private. Same files, ten seconds. Running the prompt teaches you that Claude can build structure on command, which is worth knowing. The template is faster. Both land in the same place.</div>
-      <div class="note"><strong>About branches, and why that rule appears twice.</strong> Branches and pull requests are a developer habit, built so a team of engineers doesn't write over each other. You're one person with notes about your own business, so they'd only add steps between you and your files.<br><br>Notice the rule is written in two places on purpose. The line at the bottom of the prompt applies to <em>this</em> conversation. The copy inside <code>CLAUDE.md</code> is the one that lasts, because that file gets read at the start of every session from now on. Telling Claude something once lives as long as the chat does. Writing it into <code>CLAUDE.md</code> makes it permanent. That difference is the entire reason you're building this folder.</div>
+      <div class="note"><strong>About branches, and why that rule appears twice.</strong> Branches and pull requests are a developer habit, built so a team of engineers doesn't write over each other. You're one person with notes about your own business, so they'd only add steps between you and your files.<br><br>Notice the rule is written in two places on purpose. The line at the bottom of the prompt applies to <em>this</em> conversation. The copy inside <code>CLAUDE.md</code> is the one that lasts, because that file gets read at the start of every session from now on. Telling Claude something once lives as long as the chat does. Writing it into <code>CLAUDE.md</code> makes it permanent. That difference is the entire reason you're building this folder.<br><br>Claude may also mention that its own default pointed at a branch and it used main because you asked. It might leave an unused branch sitting on GitHub with a name like <code>cloud/...</code>. That's harmless. Ignore it, or delete it whenever you like. Your files are on main, which is the one you'll see when you open the repo.</div>
     </div>
   </div>
 
@@ -332,26 +337,28 @@ Then create all of it and push straight to main.</div>
     </div>
     <div class="step-body">
       <p>Empty folders do nothing. This is the step that turns a tidy structure into an assistant that knows you.</p>
-      <p>Two routes. Pick the one that's true for you.</p>
+      <p>Two routes. The question isn't how long you've used Claude. It's whether Claude's memory holds anything about your <em>business</em>.</p>
+      <div class="note"><strong>Not sure which one you are? Ask it.</strong> Open a normal Claude chat and say: <em>"What do you actually know about my business?"</em> Read the answer. If it can name your offers, your clients, or how you sound, take route one. If it's vague, generic, or blank, take route two. Plenty of people use Claude every day for other things and it has never learned what they sell.</div>
 
-      <h3 style="margin-top:22px">Route one: you've been using Claude for a while</h3>
-      <p>Then Claude already knows a lot about your business, and you'd be typing out things it could tell you. Get it out of the chat and into your files.</p>
+      <h3 style="margin-top:22px">Route one: Claude already knows your business</h3>
+      <p>Then you'd be typing out things it could tell you. Get it out of the chat and into your files.</p>
+      <div class="note">If you've brought your ChatGPT memories across to Claude, this route gets much richer, because everything that account knew came with you.</div>
       <p>Open a normal Claude conversation, the regular chat and not Claude Code, and paste this:</p>
       <div class="prompt-wrap">
 <div class="prompt" id="p2">You've been helping me with my business for a while. I'm building a permanent folder of files so you don't start from scratch every conversation.
 
-Using only what you actually know about me, write the contents of these four files:
+Using only what you actually know about me, write me ONE file called business-brain-dump.md, with these four sections inside it:
 
-context/who-i-am.md
+who-i-am
 My story. What I do, how I got here, what I did before this.
 
-context/who-i-serve.md
+who-i-serve
 My ideal client. Who they are, and what's going on for them when they find me.
 
-brand/voice.md
+voice
 How I sound. Phrases that are mine. Words and tones I'd never use.
 
-offers/offers.md
+offers
 What I sell. Name, price, and what's different for the person afterward.
 
 Important:
@@ -359,21 +366,30 @@ Important:
 - Anywhere you don't actually know something, write [FILL IN] and move on. I would much rather have a visible gap than a sentence that sounds right and isn't true.
 - Write it in my voice where you can tell what my voice is.
 
-Give me all four in ONE single markdown block in your reply, with the filename as a heading above each section. Do not split them into separate documents, downloads, or attachments. I need to copy the whole thing in one go.
+Give me that one file in ONE markdown block. One block, one copy. Do not split it into separate blocks, separate documents, downloads, or attachments.
 
-After the files, in a few lines outside the block, tell me which of the four came out thin and what's actually missing from each. I want to know where to spend my time.</div>
+After the block, in a few lines outside it, tell me which of the four sections came out thin and what's actually missing from each. I want to know where to spend my time.</div>
         <button class="copy" data-target="p2">Copy route one</button>
       </div>
-      <p style="margin-top:16px">Copy the whole answer. Go back to Claude Code and paste it in with this:</p>
-      <div class="note" style="margin-bottom:14px">If it hands you four separate documents to download instead of one block, just say <em>"put all four into one markdown block in the chat so I can copy it"</em> and it'll redo it.</div>
+      <div class="note"><strong>Why one file and not four.</strong> Ask for four files and Claude tends to hand you four separate boxes, which is four copies and four chances to lose one. One file with four sections inside it comes back as a single block. Claude Code does the splitting in the next step, which is the part it's good at.</div>
+      <p style="margin-top:16px">Copy the whole block. Go back to Claude Code and paste it in with this underneath:</p>
+      <div class="note" style="margin-bottom:14px">If it still splits the answer into separate boxes, say <em>"put the whole thing in one markdown block so I can copy it in one go"</em> and it'll redo it.</div>
       <div class="prompt-wrap">
-<div class="prompt" id="p3">File each of these into the matching files in this repo, replacing the placeholders. Then push to main.</div>
+<div class="prompt" id="p3">Above is a brain dump with four sections in it. Split it into the matching files in this repo, replacing the placeholders:
+
+who-i-am goes into context/who-i-am.md
+who-i-serve goes into context/who-i-serve.md
+voice goes into brand/voice.md
+offers goes into offers/offers.md
+
+Keep the text exactly as written, including every [FILL IN] marker. Don't tidy them up or fill them in. Then push to main.</div>
         <button class="copy" data-target="p3">Copy the filing instruction</button>
       </div>
+      <div class="note">Claude may mention it can't find <code>business-brain-dump.md</code> in the repo. That's expected. You pasted the text rather than committing a file, so there's nothing to look for and nothing to delete. It splits from what you pasted.</div>
       <div class="note warm"><strong>Then read what it wrote.</strong> Every <code>[FILL IN]</code> is a real gap, and anything that isn't marked is something Claude believes about your business. Check the prices. Check the offer names. A wrong fact in here quietly becomes a wrong fact in everything it writes for you afterward.</div>
 
-      <h3 style="margin-top:26px">Route two: you're new to Claude, or you'd rather start clean</h3>
-      <p>Then nobody has the answers but you. Paste this into Claude Code and let it walk you through:</p>
+      <h3 style="margin-top:26px">Route two: Claude doesn't know your business yet</h3>
+      <p>Then nobody has the answers but you. This one is an interview, so give it a quiet twenty minutes rather than squeezing it in. Paste this into Claude Code and let it walk you through:</p>
       <div class="prompt-wrap">
 <div class="prompt" id="p4">Read every file in this repo, starting with CLAUDE.md.
 
