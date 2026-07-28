@@ -317,6 +317,7 @@ Then create all of it and push straight to main.</div>
       <div class="note"><strong>Why the exact names matter.</strong> Everything you learn after this assumes the same layout. When a lesson says "put that in your brand folder," it has to mean one thing. Let Claude invent its own names and you'll be translating every instruction you ever read.</div>
       <div class="note"><strong>If it starts asking you questions anyway,</strong> tell it to stop and just make the empty files. There's a reason the prompt says it three different ways. An interview here turns a two minute step into twenty, and you'd be answering big questions about your voice and your clients cold, which is the worst moment to answer them.</div>
       <div class="note warm"><strong>One behavior that will surprise you.</strong> If Claude does ask something and you take a while to reply, the session may carry on without your answer and write the file anyway. Nothing is broken. Tell it what it got wrong and ask it to rewrite that file.</div>
+      <div class="note"><strong>Want to skip the prompt entirely?</strong> The same structure exists as a template you can copy in one click: <a href="https://github.com/sunnysink/claude-code-starter-kit" target="_blank" rel="noopener">the Claude Code Starter Kit</a>. Open it, hit <strong>Use this template</strong>, name it <code>biz-brain</code>, click Private. Same files, ten seconds. Running the prompt teaches you that Claude can build structure on command, which is worth knowing. The template is faster. Both land in the same place.</div>
       <div class="note"><strong>About branches, and why that rule appears twice.</strong> Branches and pull requests are a developer habit, built so a team of engineers doesn't write over each other. You're one person with notes about your own business, so they'd only add steps between you and your files.<br><br>Notice the rule is written in two places on purpose. The line at the bottom of the prompt applies to <em>this</em> conversation. The copy inside <code>CLAUDE.md</code> is the one that lasts, because that file gets read at the start of every session from now on. Telling Claude something once lives as long as the chat does. Writing it into <code>CLAUDE.md</code> makes it permanent. That difference is the entire reason you're building this folder.</div>
     </div>
   </div>
@@ -327,26 +328,63 @@ Then create all of it and push straight to main.</div>
       <button class="tick" aria-label="Mark step 5 complete">
         <svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </button>
-      <div><span class="step-n">Step Five</span><h3 class="step-t">Put one real thing inside it</h3></div>
+      <div><span class="step-n">Step Five</span><h3 class="step-t">Fill the drawers</h3></div>
     </div>
     <div class="step-body">
-      <p>Empty folders do nothing. One real file is what turns this from a tidy structure into an assistant that knows you.</p>
-      <p>Pick the easiest one. Paste in three captions you're proud of and ask Claude to write down what your voice actually does, then save that into your voice folder.</p>
+      <p>Empty folders do nothing. This is the step that turns a tidy structure into an assistant that knows you.</p>
+      <p>Two routes. Pick the one that's true for you.</p>
+
+      <h3 style="margin-top:22px">Route one: you've been using Claude for a while</h3>
+      <p>Then Claude already knows a lot about your business, and you'd be typing out things it could tell you. Get it out of the chat and into your files.</p>
+      <p>Open a normal Claude conversation, the regular chat and not Claude Code, and paste this:</p>
       <div class="prompt-wrap">
-<div class="prompt" id="p2">Here are three things I've written that sound like me:
+<div class="prompt" id="p2">You've been helping me with my business for a while. I'm building a permanent folder of files so you don't start from scratch every conversation.
 
-[paste caption one]
+Using only what you actually know about me, write the contents of these four files:
 
-[paste caption two]
+context/who-i-am.md
+My story. What I do, how I got here, what I did before this.
 
-[paste caption three]
+context/who-i-serve.md
+My ideal client. Who they are, and what's going on for them when they find me.
 
-Read these and write down what my voice actually does. Sentence length, the words I reach for, the words I'd never use, how I open, how I close, what I sound like when I'm being funny and when I'm being serious.
+brand/voice.md
+How I sound. Phrases that are mine. Words and tones I'd never use.
 
-Save it in my voice folder so you can read it before you write anything for me from now on.</div>
-        <button class="copy" data-target="p2">Copy the prompt</button>
+offers/offers.md
+What I sell. Name, price, and what's different for the person afterward.
+
+Important:
+- Use only what you genuinely know about me. Do not fill gaps with reasonable guesses.
+- Anywhere you don't actually know something, write [FILL IN] and move on. I would much rather have a visible gap than a sentence that sounds right and isn't true.
+- Write it in my voice where you can tell what my voice is.
+- Output all four, with the filename as a heading above each one.</div>
+        <button class="copy" data-target="p2">Copy route one</button>
       </div>
-      <p style="margin-top:16px">Now open a brand new conversation and ask it to write you something. It'll already sound like you. That's the whole point of the folder.</p>
+      <p style="margin-top:16px">Copy the whole answer. Go back to Claude Code and paste it in with this:</p>
+      <div class="prompt-wrap">
+<div class="prompt" id="p3">File each of these into the matching files in this repo, replacing the placeholders. Then push to main.</div>
+        <button class="copy" data-target="p3">Copy the filing instruction</button>
+      </div>
+      <div class="note warm"><strong>Then read what it wrote.</strong> Every <code>[FILL IN]</code> is a real gap, and anything that isn't marked is something Claude believes about your business. Check the prices. Check the offer names. A wrong fact in here quietly becomes a wrong fact in everything it writes for you afterward.</div>
+
+      <h3 style="margin-top:26px">Route two: you're new to Claude, or you'd rather start clean</h3>
+      <p>Then nobody has the answers but you. Paste this into Claude Code and let it walk you through:</p>
+      <div class="prompt-wrap">
+<div class="prompt" id="p4">Read every file in this repo, starting with CLAUDE.md.
+
+Then interview me so we can fill in who-i-am, who-i-serve, voice, and offers.
+
+Ask one question at a time and wait for my answer before moving to the next. Keep it to about ten questions total. If I give you a thin answer, ask me a follow-up instead of accepting it.
+
+When we're done, write my answers into the right files, replacing the placeholders, and push to main.</div>
+        <button class="copy" data-target="p4">Copy route two</button>
+      </div>
+      <div class="note"><strong>One trick for the voice file.</strong> When it asks how you sound, don't describe yourself. Paste in three things you've actually written that felt like you, and let it work out the pattern. Describing your own voice is genuinely hard. Showing it is easy.</div>
+
+      <div class="rule" style="margin:26px 0 20px"></div>
+      <p>However you filled them, do this last: open a brand new conversation and ask it to write you something. It'll already sound like you, and you won't have explained a thing.</p>
+      <p>That's the whole point of the folder.</p>
     </div>
   </div>
 
