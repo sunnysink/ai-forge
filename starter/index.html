@@ -284,33 +284,51 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
       <div><span class="step-n">Step Four</span><h3 class="step-t">The Filing Cabinet Prompt</h3></div>
     </div>
     <div class="step-body">
-      <p>Here's the one I use with new members. Fill in the brackets with your real answers, paste the whole thing into Claude Code, and it will build your folders for you and label every one.</p>
+      <p>Fill in the brackets with your real answers and paste the whole thing into Claude Code. It builds the folders and writes your actual business into them.</p>
       <div class="prompt-wrap">
-<div class="prompt" id="p1">I'm setting up a folder system so you can remember my business between conversations, instead of me re-explaining it every time.
+<div class="prompt" id="p1">Set up my business brain in this repo. Create exactly this structure, using these exact names:
 
-Here's my business:
-- What I do: [tarot reader, coach, healer, reader and coach both, something else]
-- Who I work with: [describe the actual person, and what's going on for them when they find you]
-- What I offer: [each offer, one line each]
-- What I make regularly: [captions, emails, blog posts, readings, client notes, whatever it actually is]
-- How I sound: [how you talk. warm, blunt, funny, gentle, all of it]
+CLAUDE.md
+README.md
+first-tasks.md
+brand/voice.md
+content/about-this-folder.md
+context/who-i-am.md
+context/who-i-serve.md
+offers/offers.md
 
-Build me a folder structure for this.
+Here's what goes in them. Ask me follow-up questions wherever my answer is thin, before you write anything.
 
-For each folder, tell me:
-- The name, in plain language, no jargon
-- One sentence on what goes in it
-- What you'd be able to do for me once there's something in it
+context/who-i-am.md
+[Who you are, what you actually do, how long you've been doing it, what people come to you for.]
 
-Keep it to six folders or fewer. I'd rather have four I actually use than twelve I ignore.
+context/who-i-serve.md
+[Your ideal client. Describe the real person, and what's going on for them at the moment they find you.]
 
-Then go ahead and create those folders, and put a short README in each one explaining what belongs there, so future-me knows where things go.
+brand/voice.md
+[How you sound. Warm, blunt, funny, gentle, all of it. Words you reach for. Words you'd never say.]
 
-One standing rule for how you work in here: push your changes straight to main. Don't create branches or pull requests unless I specifically ask for one.</div>
+offers/offers.md
+[Each offer: what it is, what it costs, and what's different for the person afterward.]
+
+content/about-this-folder.md
+A short note saying this folder holds my captions, emails, blog posts, and anything else I write.
+
+CLAUDE.md
+Standing instructions for you, in my words: read the context and brand files before writing anything for me, match my voice, and ask me before inventing any fact about my business.
+
+README.md
+Plain language explanation of what this repo is and how to use it, written for me six months from now when I've forgotten.
+
+first-tasks.md
+Five specific things I could ask you to do next, using what's now in these files.
+
+Then create all of it. Push straight to main, and don't make branches or pull requests unless I specifically ask.</div>
         <button class="copy" data-target="p1">Copy the prompt</button>
       </div>
-      <div class="note"><strong>About that last line.</strong> Branches and pull requests are a developer habit. They exist so a team of engineers can work on the same code without writing over each other. You are one person with a folder of notes about your own business, so they add steps between you and your files and nothing else. Straight to <code>main</code> is right for this. If you ever build an actual software project in here, that's the moment to ask for branches, and not before.</div>
-      <div class="note">Missing an answer? Say so in the brackets. "I don't have named offers yet" is a real answer and Claude will build around it.</div>
+      <div class="note"><strong>Why the exact names matter.</strong> Everything you learn after this assumes the same layout. When a lesson says "put that in your brand folder," it has to mean one thing. Let Claude invent its own names and you'll be translating every instruction you ever read.</div>
+      <div class="note"><strong>Thin on an answer?</strong> Say so plainly in the brackets. "I don't have named offers yet" is a real answer, and the prompt tells Claude to ask you follow-up questions rather than making something up.</div>
+      <div class="note"><strong>About that last line.</strong> Branches and pull requests are a developer habit, built so a team of engineers doesn't write over each other. You're one person with notes about your own business, so they'd only add steps between you and your files.</div>
     </div>
   </div>
 
