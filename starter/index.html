@@ -248,28 +248,29 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
       <button class="tick" aria-label="Mark step 3 complete">
         <svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </button>
-      <div><span class="step-n">Step Three</span><h3 class="step-t">Open Claude Code and hand it the keys</h3></div>
+      <div><span class="step-n">Step Three</span><h3 class="step-t">Install the Claude app on your GitHub</h3></div>
     </div>
     <div class="step-body">
-      <p>This is the part people brace for, and it's four clicks.</p>
+      <p>Read the step title again, because the word <em>install</em> is doing all the work here. Signing in with GitHub is not the same as installing the app, and only one of them lets Claude see your files.</p>
       <ul>
-        <li>Go to <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a></li>
-        <li>Sign in with your Claude account</li>
-        <li>Connect GitHub when it asks</li>
-        <li>Grant access to <strong>biz-brain</strong> and nothing else</li>
+        <li>Go to <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a> and sign in with your Claude account</li>
+        <li>It prompts you to connect GitHub. <strong>Follow that prompt all the way through to the install screen.</strong> Stopping at the sign-in leaves you with an empty repository list and no explanation.</li>
+        <li>GitHub asks which account to install on. Pick the one that owns <code>biz-brain</code>.</li>
+        <li>GitHub asks which repositories. Choose <strong>All repositories</strong>, or <strong>Only select repositories</strong> and pick <code>biz-brain</code>.</li>
+        <li>Click <strong>Install</strong></li>
       </ul>
-      <p>That last one is deliberate. You're giving Claude a key to one drawer, not the building.</p>
+      <p>You'll then be asked to create a cloud environment. The defaults are right for this. Give it any name and click <strong>Create environment</strong>.</p>
+      <p>Back at claude.ai/code, click the repository selector under the message box and choose <code>biz-brain</code>.</p>
       <div class="note warm">This is the step that needs Pro. If you're on the free plan you'll get stopped here, and it's the plan, not anything you did wrong.</div>
 
-      <h3 style="margin-top:24px">Your repo isn't in the list?</h3>
-      <p>Try these in order.</p>
+      <h3 style="margin-top:24px">No repositories in the list?</h3>
+      <p>This is the most common wall, and it almost always means the app got authorized but never actually installed. Install it directly:</p>
       <ul>
-        <li>Reload <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>. A repository you made minutes ago sometimes needs one refresh to show up.</li>
-        <li>Check which GitHub account you connected. Claude can see the repositories that account can see, so if you have more than one GitHub login, make sure you connected the one that owns <code>biz-brain</code>.</li>
-        <li>Confirm your Claude plan is Pro or higher. An empty repo list and a plan problem can look the same from the outside.</li>
+        <li><a href="https://github.com/apps/claude/installations/new" target="_blank" rel="noopener">github.com/apps/claude/installations/new</a></li>
       </ul>
-      <div class="note"><strong>One thing that looks broken and isn't.</strong> If you go poking around in GitHub's settings, you'll probably find Claude listed under authorized applications and not under installed apps. That's normal. Installation is only needed for a separate pull request feature, and it has nothing to do with whether Claude can see your files. Don't spend your evening on it, I already did.</div>
-      <div class="note warm"><strong>Don't ask Claude to fix a connection problem.</strong> Claude can't change your GitHub permissions or your plan from inside a conversation. It will sound like it's helping, and nothing will move. Anything on this list you have to do yourself.</div>
+      <p>Choose the account that owns your repo, choose <strong>All repositories</strong> or select <code>biz-brain</code>, click <strong>Install</strong>, then reload claude.ai/code. Your repo will be there.</p>
+      <div class="note">A private repo is not the problem. Private works exactly like public here, as long as the app is installed on the account that owns it.</div>
+      <div class="note warm"><strong>Don't ask Claude to fix a connection problem.</strong> Claude can't install a GitHub app or change your plan from inside a conversation. It will sound like it's helping, and nothing will move. This one is yours to click.</div>
       <div class="note">Buttons move around as things get updated. If a label reads a little differently than what's written here, you're still in the right place. Look for the word <em>connect</em> or <em>repository</em> and follow it.</div>
     </div>
   </div>
