@@ -284,9 +284,9 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
       <div><span class="step-n">Step Four</span><h3 class="step-t">The Filing Cabinet Prompt</h3></div>
     </div>
     <div class="step-body">
-      <p>Fill in the brackets with your real answers and paste the whole thing into Claude Code. It builds the folders and writes your actual business into them.</p>
+      <p>Paste this straight in. Nothing to fill out first, and it won't ask you any questions. You're building the empty cabinet here. Filling the drawers comes after.</p>
       <div class="prompt-wrap">
-<div class="prompt" id="p1">Set up my business brain in this repo. Create exactly this structure, using these exact names:
+<div class="prompt" id="p1">Set up my business brain in this repo. Create exactly this structure, with these exact names:
 
 CLAUDE.md
 README.md
@@ -297,41 +297,26 @@ context/who-i-am.md
 context/who-i-serve.md
 offers/offers.md
 
-Here's what goes in them. Ask me follow-up questions wherever my answer is thin, before you write anything.
+Leave every one of them empty except for a heading and a short bracketed placeholder telling me what belongs there.
 
-context/who-i-am.md
-[Who you are, what you actually do, how long you've been doing it, what people come to you for.]
+Do not ask me any questions. Do not write anything about my actual business. Do not guess at my voice, my offers, or my clients. I'm filling these in myself later.
 
-context/who-i-serve.md
-[Your ideal client. Describe the real person, and what's going on for them at the moment they find you.]
+Two exceptions:
 
-brand/voice.md
-[How you sound. Warm, blunt, funny, gentle, all of it. Words you reach for. Words you'd never say.]
-
-offers/offers.md
-[Each offer: what it is, what it costs, and what's different for the person afterward.]
-
-content/about-this-folder.md
-A short note saying this folder holds my captions, emails, blog posts, and anything else I write.
-
-CLAUDE.md
-Standing instructions for you, written so they apply in every future session, not just this one:
+CLAUDE.md also carries standing instructions for you, to be read at the start of every session:
 - Read the context and brand files before writing anything for me
 - Match my voice
 - Ask me before inventing any fact about my business
 - Push straight to main. Don't make branches or pull requests unless I ask for one.
 
-README.md
-Plain language explanation of what this repo is and how to use it, written for me six months from now when I've forgotten.
+README.md explains in plain language what this repo is and how to use it, written for me six months from now when I've forgotten.
 
-first-tasks.md
-Five specific things I could ask you to do next, using what's now in these files.
-
-Then create all of it. Push straight to main, and don't make branches or pull requests unless I specifically ask.</div>
+Then create all of it and push straight to main.</div>
         <button class="copy" data-target="p1">Copy the prompt</button>
       </div>
       <div class="note"><strong>Why the exact names matter.</strong> Everything you learn after this assumes the same layout. When a lesson says "put that in your brand folder," it has to mean one thing. Let Claude invent its own names and you'll be translating every instruction you ever read.</div>
-      <div class="note"><strong>Thin on an answer?</strong> Say so plainly in the brackets. "I don't have named offers yet" is a real answer, and the prompt tells Claude to ask you follow-up questions rather than making something up.</div>
+      <div class="note"><strong>If it starts asking you questions anyway,</strong> tell it to stop and just make the empty files. There's a reason the prompt says it three different ways. An interview here turns a two minute step into twenty, and you'd be answering big questions about your voice and your clients cold, which is the worst moment to answer them.</div>
+      <div class="note warm"><strong>One behavior that will surprise you.</strong> If Claude does ask something and you take a while to reply, the session may carry on without your answer and write the file anyway. Nothing is broken. Tell it what it got wrong and ask it to rewrite that file.</div>
       <div class="note"><strong>About branches, and why that rule appears twice.</strong> Branches and pull requests are a developer habit, built so a team of engineers doesn't write over each other. You're one person with notes about your own business, so they'd only add steps between you and your files.<br><br>Notice the rule is written in two places on purpose. The line at the bottom of the prompt applies to <em>this</em> conversation. The copy inside <code>CLAUDE.md</code> is the one that lasts, because that file gets read at the start of every session from now on. Telling Claude something once lives as long as the chat does. Writing it into <code>CLAUDE.md</code> makes it permanent. That difference is the entire reason you're building this folder.</div>
     </div>
   </div>
