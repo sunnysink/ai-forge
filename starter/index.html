@@ -217,7 +217,7 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
         Anything you publish from GitHub gets an address built out of it: <code>yourname.github.io/the-thing/</code>. Every artifact, tracker, quiz, and client tool you build carries that name in the link, and the only way around it is buying a domain and pointing it there each separate time.<br><br>
         So pick it the way you'd pick a business email. Your business name or your own name both work beautifully. The handle you made in 2009 is going to look strange in a link you send a paying client.
       </div>
-      <div class="note">Already have an account? Look at the username. If you'd be glad for a client to see it in a link, keep it. If you'd wince, make a new one now while it costs you nothing.</div>
+      <div class="note">Already have an account? You're set, carry on to the next step.</div>
     </div>
   </div>
 
@@ -227,18 +227,21 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
       <button class="tick" aria-label="Mark step 2 complete">
         <svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </button>
-      <div><span class="step-n">Step Two</span><h3 class="step-t">Make your filing cabinet</h3></div>
+      <div><span class="step-n">Step Two</span><h3 class="step-t">Copy your filing cabinet</h3></div>
     </div>
     <div class="step-body">
       <p>In GitHub, a filing cabinet is called a <em>repository</em>. Ugly word, simple thing. It's a folder that can hold other folders.</p>
+      <p>You don't have to build yours. It already exists as a template, with every folder and file already named and waiting. You're making your own copy of it.</p>
       <ul>
-        <li>Go to <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a></li>
+        <li>Open <a href="https://github.com/sunnysink/claude-code-starter-kit" target="_blank" rel="noopener">the Claude Code Starter Kit</a></li>
+        <li>Click the green <strong>Use this template</strong> button, then <strong>Create a new repository</strong></li>
         <li>Name it <strong>biz-brain</strong>, lowercase, with the hyphen</li>
+        <li>Leave <strong>Include all branches</strong> unchecked</li>
         <li>Click <strong>Private</strong>. This matters. Your client notes and your offers are in here.</li>
-        <li>Tick <strong>Add a README file</strong></li>
         <li>Click <strong>Create repository</strong></li>
       </ul>
       <div class="note warm"><strong>Do not skip Private.</strong> Public means anyone on the internet can read it, including people who found it by accident. Private means you and whoever you invite. If you clicked past it, open Settings on the repo and change it now.</div>
+      <div class="note"><strong>What you just got.</strong> Empty labeled files, nothing filled in: your voice, your offers, who you are, who you serve, plus a <code>CLAUDE.md</code> holding the standing instructions Claude reads at the start of every session. The names matter more than they look like they do. Every lesson after this one says things like "put that in your brand folder," and that has to mean one thing.</div>
     </div>
   </div>
 
@@ -287,63 +290,10 @@ footer{text-align:center;margin-top:42px;font-family:var(--mono);font-size:11px;
       <button class="tick" aria-label="Mark step 4 complete">
         <svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </button>
-      <div><span class="step-n">Step Four</span><h3 class="step-t">The Filing Cabinet Prompt</h3></div>
-    </div>
-    <div class="step-body">
-      <p>Paste this straight in. Nothing to fill out first, and it won't ask you any questions. You're building the empty cabinet here. Filling the drawers comes after.</p>
-      <div class="prompt-wrap">
-<div class="prompt" id="p1">Set up my business brain in this repo. Create exactly this structure, with these exact names:
-
-CLAUDE.md
-README.md
-first-tasks.md
-brand/voice.md
-content/about-this-folder.md
-context/who-i-am.md
-context/who-i-serve.md
-offers/offers.md
-
-Leave every one of them empty except for a heading and a short bracketed placeholder telling me what belongs there.
-
-Do not ask me any questions. Do not write anything about my actual business. Do not guess at my voice, my offers, or my clients. I'm filling these in myself later.
-
-Two exceptions:
-
-CLAUDE.md also carries standing instructions for you, to be read at the start of every session:
-- Read the context and brand files before writing anything for me
-- Match my voice
-- Ask me before inventing any fact about my business
-- Push straight to main. Don't make branches or pull requests unless I ask for one.
-
-README.md explains in plain language what this repo is and how to use it, written for me six months from now when I've forgotten.
-
-Then create all of it and push straight to main.</div>
-        <button class="copy" data-target="p1">Copy the prompt</button>
-      </div>
-      <div class="note"><strong>Why the exact names matter.</strong> Everything you learn after this assumes the same layout. When a lesson says "put that in your brand folder," it has to mean one thing. Let Claude invent its own names and you'll be translating every instruction you ever read.</div>
-      <div class="note"><strong>If it starts asking you questions anyway,</strong> tell it to stop and just make the empty files. There's a reason the prompt says it three different ways. An interview here turns a two minute step into twenty, and you'd be answering big questions about your voice and your clients cold, which is the worst moment to answer them.</div>
-      <div class="note warm"><strong>One behavior that will surprise you.</strong> If Claude does ask something and you take a while to reply, the session may carry on without your answer and write the file anyway. Nothing is broken. Tell it what it got wrong and ask it to rewrite that file.</div>
-      <div class="note"><strong>Want to skip the prompt entirely?</strong> The same structure exists as a template you can copy in one click: <a href="https://github.com/sunnysink/claude-code-starter-kit" target="_blank" rel="noopener">the Claude Code Starter Kit</a>. Open it, hit <strong>Use this template</strong>, name it <code>biz-brain</code>, click Private. Same files, ten seconds. Running the prompt teaches you that Claude can build structure on command, which is worth knowing. The template is faster. Both land in the same place.</div>
-      <div class="note"><strong>About branches, and why that rule appears twice.</strong> Branches and pull requests are a developer habit, built so a team of engineers doesn't write over each other. You're one person with notes about your own business, so they'd only add steps between you and your files.<br><br>Notice the rule is written in two places on purpose. The line at the bottom of the prompt applies to <em>this</em> conversation. The copy inside <code>CLAUDE.md</code> is the one that lasts, because that file gets read at the start of every session from now on. Telling Claude something once lives as long as the chat does. Writing it into <code>CLAUDE.md</code> makes it permanent. That difference is the entire reason you're building this folder.<br><br>Claude may also mention that its own default pointed at a branch and it used main because you asked. It might leave an unused branch sitting on GitHub with a name like <code>cloud/...</code>. That's harmless. Ignore it, or delete it whenever you like. Your files are on main, which is the one you'll see when you open the repo.</div>
-    </div>
-  </div>
-
-  <!-- STEP 5 -->
-  <div class="step" data-step="5">
-    <div class="step-head">
-      <button class="tick" aria-label="Mark step 5 complete">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </button>
-      <div><span class="step-n">Step Five</span><h3 class="step-t">Fill the drawers</h3></div>
+      <div><span class="step-n">Step Four</span><h3 class="step-t">Fill the drawers</h3></div>
     </div>
     <div class="step-body">
       <p>Empty folders do nothing. This is the step that turns a tidy structure into an assistant that knows you.</p>
-      <p>Two routes. The question isn't how long you've used Claude. It's whether Claude's memory holds anything about your <em>business</em>.</p>
-      <div class="note"><strong>Not sure which one you are? Ask it.</strong> Open a normal Claude chat and say: <em>"What do you actually know about my business?"</em> Read the answer. If it can name your offers, your clients, or how you sound, take route one. If it's vague, generic, or blank, take route two. Plenty of people use Claude every day for other things and it has never learned what they sell.</div>
-
-      <h3 style="margin-top:22px">Route one: Claude already knows your business</h3>
-      <p>Then you'd be typing out things it could tell you. Get it out of the chat and into your files.</p>
-      <div class="note">If you've brought your ChatGPT memories across to Claude, this route gets much richer, because everything that account knew came with you.</div>
       <p>Open a normal Claude conversation, the regular chat and not Claude Code, and paste this:</p>
       <div class="prompt-wrap">
 <div class="prompt" id="p2">You've been helping me with my business for a while. I'm building a permanent folder of files so you don't start from scratch every conversation.
@@ -370,7 +320,7 @@ Important:
 Give me that one file in ONE markdown block. One block, one copy. Do not split it into separate blocks, separate documents, downloads, or attachments.
 
 After the block, in a few lines outside it, tell me which of the four sections came out thin and what's actually missing from each. I want to know where to spend my time.</div>
-        <button class="copy" data-target="p2">Copy route one</button>
+        <button class="copy" data-target="p2">Copy the prompt</button>
       </div>
       <div class="note"><strong>Why one file and not four.</strong> Ask for four files and Claude tends to hand you four separate boxes, which is four copies and four chances to lose one. One file with four sections inside it comes back as a single block. Claude Code does the splitting in the next step, which is the part it's good at.</div>
       <p style="margin-top:16px">Copy the whole block. Go back to Claude Code and paste it in with this underneath:</p>
@@ -388,40 +338,22 @@ Keep the text exactly as written, including every [FILL IN] marker. Don't tidy t
       </div>
       <div class="note">Claude may mention it can't find <code>business-brain-dump.md</code> in the repo. That's expected. You pasted the text rather than committing a file, so there's nothing to look for and nothing to delete. It splits from what you pasted.</div>
       <div class="note warm"><strong>Then read what it wrote.</strong> Every <code>[FILL IN]</code> is a real gap, and anything that isn't marked is something Claude believes about your business. Check the prices. Check the offer names. A wrong fact in here quietly becomes a wrong fact in everything it writes for you afterward.</div>
-
-      <h3 style="margin-top:26px">Route two: Claude doesn't know your business yet</h3>
-      <p>Then nobody has the answers but you. This one is an interview, so give it a quiet twenty minutes rather than squeezing it in. Paste this into Claude Code and let it walk you through:</p>
-      <div class="prompt-wrap">
-<div class="prompt" id="p4">Read every file in this repo, starting with CLAUDE.md.
-
-Then interview me so we can fill in who-i-am, who-i-serve, voice, and offers.
-
-Ask one question at a time and wait for my answer before moving to the next. Keep it to about ten questions total. If I give you a thin answer, ask me a follow-up instead of accepting it.
-
-When we're done, write my answers into the right files, replacing the placeholders, and push to main.</div>
-        <button class="copy" data-target="p4">Copy route two</button>
-      </div>
-      <div class="note"><strong>One trick for the voice file.</strong> When it asks how you sound, don't describe yourself. Paste in three things you've actually written that felt like you, and let it work out the pattern. Describing your own voice is genuinely hard. Showing it is easy.</div>
-
-      <div class="rule" style="margin:26px 0 20px"></div>
-      <p>However you filled them, do this last: open a brand new conversation and ask it to write you something. It'll already sound like you, and you won't have explained a thing.</p>
-      <p>That's the whole point of the folder.</p>
     </div>
   </div>
 
-  <!-- STEP 6 -->
-  <div class="step" data-step="6">
+  <!-- STEP 5 -->
+  <div class="step" data-step="5">
     <div class="step-head">
-      <button class="tick" aria-label="Mark step 6 complete">
+      <button class="tick" aria-label="Mark step 5 complete">
         <svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </button>
-      <div><span class="step-n">Step Six</span><h3 class="step-t">Make the holes chase you</h3></div>
+      <div><span class="step-n">Step Five</span><h3 class="step-t">Make the holes chase you</h3></div>
     </div>
     <div class="step-body">
       <p>You will not have filled everything in. Nobody does. There are <code>[FILL IN]</code> markers scattered through those files right now, and left alone they'll still be there in March.</p>
       <p>So don't rely on remembering. Build the reminder into the folder itself.</p>
       <div class="prompt-wrap">
-<div class="prompt" id="p5">Go through every file in this repo and find every [FILL IN] marker and every open question left for me.
+<div class="prompt" id="p5">Go through every file in this repo and find every gap left for me: [FILL IN] markers, any text still sitting inside square brackets, and any section that's still a placeholder rather than real information about my business.
 
 Create a file at the root called open-questions.md:
 
@@ -439,6 +371,7 @@ Then push to main.</div>
       </div>
       <div class="note"><strong>Why one question and not the list.</strong> A list of fourteen questions gets closed and ignored. One question gets answered in thirty seconds while you're already here for something else. Answer one a day and the whole thing is done in two weeks without ever sitting down to do it.</div>
       <div class="note"><strong>Why the order matters.</strong> A missing price breaks every sales email you'll ever ask for. A missing origin story breaks one about page. Same effort to answer, very different payoff, so the list puts the expensive gaps first.</div>
+      <div class="note"><strong>One trick for when it asks about your voice.</strong> Don't describe how you sound. Paste in three things you've actually written that felt like you, and let it work out the pattern. Describing your own voice is genuinely hard. Showing it is easy.</div>
       <div class="note warm"><strong>This is the part that keeps working after you close the tab.</strong> Everything up to here was setup you did once. This is the folder getting better on its own, every time you come back, without you managing it.</div>
     </div>
   </div>
@@ -513,7 +446,7 @@ Then push to main.</div>
   }
 
   /* step progress + localStorage */
-  var KEY='ccstarter.v1';
+  var KEY='ccstarter.v2';
   var steps=[].slice.call(document.querySelectorAll('.step'));
   var fill=document.getElementById('fill');
   var ptxt=document.getElementById('ptxt');
