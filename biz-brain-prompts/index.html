@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>50 First Prompts for Your Business Brain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1411; --bg2:#101a16; --ink:#F1E7D6; --ink-dim:#BDB09A;
+    --copper:#C6955C; --copper-lt:#E2B884; --ember:#E8743B; --ember-glow:#FF8A4C;
+    --forest:#2C5F5A; --mauve:#9B7C8B; --gold:#D8B968; --green:#6FB58A;
+    --serif:'Cormorant Garamond','Hoefler Text',Georgia,serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    --card:rgba(22,34,28,0.72); --cardborder:rgba(198,149,92,0.20);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans); color:var(--ink); background:var(--bg);
+    background-image:
+      radial-gradient(900px 500px at 12% -8%, rgba(232,116,59,0.10), transparent 60%),
+      radial-gradient(800px 500px at 100% 0%, rgba(44,95,90,0.14), transparent 55%),
+      radial-gradient(700px 600px at 60% 120%, rgba(198,149,92,0.08), transparent 60%);
+    min-height:100vh; padding:44px 22px 80px; position:relative; overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .embers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .ember{position:absolute;bottom:-12px;width:3px;height:3px;border-radius:50%;
+    background:var(--ember-glow);box-shadow:0 0 6px 1px rgba(255,138,76,0.6);
+    opacity:0;animation:rise linear infinite}
+  @keyframes rise{
+    0%{transform:translateY(0) translateX(0);opacity:0}
+    12%{opacity:.7}
+    100%{transform:translateY(-104vh) translateX(26px);opacity:0}
+  }
+  .wrap{max-width:940px;margin:0 auto;position:relative;z-index:1}
+
+  /* header */
+  header{text-align:center;margin-bottom:34px}
+  .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--copper);opacity:.85;margin-bottom:14px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(42px,7.5vw,74px);line-height:1;
+    background:linear-gradient(92deg,var(--copper-lt),var(--ember-glow) 38%,var(--gold) 70%,var(--copper));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    letter-spacing:.5px}
+  .subhead{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.4vw,21px);
+    color:var(--ink-dim);margin-top:14px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.5}
+
+  /* how to use */
+  .howto{margin-top:30px;background:linear-gradient(135deg,rgba(232,116,59,0.13),rgba(22,34,28,0.80));
+    border:1px solid rgba(232,116,59,0.30);border-radius:16px;padding:22px 26px;
+    backdrop-filter:blur(16px);position:relative;overflow:hidden;text-align:left}
+  .howto::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(180deg,var(--copper),var(--ember),var(--gold))}
+  .howto h2{font-family:var(--serif);font-weight:600;font-size:23px;margin-bottom:10px}
+  .howto p{font-size:14.5px;color:var(--ink-dim);line-height:1.65;max-width:70ch}
+  .howto p + p{margin-top:9px}
+  .howto b{color:var(--copper-lt);font-weight:600}
+  .howto code{font-family:var(--mono);font-size:12.5px;color:var(--gold);
+    background:rgba(13,20,17,0.6);padding:2px 6px;border-radius:5px}
+
+  /* controls */
+  .controls{display:flex;gap:11px;flex-wrap:wrap;align-items:center;margin:30px 0 20px;
+    position:sticky;top:0;z-index:5;padding:14px 0;
+    background:linear-gradient(180deg,var(--bg) 68%,rgba(13,20,17,0))}
+  #search{flex:1;min-width:210px;font-family:var(--sans);font-size:14px;color:var(--ink);
+    background:var(--card);border:1px solid var(--cardborder);border-radius:11px;
+    padding:11px 15px;backdrop-filter:blur(12px);outline:none;transition:border-color .2s}
+  #search:focus{border-color:rgba(232,116,59,0.55)}
+  #search::placeholder{color:var(--ink-dim);opacity:.6}
+  .btn{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--copper-lt);background:rgba(198,149,92,0.10);border:1px solid rgba(198,149,92,0.42);
+    border-radius:30px;padding:11px 17px;cursor:pointer;transition:all .2s;white-space:nowrap}
+  .btn:hover{background:rgba(232,116,59,0.18);border-color:rgba(232,116,59,0.6);color:var(--ember-glow)}
+  .count{font-family:var(--mono);font-size:11px;color:var(--ink-dim);letter-spacing:.08em}
+
+  /* filter pills */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+  .fpill{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-dim);background:rgba(22,34,28,0.6);border:1px solid var(--cardborder);
+    border-radius:30px;padding:7px 14px;cursor:pointer;transition:all .2s}
+  .fpill:hover{color:var(--copper-lt);border-color:rgba(198,149,92,0.45)}
+  .fpill.on{color:var(--bg);background:var(--copper);border-color:var(--copper);font-weight:600}
+
+  /* section */
+  .section-label{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--ink-dim);margin:40px 0 16px;display:flex;align-items:center;gap:12px}
+  .section-label::after{content:"";flex:1;height:1px;
+    background:linear-gradient(90deg,rgba(198,149,92,0.35),transparent)}
+  .section-label .sn{color:var(--copper)}
+
+  /* prompt card */
+  .card{background:var(--card);border:1px solid var(--cardborder);border-radius:16px;
+    padding:19px 21px;backdrop-filter:blur(14px);margin-bottom:13px;
+    position:relative;overflow:hidden;transition:border-color .2s,opacity .2s}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--copper),var(--ember),var(--gold));opacity:.55}
+  .card:hover{border-color:rgba(198,149,92,0.42)}
+  .card.done{opacity:.5}
+  .card.done .ptitle{text-decoration:line-through}
+  .chead{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+  .num{font-family:var(--mono);font-size:11px;color:var(--copper);flex:none;margin-top:5px;
+    letter-spacing:.06em}
+  .ptitle{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.2;color:var(--ink);flex:1}
+  .tick{width:19px;height:19px;border-radius:6px;border:1.5px solid var(--copper);flex:none;margin-top:3px;
+    display:grid;place-items:center;cursor:pointer;transition:all .2s}
+  .tick::after{content:"✓";font-size:12px;color:var(--bg);opacity:0;font-weight:700}
+  .card.done .tick{background:var(--copper)}
+  .card.done .tick::after{opacity:1}
+  .prompt{font-family:var(--mono);font-size:13px;line-height:1.72;color:var(--ink-dim);
+    background:rgba(13,20,17,0.62);border:1px solid rgba(198,149,92,0.13);border-radius:11px;
+    padding:15px 17px;white-space:pre-wrap;word-break:break-word}
+  .prompt .fill{color:var(--gold)}
+  .prompt .file{color:var(--copper-lt)}
+  .cfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+  .why{font-size:12.5px;color:var(--ink-dim);opacity:.82;line-height:1.5;flex:1;min-width:200px;font-style:italic}
+  .copy{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--copper-lt);background:rgba(198,149,92,0.10);border:1px solid rgba(198,149,92,0.42);
+    border-radius:30px;padding:8px 15px;cursor:pointer;transition:all .2s;flex:none}
+  .copy:hover{background:rgba(232,116,59,0.18);border-color:rgba(232,116,59,0.6);color:var(--ember-glow)}
+  .copy.ok{color:var(--green);border-color:rgba(111,181,138,0.6);background:rgba(111,181,138,0.14)}
+
+  .empty{text-align:center;font-family:var(--serif);font-style:italic;font-size:19px;
+    color:var(--ink-dim);opacity:.6;padding:50px 0}
+
+  /* join cta */
+  .cta{margin-top:54px;text-align:center;border-radius:16px;padding:38px 28px;
+    position:relative;overflow:hidden;
+    background:linear-gradient(135deg,rgba(232,116,59,0.17),rgba(22,34,28,0.82));
+    border:1px solid rgba(232,116,59,0.34);backdrop-filter:blur(16px);
+    box-shadow:0 18px 50px -22px rgba(0,0,0,0.7)}
+  .cta::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(180deg,var(--copper),var(--ember),var(--gold))}
+  .cta h3{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,34px);
+    line-height:1.15;color:var(--ink);margin-bottom:12px}
+  .cta p{font-size:14.5px;color:var(--ink-dim);line-height:1.65;max-width:52ch;
+    margin:0 auto 24px}
+  .ctabtn{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;font-weight:600;text-decoration:none;color:#150d08;
+    background:linear-gradient(96deg,var(--copper-lt),var(--ember-glow) 55%,var(--gold));
+    border-radius:30px;padding:16px 34px;transition:transform .2s,box-shadow .2s;
+    box-shadow:0 10px 30px -12px rgba(232,116,59,0.75)}
+  .ctabtn:hover{transform:translateY(-2px);box-shadow:0 16px 38px -12px rgba(232,116,59,0.9)}
+  .cta .fine{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);
+    letter-spacing:.1em;margin-top:16px;opacity:.75}
+
+  footer{margin-top:34px;text-align:center;font-family:var(--mono);font-size:11px;
+    color:var(--ink-dim);opacity:.6;letter-spacing:.05em;line-height:1.9}
+
+  @media(max-width:620px){
+    body{padding:32px 15px 60px}
+    .ptitle{font-size:19px}
+    .prompt{font-size:12.5px}
+  }
+</style>
+</head>
+<body>
+<div class="embers" id="embers"></div>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">Soul-Forged Founders</div>
+    <h1>50 First Prompts</h1>
+    <div class="subhead">For the business brain you just built. Every one of these works because your files exist now.</div>
+  </header>
+
+  <div class="howto">
+    <h2>How to use these</h2>
+    <p>Open your repo in Claude Code, copy a prompt, paste it, and press enter. Claude reads your files first, so what comes back already knows your business, your people, and how you sound.</p>
+    <p>Anything in <span class="fill">gold brackets</span> is yours to fill in before you send it. Anything in <span class="file">copper</span> is a real file in your repo, so you can paste the prompt exactly as written.</p>
+    <p><b>Start with number 1.</b> It makes every prompt after it better. Tick them off as you go, and the page remembers where you were.</p>
+  </div>
+
+  <div class="controls">
+    <input id="search" type="text" placeholder="Search all 50 prompts…" autocomplete="off">
+    <span class="count" id="count">50 shown</span>
+    <button class="btn" id="exportBtn">Copy all</button>
+    <button class="btn" id="resetBtn">Reset ticks</button>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div id="list"></div>
+
+  <div class="cta">
+    <h3>Keep going with people beside you</h3>
+    <p>Soul-Forged Founders is where tarot readers and coaches learn to build with Claude. New builds every week, a room to get unstuck in, and everything you make stays yours.</p>
+    <a class="ctabtn" href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">Join Soul-Forged Founders</a>
+    <div class="fine">7-day free trial · $8/month</div>
+  </div>
+
+  <footer>
+    Your files, your voice, yours to keep.
+  </footer>
+
+</div>
+
+<script>
+const DATA = [
+{s:"Start here", t:"Meet your own business brain", w:"Do this one first. Everything else gets better after it.",
+p:"Read every file in this repo, starting with «CLAUDE.md». Then tell me, in your own words, what you understand about my business, my people, and my voice. After that, ask me the 5 questions that would fill the biggest gaps in what you know. Ask them one at a time, and save my answers into the right files."},
+{s:"Start here", t:"Fill in who you are", w:"The file most people leave as placeholders. It's the one your About page comes from.",
+p:"Read «context/who-i-am.md». It's still mostly placeholders. Interview me one question at a time until you could write my About page in my voice, then fill the file in using my own words rather than yours."},
+{s:"Start here", t:"Describe your person, from real people", w:"Invented ideal clients produce invented copy. Use the ones who actually booked.",
+p:"Read «context/who-i-serve.md». Ask me about the last three people who booked with me: what was going on for them when they found me, what they had already tried, and what they said they wanted. Then turn that into a description of one real person and save it to the file."},
+{s:"Start here", t:"Make your offers accurate", w:"Whatever is written here becomes the source of truth for every price you ever publish.",
+p:"Read «offers/offers.md». For each offer listed, tell me exactly what's missing that would stop you writing accurate copy about it. Ask me for those details one at a time, then update the file. Never fill in a price or a detail I haven't given you."},
+{s:"Start here", t:"Find every gap, then answer one a day", w:"Nobody fills every placeholder on the first pass. This turns the leftovers into one small question per session.",
+p:"Read every file in this repo and list every place I left a placeholder or a bracket. Order the list by what blocks your work most, not by what's easiest to answer, and save it as «open-questions.md». Then add a rule to «CLAUDE.md» that says: at the start of every session, ask me exactly one open question from that file, wait for my answer, file it, and then get on with what I actually asked for."},
+
+{s:"Content", t:"A post that sounds like you", w:"The everyday one. The three questions are what keep it from sounding generic.",
+p:"Read my context and voice files. I want a post about ‹your topic›. Before you draft anything, ask me up to 3 questions about why this matters to me right now. Then write it to one person, in my voice, with an invitation at the end that fits one of my real offers. Show me the draft before you save it."},
+{s:"Content", t:"Turn a client win into a post", w:"Your best proof is already in your week. It just never makes it out of your head.",
+p:"Read my voice and context files. This week a client had a breakthrough: ‹describe what changed for her in 2 or 3 sentences, your own words, no names›. Before you write anything, ask me up to 3 questions about what made this moment matter. Then write a short post about it that sounds like me talking, never a marketer selling."},
+{s:"Content", t:"Mine your readings for content", w:"The themes repeating in your sessions are the themes your audience is living.",
+p:"Read «context/who-i-serve.md». Here are the themes that keep coming up in my client work this month: ‹list them, no names›. Give me three content ideas from that, each aimed at the person in my who-i-serve file, and tell me which one you'd post first and why."},
+{s:"Content", t:"Build a carousel", w:"Seven slides, one idea per slide, and a caption that stands on its own.",
+p:"Read «brand/voice.md» and «context/who-i-serve.md». Turn ‹your topic› into a 7-slide carousel. Slide 1 is the hook, slides 2 through 6 each make exactly one point, slide 7 invites her to ‹your offer or next step›. Give me the caption to go underneath it too. Keep every slide to something I would actually say out loud."},
+{s:"Content", t:"Teach it what worked", w:"Feed it your wins and the voice file gets sharper every time.",
+p:"Here's a post of mine that did well: ‹paste it›. Read «brand/voice.md», then tell me specifically what made this one land, in terms of structure, opening line, and the way it sounds. Add what you learn to the 'Sounds like me' section of the file."},
+{s:"Content", t:"One long piece into three short ones", w:"Stop making new things when you already made a good thing.",
+p:"Here's something longer I wrote: ‹paste it›. Read my voice file, then give me three short posts from it. Each one takes a different angle and stands completely on its own. None of them should read as a summary of the piece or of each other."},
+{s:"Content", t:"Find your blind spot", w:"You have been circling three topics and skipping the rest of what you do.",
+p:"Read everything in my «content» folder and my «offers/offers.md». Tell me which topics I've covered heavily, and which parts of what I actually sell I have never posted about once. Be blunt about the gap."},
+{s:"Content", t:"Ten hooks, no filler", w:"Write the hook last, generate it first, pick the one you'd say out loud.",
+p:"Read «brand/voice.md» and «context/who-i-serve.md». Give me 10 opening lines for a post about ‹your topic›. Do not use a question as a hook unless it's a question my ideal client has genuinely asked me. Number them so I can tell you which one to build out."},
+{s:"Content", t:"Voice memo into a post", w:"You already said it well once. Keep your sentences.",
+p:"Here's a transcript of me talking: ‹paste it›. Read «brand/voice.md», then turn this into a post. Keep my own sentences wherever they're already good, and tell me which lines you kept and which you changed."},
+
+{s:"Email", t:"The welcome email", w:"The one email everyone on your list reads, usually written last.",
+p:"Read every file in this repo. Write the welcome email that goes out the moment someone joins my list. It should tell her who I am in a few honest lines, name what she can expect from me, and give her one thing she can do today. Keep the selling to a single soft line at the end."},
+{s:"Email", t:"The seasonal newsletter", w:"Built for the letter you send on a rhythm, whatever your rhythm is.",
+p:"Read my context and voice files. I send my list a newsletter tied to ‹new moon, full moon, the season, whatever your rhythm is›. This one's theme is ‹your theme, a sentence or two›. Before you write, ask me up to 3 questions about what I want my readers to do with it. Then write it with one reflection question they can sit with and one clear invitation to ‹your offer or freebie›."},
+{s:"Email", t:"Invite the list to an offer", w:"Transformation first, details second. That order is the whole email.",
+p:"Read «offers/offers.md» and «context/who-i-serve.md». Write the email inviting my list to ‹offer name›. Open with what changes for her, and hold the format, price and logistics until the second half. Use only the details in my offers file. If something's missing, ask me instead of filling it in."},
+{s:"Email", t:"Stop emailing people who never open", w:"Open rate is a deliverability signal. Sending to people who never open drags down inbox placement for the ones who do.",
+p:"Read «context/who-i-serve.md». I use ‹your email platform› and I want to build a segment that excludes people who haven't opened anything in a long time, so my regular emails reach the people who actually read them. Ask me how long my list has been running, how often I send, and roughly what my open rate is now. Then tell me: what inactivity window to use, the exact steps to build that segment in my platform, which sends should use it and which should still go to everyone, and whether to send one re-engagement email before I start excluding anybody."},
+{s:"Email", t:"Subject lines, then the whole email", w:"Two steps in one prompt. Pick a number, get the email written underneath it.",
+p:"Read «brand/voice.md» and «context/who-i-serve.md». Give me 5 numbered subject lines for an email about ‹topic›. Tell me which one I'd be most likely to say out loud to a friend, and why. Then stop and wait. Once I tell you which number I want, write the full email underneath it in my voice, with one clear thing for her to do at the end. Don't write the email until I've picked."},
+{s:"Email", t:"Start again after a gap", w:"For the list you've been avoiding.",
+p:"Read my context and voice files. I haven't emailed my list in ‹how long›. Write the email that simply starts again: warm, honest about where I've been in one line at most, and useful from the second paragraph on. Do not spend the email apologising."},
+
+{s:"Offers", t:"Write the booking page", w:"Short, three outcome bullets, and specific enough that she can picture already having it.",
+p:"Read «offers/offers.md», «context/who-i-serve.md» and «brand/voice.md». Write the booking page for ‹offer name›. Keep it short. A long booking page loses her before she books.\n\nStructure it this way: one line naming what she walks out with. Then exactly three bullet points, each one an outcome she has afterwards rather than a feature of the session itself. Then the practical details, price and length and format, plainly, at the bottom.\n\nTwo rules for those bullets. Be specific: 'a two-sentence answer to what do you do' is the level of specificity I mean. And name the change: what is different for her afterwards, rather than what happens during. If my files don't give you enough to be that specific, ask me instead of writing something vague."},
+{s:"Offers", t:"One sentence per offer", w:"If two offers solve the same problem, your buyer has to do the sorting.",
+p:"Read «offers/offers.md». For each offer, tell me in one sentence what problem it solves and for whom. Then tell me honestly whether any two of them solve the same problem, and which one you'd route someone to first."},
+{s:"Offers", t:"Answer an objection honestly", w:"Without discounting, and without pretending the concern isn't fair.",
+p:"Read my context, voice and offers files. Someone said this to me about ‹offer name›: ‹paste what they said›. Help me answer it in my voice, honestly, without discounting and without dismissing what they raised. Give me a version for a DM and a version for a comment."},
+{s:"Offers", t:"What do you do, and what does it cost", w:"The three sentences you fumble on every call.",
+p:"Read «offers/offers.md» and «context/who-i-am.md». Write the three sentences I'd say on a call when someone asks what I do and what it costs. Plain spoken, no pitch voice, said the way I'd say it standing in a kitchen."},
+{s:"Offers", t:"Think through a price change", w:"Before the number moves, work out what changed about the offer.",
+p:"Read «offers/offers.md». I'm thinking about raising the price of ‹offer name›. Before you give me an opinion, ask me what's changed about the offer, my experience, and my results since I set that price. Then tell me what I'd need to add to the description to make the new number make sense."},
+{s:"Offers", t:"The I'll think about it reply", w:"The message you retype from scratch every single time.",
+p:"Read my voice and offers files. Someone said they're interested in ‹offer name› but wants to think about it. Write my reply. Warm, no pressure, and it should end with one question that helps her work out what she's actually deciding."},
+{s:"Offers", t:"Her words, before she finds you", w:"Copy works when it uses her sentences, not your descriptions of her.",
+p:"Read «context/who-i-serve.md». Write 5 things my ideal client says to herself before she ever hears of me, in her own words, the way she'd actually think them at 11pm. Save them into «context/who-i-serve.md» so you can use her language in everything you write for me."},
+
+{s:"Client work", t:"Give every client a home", w:"You don't need a database or a folder of docs. One file per client, and every session after this starts with Claude already knowing her.",
+p:"Read «CLAUDE.md». I want a home in this repo for my client work, so you know each person without me re-explaining her every time we talk.\n\nMake a «clients» folder with one file per client. Ask me about my current clients one at a time, and for each one capture: what she bought and when, what she's working on right now, what she's already tried, how she likes to be spoken to, and anything I should never forget about her.\n\nThen add a line to «CLAUDE.md» telling you to read the right client file before you write anything for her or about her."},
+{s:"Client work", t:"Discovery questions from an intake form", w:"Questions built from what she already told you beat any template.",
+p:"Read «context/who-i-serve.md». I have an intake form a new client filled in before our call: ‹paste her answers, no names›. Before you write anything, ask me up to 3 questions about what I most want to understand about this specific person. Then write 5 discovery call questions built directly from what she already told me."},
+{s:"Client work", t:"Prep for a session in ten minutes", w:"For the hour before a call when you have not looked at your notes.",
+p:"Here's what I know about the client I'm seeing shortly: ‹paste your notes, no names›. Read «context/who-i-serve.md», then give me three questions worth opening with, and one thing to listen for that she probably won't say directly."},
+{s:"Client work", t:"Session notes into a follow-up", w:"The follow-up is where the session keeps working. It's also the thing that never gets sent.",
+p:"Here are my notes from a client session: ‹paste them›. Read «brand/voice.md», then write her follow-up email: what we uncovered, what she said she'd do next, and one line of encouragement that sounds like me rather than a coach template."},
+{s:"Client work", t:"Build your intake form", w:"Five questions that each earn their place.",
+p:"Read «context/who-i-serve.md» and «offers/offers.md». Write the intake form for ‹offer name›. Five questions maximum. For each one, tell me what I'll actually do with the answer. Cut anything I wouldn't use."},
+{s:"Client work", t:"The pitch at the end of the call", w:"Where most discovery calls fall apart. Transformation first, then what's included, then a real reason to decide now.",
+p:"Read «offers/offers.md», «context/who-i-serve.md» and «brand/voice.md». I have a discovery call coming up for ‹offer name›. Write me the part where I actually make the offer.\n\nName what changes for her first, then what she gets. Keep it to something I can say out loud without reading off a screen.\n\nThen stop and ask me two questions. One: what would I need to add to this offer to make the price feel obviously worth it to her. Two: what could I offer for booking this week specifically, so that deciding now is genuinely better for her than deciding later. Once I've answered both, give me your own suggestions on each."},
+{s:"Client work", t:"When a client is stuck", w:"It should ask what you've tried before it suggests anything.",
+p:"A client of mine is stuck on ‹describe the situation, no names›. Before you suggest anything at all, ask me what I've already tried with her and how she responded. Then give me two approaches I haven't tried yet."},
+{s:"Client work", t:"Hold a boundary kindly", w:"Clear, warm, and short enough to actually send.",
+p:"Read «offers/offers.md» and «brand/voice.md». A client is asking for ‹what they're asking for›, which sits outside what she paid for. Write my reply: kind, clear about what is included, and offering the real way to get what she's asking for. Keep it short and don't over-explain."},
+
+{s:"Your week", t:"Connect your calendar", w:"Your first connector, and it's easier than it sounds. Once it's on, the next prompt already knows what your day looks like.",
+p:"I'd like you to be able to see my calendar, add events, and move things around for me. Walk me through connecting it, one step at a time, and wait for me to say each step is done before you give me the next one. Before we start, tell me what you'll be able to see and do once it's connected, and what you still won't. Begin by asking me which calendar I use."},
+{s:"Your week", t:"What should I do today", w:"Ten minutes each morning, and the day has an order to it.",
+p:"Read every file in this repo. Then ask me what's actually happening this week and what's already on my calendar. Once I've answered, give me today's list, ordered by what moves money first. Keep it to what I can genuinely finish today."},
+{s:"Your week", t:"Build your weekly content routine", w:"A routine you run, saved as a file, rather than a decision you remake every Monday.",
+p:"Read every file in this repo. Ask me what I can realistically make each week and where it gets posted. Then write me a weekly content routine as a single reusable prompt I can paste in every Monday, and save it in my «content» folder so I can find it again."},
+{s:"Your week", t:"The Friday look back", w:"Finished work is invisible unless something counts it.",
+p:"Read my «content» folder. Tell me what I actually finished this week, what's sitting half-done, and the one unfinished thing worth picking up first on Monday."},
+{s:"Your week", t:"Ask me what I'm avoiding", w:"Use it on the weeks you already know the answer.",
+p:"Read every file in this repo, including «open-questions.md» if it exists. Based on what you know about my business, ask me the one question I've most likely been avoiding this week. Just the question, nothing else, and then wait."},
+
+{s:"Build something", t:"A quiz for your audience", w:"The lead magnet that finds out what she needs and tells her.",
+p:"Read «context/who-i-serve.md» and «offers/offers.md». Build me a single-page quiz that helps my audience work out ‹what the quiz figures out›. Write the questions in her language, give every result an honest description, and point each result at whichever of my offers genuinely fits. Save it as one HTML file."},
+{s:"Build something", t:"A worksheet clients fill in", w:"The thing you hand over after a session so the work keeps going.",
+p:"Read my context and voice files. Build a printable one-page worksheet on ‹topic› that a client fills in after a session with me. Prompts and space to write, no filler, and it should sound like me rather than a workbook."},
+{s:"Build something", t:"A tracker that remembers", w:"Habit, practice, cycle, launch. Saves in the browser, no login.",
+p:"Build me a single-page tracker for ‹what you want to track›. It should save progress in the browser so it's still there when I come back, work on my phone, and use these colours: ‹your brand colours›. One HTML file, no accounts, no sign-in."},
+{s:"Build something", t:"A sales page for one offer", w:"Transformation up top, logistics down low.",
+p:"Read «offers/offers.md», «context/who-i-serve.md» and «brand/voice.md». Build a simple one-page sales page for ‹offer name›. Open with what changes for her, then what's included, then the practical details, then the invitation. Use only facts from my offers file, and mark anything you need from me rather than inventing it."},
+{s:"Build something", t:"Your own link in bio page", w:"This is the one people don't believe until they've done it. You're paying a monthly subscription for a page of links. You can build your own, in your own colours, this afternoon.",
+p:"Build me a single-page links page using my brand colours, which are ‹your colours›. It needs my name, one line about what I do taken from «context/who-i-am.md», and links to ‹list your links›. Make it look like it belongs to my business rather than a template."},
+
+{s:"Keep it sharp", t:"Grow the voice file", w:"The one file that should never stop changing.",
+p:"Read «brand/voice.md» and everything we've written together recently. Based on what I've kept, changed, and rejected, what should be added to 'Sounds like me' and 'Never sounds like me'? Show me your suggestions, then update the file once I've agreed."},
+{s:"Keep it sharp", t:"Find what's gone stale", w:"Run it monthly. Prices and promises drift quietly.",
+p:"Read every file in this repo and tell me what looks out of date: prices that may have moved, offers I may not sell anymore, links that may be dead, and anything that describes a version of my business I've outgrown. Ask me about each one rather than changing it yourself."},
+{s:"Keep it sharp", t:"Something changed, fix everything", w:"One change usually touches four files.",
+p:"I've changed something about my business: ‹what changed›. Read every file in this repo, tell me every place that's now wrong or incomplete, and fix them once I confirm. List what you changed when you're done."},
+{s:"Keep it sharp", t:"What rule is missing", w:"Your instruction file should learn from how you actually work.",
+p:"Read «CLAUDE.md». Based on how we've actually worked together and the corrections I keep making, what rule is missing from this file? Suggest it in one line, explain what it would prevent, and add it if I agree."},
+{s:"Keep it sharp", t:"What do you still not know", w:"Ask this every few weeks. The answer changes as the business does.",
+p:"Read every file in this repo. Tell me the three things you still don't know about my business that would most improve the work you do for me. For each one, tell me which file it belongs in and ask me the question directly."}
+];
+
+const KEY='sff-50-prompts-v1';
+let done=JSON.parse(localStorage.getItem(KEY)||'{}');
+let filter='All';
+
+const list=document.getElementById('list');
+const filters=document.getElementById('filters');
+const search=document.getElementById('search');
+const countEl=document.getElementById('count');
+
+const sections=[...new Set(DATA.map(d=>d.s))];
+['All',...sections].forEach(s=>{
+  const b=document.createElement('button');
+  b.className='fpill'+(s==='All'?' on':'');
+  b.textContent=s;
+  b.onclick=()=>{filter=s;[...filters.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');render();};
+  filters.appendChild(b);
+});
+
+function decorate(txt){
+  return txt
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/‹([^›]+)›/g,'<span class="fill">[$1]</span>')
+    .replace(/«([^»]+)»/g,'<span class="file">$1</span>');
+}
+function plain(txt){
+  return txt.replace(/‹([^›]+)›/g,'[$1]').replace(/«([^»]+)»/g,'$1');
+}
+
+function render(){
+  const q=search.value.trim().toLowerCase();
+  list.innerHTML='';
+  let shown=0, lastSection=null;
+  DATA.forEach((d,i)=>{
+    if(filter!=='All'&&d.s!==filter) return;
+    if(q&&!(d.t+' '+d.p+' '+d.s+' '+d.w).toLowerCase().includes(q)) return;
+    shown++;
+    if(d.s!==lastSection){
+      const h=document.createElement('div');
+      h.className='section-label';
+      h.innerHTML='<span class="sn">'+d.s+'</span>';
+      list.appendChild(h);
+      lastSection=d.s;
+    }
+    const c=document.createElement('div');
+    c.className='card'+(done[i]?' done':'');
+    c.innerHTML=
+      '<div class="chead"><span class="num">'+String(i+1).padStart(2,'0')+'</span>'+
+      '<span class="ptitle">'+d.t+'</span><span class="tick"></span></div>'+
+      '<div class="prompt">'+decorate(d.p)+'</div>'+
+      '<div class="cfoot"><span class="why">'+d.w+'</span>'+
+      '<button class="copy">Copy prompt</button></div>';
+    c.querySelector('.tick').onclick=()=>{
+      done[i]=!done[i];
+      localStorage.setItem(KEY,JSON.stringify(done));
+      c.classList.toggle('done');
+    };
+    const btn=c.querySelector('.copy');
+    btn.onclick=()=>{
+      navigator.clipboard.writeText(plain(d.p)).then(()=>{
+        btn.textContent='Copied';btn.classList.add('ok');
+        setTimeout(()=>{btn.textContent='Copy prompt';btn.classList.remove('ok');},1600);
+      });
+    };
+    list.appendChild(c);
+  });
+  if(!shown){
+    list.innerHTML='<div class="empty">Nothing matches that. Try another word.</div>';
+  }
+  countEl.textContent=shown+' shown';
+}
+
+search.addEventListener('input',render);
+
+document.getElementById('exportBtn').onclick=()=>{
+  const txt='50 FIRST PROMPTS FOR YOUR BUSINESS BRAIN\nSoul-Forged Founders\n\n'+
+    DATA.map((d,i)=>String(i+1).padStart(2,'0')+'. '+d.t+'  ['+d.s+']\n\n'+plain(d.p)).join('\n\n\n');
+  navigator.clipboard.writeText(txt).then(()=>{
+    const b=document.getElementById('exportBtn');
+    b.textContent='All 50 copied';
+    setTimeout(()=>b.textContent='Copy all',1900);
+  });
+};
+
+document.getElementById('resetBtn').onclick=()=>{
+  done={};localStorage.setItem(KEY,'{}');render();
+};
+
+// drifting embers
+const e=document.getElementById('embers');
+for(let i=0;i<20;i++){
+  const s=document.createElement('div');s.className='ember';
+  s.style.left=Math.random()*100+'%';
+  s.style.animationDuration=(7+Math.random()*9)+'s';
+  s.style.animationDelay=(Math.random()*11)+'s';
+  s.style.transform='scale('+(0.6+Math.random()*1.4)+')';
+  e.appendChild(s);
+}
+
+render();
+</script>
+</body>
+</html>
