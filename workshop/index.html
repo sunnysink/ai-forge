@@ -209,8 +209,22 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
   color:#E2B884;border:1px solid rgba(198,149,92,.42);border-radius:20px;padding:5px 10px;white-space:nowrap}
 .packmock .pm-n{font-family:var(--mono);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;
   color:#BDB09A;opacity:.82}
-.packmock .pm-tally{font-family:var(--mono);font-size:8.5px;letter-spacing:1.7px;text-transform:uppercase;
-  color:#BDB09A;opacity:.8;text-align:center;margin:13px 0 0}
+.packmock .pm-secs{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:14px 0 0}
+.packmock .pm-sec{font-family:var(--mono);font-size:7.5px;font-weight:600;letter-spacing:1.1px;
+  text-transform:uppercase;color:#E2B884;border:1px solid rgba(198,149,92,.34);
+  border-radius:20px;padding:4px 9px;white-space:nowrap}
+.packmock .pm-tally{font-family:var(--mono);font-size:8.5px;letter-spacing:1.6px;text-transform:uppercase;
+  color:#BDB09A;opacity:.8;text-align:center;margin:11px 0 0;white-space:nowrap}
+
+/* classroom grid */
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:13px;margin-top:16px}
+.room{border:1px solid var(--line);border-radius:13px;padding:17px 18px;background:rgba(255,253,250,.55)}
+.room .rtag{display:inline-block;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--forest);border:1px solid rgba(58,92,84,.42);
+  border-radius:20px;padding:4px 9px;margin-bottom:10px}
+.room .rtag.prem{color:var(--mauve);border-color:rgba(110,85,96,.48)}
+.room h5{margin:0 0 6px;font-family:var(--serif);font-size:19.5px;font-weight:700;line-height:1.18}
+.room p{margin:0;font-size:14.5px;color:var(--ink-dim);line-height:1.5;max-width:none}
 
 .bonus{display:grid;grid-template-columns:120px 1fr;gap:22px;padding:22px 0;
   border-top:1px solid var(--line-2);align-items:start}
@@ -644,7 +658,17 @@ Then push to main.</div>
               <div class="pm-foot"><span class="pm-n">45 · Build something</span><span class="pm-pill">Copy prompt</span></div>
             </div>
 
-            <p class="pm-tally">50 prompts · 8 sections · copy button on every one</p>
+            <div class="pm-secs">
+              <span class="pm-sec">Start here</span>
+              <span class="pm-sec">Content</span>
+              <span class="pm-sec">Email</span>
+              <span class="pm-sec">Offers</span>
+              <span class="pm-sec">Client work</span>
+              <span class="pm-sec">Your week</span>
+              <span class="pm-sec">Build something</span>
+              <span class="pm-sec">Keep it sharp</span>
+            </div>
+            <p class="pm-tally">50 prompts · a copy button on every one</p>
           </div>
           <h4>50 First Prompts for Your Business Brain</h4>
           <p>Fifty prompts that only work once your files exist, and as of today, yours do. Content, client work, offers, your weekly rhythm. Copy one, paste it in, and watch Claude answer using everything it now knows about your business. Yours to keep if you start your trial in the next 48 hours.</p>
@@ -680,8 +704,46 @@ Then push to main.</div>
       <div class="bonus">
         <span class="when2 always">Inside now</span>
         <div>
-          <h4>Claude for Beginners</h4>
-          <p>A new video every single day. One win at a time, start to finish, nothing assumed. Members watch it grow in real time.</p>
+          <h4>The classrooms, already built</h4>
+          <p>These are waiting the moment you walk in. Nothing drips out week by week.</p>
+
+          <div class="rooms">
+            <div class="room">
+              <span class="rtag">Included</span>
+              <h5>Claude for Beginners</h5>
+              <p>A new video every single day. One win at a time, start to finish, nothing assumed. Members watch it grow in real time.</p>
+            </div>
+
+            <div class="room">
+              <span class="rtag">Included</span>
+              <h5>Building with Claude</h5>
+              <p>Your complete Claude build hub. How to use Claude as a real business tool, with the artifacts and workflows to prove it.</p>
+            </div>
+
+            <div class="room">
+              <span class="rtag">Included</span>
+              <h5>The Alchemist's AI Toolkit</h5>
+              <p>Templates, prompts, and workflows built for your offers, your content, and your client work. Roughly 29 tools and growing.</p>
+            </div>
+
+            <div class="room">
+              <span class="rtag">Included</span>
+              <h5>Replay Vault</h5>
+              <p>A growing library of live events and workshops. Today's replay lands here, and it stays yours for as long as you're a member.</p>
+            </div>
+
+            <div class="room">
+              <span class="rtag">Included</span>
+              <h5>Method Alchemy Challenge 2.0</h5>
+              <p>28 days to turn everything you do into one clear signature session you can name, price, and sell.</p>
+            </div>
+
+            <div class="room">
+              <span class="rtag prem">Premium tier</span>
+              <h5>AI Sales Page Mastery</h5>
+              <p>For spiritual business owners who want a sales page that feels as magical as the work, and still sells. Sits one tier up from the $8.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
