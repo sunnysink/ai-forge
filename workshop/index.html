@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code Setup — Live Workshop · August 4</title>
+<meta name="description" content="Your companion page for the live workshop. Learn it, set it up, build with us, and keep going.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF; --bg2:#EDEAE4; --bg3:#E5E1DA;
+  --dark:#1A1714; --dark2:#241F1B;
+  --ink:#1A1714; --ink-dim:#4A4540; --ink-faint:#7D786F;
+  --copper:#8C6832; --copper-lt:#755525; --copper-dk:#5E441C; --brass:#B8935A;
+  --ember:#B84C14; --forest:#3A5C54; --mauve:#6E5560; --gold:#947A20;
+  --line:rgba(140,104,50,.22); --line-2:rgba(26,23,20,.09);
+  --serif:'Cormorant Garamond','Hoefler Text',Georgia,serif;
+  --sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --side:282px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--copper-lt)}
+
+.shell{display:grid;grid-template-columns:var(--side) 1fr;min-height:100vh}
+
+/* ---------------- sidebar ---------------- */
+.side{background:var(--dark);color:#EDEAE4;padding:36px 26px 28px;
+  position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow-y:auto}
+.side::-webkit-scrollbar{width:6px}
+.side::-webkit-scrollbar-thumb{background:rgba(184,147,90,.25);border-radius:99px}
+.brand{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2.4px;
+  text-transform:uppercase;color:var(--brass);margin-bottom:24px}
+.side h1{font-family:var(--serif);font-size:32px;font-weight:700;line-height:1.12;
+  margin:0 0 10px;color:#FFFDFA;letter-spacing:-.3px}
+.side .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;
+  color:#9A938A;margin-bottom:28px;line-height:1.9}
+.side .meta b{color:var(--brass);font-weight:700}
+
+.nav{list-style:none;padding:0;margin:0}
+.nav li{margin-bottom:3px}
+.nav button{width:100%;display:flex;gap:12px;align-items:center;padding:11px 13px;
+  border-radius:10px;background:transparent;border:none;cursor:pointer;
+  color:#C9C2B8;font-family:var(--sans);font-size:15px;font-weight:500;
+  text-align:left;transition:all .18s}
+.nav button:hover{background:rgba(184,147,90,.11);color:#FFFDFA}
+.nav button[aria-selected="true"]{background:linear-gradient(135deg,var(--copper),var(--copper-dk));
+  color:#FFFDFA;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.nav .n{font-family:var(--mono);font-size:10px;font-weight:700;opacity:.62}
+.nav button[aria-selected="true"] .n{opacity:.85}
+
+.prog{margin-top:26px;padding-top:22px;border-top:1px solid rgba(184,147,90,.2)}
+.prog .t{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--brass);margin-bottom:10px;display:flex;
+  justify-content:space-between;gap:10px}
+.bar{height:5px;background:rgba(255,255,255,.11);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;transition:width .45s ease;
+  background:linear-gradient(90deg,var(--copper),var(--ember),var(--gold))}
+
+.side .foot{margin-top:auto;padding-top:26px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:1.4px;text-transform:uppercase;color:#6B655D;line-height:2}
+.side .foot a{color:#9A938A;text-decoration:none;border-bottom:1px solid rgba(154,147,138,.3)}
+.side .foot a:hover{color:var(--brass);border-bottom-color:var(--brass)}
+
+/* ---------------- main ---------------- */
+.main{padding:60px 60px 110px;max-width:900px;position:relative}
+.panel{display:none}
+.panel.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:2.2px;
+  text-transform:uppercase;color:var(--ember);margin-bottom:14px}
+.main h2{font-family:var(--serif);font-size:clamp(32px,4vw,47px);font-weight:700;
+  line-height:1.09;margin:0 0 18px;letter-spacing:-.7px;max-width:19ch}
+.lede{font-size:20px;color:var(--ink-dim);max-width:57ch;margin:0 0 8px}
+.lede strong{color:var(--ink);font-weight:600}
+
+.blk{padding:36px 0;border-top:1px solid var(--line-2)}
+.blk:first-of-type{border-top:none}
+.blk h3{font-family:var(--serif);font-size:28px;font-weight:700;margin:0 0 11px;line-height:1.2}
+.blk h4{font-family:var(--serif);font-size:22px;font-weight:700;margin:26px 0 8px}
+.blk p{margin:0 0 15px;max-width:63ch;color:var(--ink-dim)}
+.blk p strong{color:var(--ink);font-weight:600}
+.blk ul{margin:0 0 15px;padding-left:20px;max-width:63ch;color:var(--ink-dim)}
+.blk li{margin-bottom:8px}
+.blk li strong{color:var(--ink)}
+.blk a{font-weight:600;text-decoration:none;border-bottom:1.5px solid rgba(140,104,50,.35)}
+.blk a:hover{color:var(--ember);border-bottom-color:var(--ember)}
+.sec-n{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--copper);display:block;margin-bottom:9px}
+
+.callout{border-left:3px solid var(--copper);padding:3px 0 3px 20px;margin:20px 0;
+  max-width:61ch;font-size:16px;color:var(--ink-dim)}
+.callout strong{color:var(--ink)}
+.callout.warm{border-left-color:var(--ember)}
+.callout.calm{border-left-color:var(--forest)}
+
+code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
+  border-radius:5px;padding:1px 6px;color:var(--copper-lt);white-space:nowrap}
+
+/* numbered ways */
+.way{display:grid;grid-template-columns:auto 1fr;gap:24px;padding:30px 0;
+  border-top:1px solid var(--line-2)}
+.way:first-of-type{border-top:none;padding-top:6px}
+.way .num{font-family:var(--serif);font-size:52px;font-weight:700;line-height:.82;
+  color:transparent;-webkit-text-stroke:1.5px var(--copper)}
+.way h3{margin:0 0 9px}
+.way p{margin:0 0 11px}
+.flag{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--forest);display:block}
+
+/* five words grid */
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:0;
+  border-top:1.5px solid var(--ink);margin-top:18px}
+.words div{padding:19px 22px 19px 0;border-bottom:1px solid var(--line-2)}
+.words b{display:block;font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:1.6px;text-transform:uppercase;color:var(--ember);margin-bottom:7px}
+.words span{font-size:15px;color:var(--ink-dim);line-height:1.55}
+
+/* word cards with icons */
+.wordset{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:14px;margin-top:20px}
+.wc{border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;background:rgba(255,253,250,.5)}
+.wc .ico{width:34px;height:34px;margin-bottom:12px;color:var(--ember)}
+.wc .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round}
+.wc b{display:block;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--ember);margin-bottom:8px}
+.wc span{display:block;font-size:15.5px;color:var(--ink-dim);line-height:1.55}
+.wc em{display:block;margin-top:9px;font-style:normal;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.6px;color:var(--ink-faint)}
+
+/* architecture row */
+.arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin:22px 0 6px}
+.arch .a{text-align:center;padding:22px 14px 18px;border:1px solid var(--line);border-radius:14px;
+  background:rgba(255,253,250,.5)}
+.arch .a .ico{width:42px;height:42px;margin:0 auto 12px;color:var(--copper)}
+.arch .a .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round}
+.arch .a b{display:block;font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:5px}
+.arch .a span{font-size:14.5px;color:var(--ink-dim);line-height:1.5}
+.arch .a code{font-size:.85em}
+
+/* steps */
+.step{padding:32px 0;border-top:1px solid var(--line-2);transition:opacity .25s}
+.step:first-of-type{border-top:none}
+.step.done{opacity:.55}
+.step-head{display:flex;align-items:flex-start;gap:15px;margin-bottom:10px}
+.tick{flex:0 0 auto;width:29px;height:29px;margin-top:4px;border-radius:50%;
+  border:1.5px solid var(--line);background:transparent;cursor:pointer;
+  display:grid;place-items:center;transition:all .2s;padding:0}
+.tick:hover{border-color:var(--copper);box-shadow:0 0 0 4px rgba(140,104,50,.09)}
+.tick svg{width:15px;height:15px;opacity:0;transition:opacity .2s}
+.step.done .tick{background:linear-gradient(135deg,var(--copper),var(--copper-dk));border-color:transparent}
+.step.done .tick svg{opacity:1}
+.step-n{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--copper);display:block;margin-bottom:3px}
+.step-t{font-family:var(--serif);font-size:29px;font-weight:700;line-height:1.16;margin:0}
+.step-body{padding-left:44px}
+.step-body p{margin:0 0 13px;max-width:62ch;color:var(--ink-dim)}
+.step-body ul{margin:0 0 13px;padding-left:20px;max-width:62ch;color:var(--ink-dim)}
+.step-body li{margin-bottom:7px}
+.step-body a{font-weight:600;text-decoration:none;border-bottom:1.5px solid rgba(140,104,50,.35)}
+.step-body a:hover{color:var(--ember);border-bottom-color:var(--ember)}
+
+/* prompts */
+.prompt-wrap{margin:18px 0 0;max-width:66ch}
+.prompt{background:var(--dark);color:#DCD5CB;border-radius:12px;padding:22px 24px;
+  font-family:var(--mono);font-size:13px;line-height:1.75;white-space:pre-wrap;overflow-x:auto}
+.copy{margin-top:12px;background:linear-gradient(135deg,var(--copper),var(--copper-dk));
+  color:#FFFDFA;border:none;border-radius:30px;padding:11px 25px;font-family:var(--sans);
+  font-size:14px;font-weight:700;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.copy:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(140,104,50,.22)}
+.copy.ok{background:linear-gradient(135deg,var(--forest),#2B4640)}
+
+/* join */
+.priceline{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  padding:22px 0 4px;border-top:1.5px solid var(--ink);margin:22px 0 0}
+.bonus img{display:block;width:100%;max-width:560px;aspect-ratio:16/9;object-fit:cover;
+  border-radius:12px;border:1px solid var(--line);margin:0 0 14px;background:rgba(26,23,20,.04)}
+.priceline .big{font-family:var(--serif);font-size:46px;font-weight:700;line-height:1}
+.priceline .per{font-size:18px;color:var(--ink-dim)}
+.priceline .tag{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--ember);margin-left:auto}
+/* prompt-pack preview (drawn, not a screenshot, so no URL is ever on screen) */
+.packmock{max-width:560px;border-radius:12px;border:1px solid var(--line);overflow:hidden;
+  margin:0 0 14px;padding:19px 19px 17px;background:#0d1411;
+  background-image:radial-gradient(500px 260px at 15% -10%,rgba(232,116,59,.17),transparent 60%),
+    radial-gradient(420px 260px at 100% 0,rgba(44,95,90,.18),transparent 55%)}
+.packmock .pm-kick{font-family:var(--mono);font-size:8.5px;letter-spacing:3px;text-transform:uppercase;
+  color:#C6955C;margin-bottom:7px}
+.packmock .pm-title{font-family:var(--serif);font-size:37px;font-weight:600;line-height:1;
+  background:linear-gradient(92deg,#E2B884,#FF8A4C 38%,#D8B968 70%,#C6955C);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.packmock .pm-sub{font-family:var(--serif);font-style:italic;font-size:13px;color:#BDB09A;margin-top:5px}
+.packmock .pm-card{margin-top:12px;background:rgba(22,34,28,.72);border:1px solid rgba(198,149,92,.2);
+  border-left:3px solid #C6955C;border-radius:10px;padding:11px 13px}
+.packmock .pm-h{font-family:var(--serif);font-size:15.5px;font-weight:600;color:#F1E7D6;margin:0 0 7px}
+.packmock .pm-p{font-family:var(--mono);font-size:9.5px;line-height:1.62;color:#BDB09A;margin:0;
+  background:rgba(13,20,17,.6);border-radius:7px;padding:8px 10px}
+.packmock .pm-p .g{color:#D8B968}
+.packmock .pm-p .c{color:#E2B884}
+.packmock .pm-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:9px}
+.packmock .pm-pill{font-family:var(--mono);font-size:7.5px;letter-spacing:1.4px;text-transform:uppercase;
+  color:#E2B884;border:1px solid rgba(198,149,92,.42);border-radius:20px;padding:5px 10px;white-space:nowrap}
+.packmock .pm-n{font-family:var(--mono);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;
+  color:#BDB09A;opacity:.82}
+.packmock .pm-tally{font-family:var(--mono);font-size:8.5px;letter-spacing:1.7px;text-transform:uppercase;
+  color:#BDB09A;opacity:.8;text-align:center;margin:13px 0 0}
+
+.bonus{display:grid;grid-template-columns:120px 1fr;gap:22px;padding:22px 0;
+  border-top:1px solid var(--line-2);align-items:start}
+.bonus .when2{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1.3px;
+  text-transform:uppercase;color:#FFFDFA;background:var(--ember);border-radius:20px;
+  padding:6px 11px;text-align:center;margin-top:4px}
+.bonus .when2.soon{background:var(--mauve)}
+.bonus .when2.always{background:var(--forest)}
+.bonus h4{margin:0 0 5px;font-family:var(--serif);font-size:23px;font-weight:700;line-height:1.2}
+.bonus p{margin:0;font-size:16px;color:var(--ink-dim);max-width:56ch}
+
+.btn{display:inline-block;margin-top:20px;background:linear-gradient(135deg,var(--copper),var(--copper-dk));
+  color:#FFFDFA;text-decoration:none;border-radius:30px;padding:15px 36px;
+  font-weight:700;font-size:16px;transition:transform .18s,box-shadow .18s;border:none}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(140,104,50,.22);color:#FFFDFA}
+.btn-ghost{display:inline-block;margin-top:20px;margin-right:10px;background:transparent;
+  border:1px solid var(--line);color:var(--ink-dim);text-decoration:none;
+  border-radius:30px;padding:14px 32px;font-weight:600;font-size:15px;transition:all .2s}
+.btn-ghost:hover{border-color:var(--copper);color:var(--copper)}
+
+/* next list */
+.next{counter-reset:n;list-style:none;padding:0;margin:18px 0 0;max-width:64ch}
+.next li{counter-increment:n;position:relative;padding:13px 0 13px 44px;
+  border-top:1px solid var(--line-2);font-size:16.5px;color:var(--ink-dim)}
+.next li:first-child{border-top:none}
+.next li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:14px;
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--copper)}
+.next b{color:var(--ink);font-weight:600}
+
+@media (max-width:940px){
+  .shell{grid-template-columns:1fr}
+  .side{position:sticky;top:0;height:auto;padding:20px 18px 16px;z-index:20}
+  .side h1{font-size:24px;margin-bottom:6px}
+  .side .meta{margin-bottom:16px}
+  .nav{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .nav::-webkit-scrollbar{display:none}
+  .nav li{margin-bottom:0;flex:0 0 auto}
+  .nav button{white-space:nowrap;padding:9px 15px;font-size:14px;border-radius:30px}
+  .prog{margin-top:16px;padding-top:14px}
+  .side .foot{display:none}
+  .main{padding:34px 20px 80px}
+  .step-body{padding-left:0}
+  .way{grid-template-columns:1fr;gap:6px}
+  .way .num{font-size:38px}
+  .bonus{grid-template-columns:1fr;gap:8px}
+  .bonus .when2{justify-self:start;padding:5px 12px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side">
+    <div class="brand">Soul-Forged Founders</div>
+    <h1>Claude Code Setup</h1>
+    <div class="meta"><b>TUE AUG 4</b> · 4PM PT<br>90 MINUTES · IN YOUR BROWSER</div>
+
+    <ul class="nav" role="tablist">
+      <li><button role="tab" data-p="learn" aria-selected="true"><span class="n">01</span> Learn</button></li>
+      <li><button role="tab" data-p="steps" aria-selected="false"><span class="n">02</span> Steps</button></li>
+      <li><button role="tab" data-p="join" aria-selected="false"><span class="n">03</span> Join Us</button></li>
+      <li><button role="tab" data-p="build" aria-selected="false"><span class="n">04</span> Build Together</button></li>
+    </ul>
+
+    <div class="prog">
+      <div class="t"><span>Setup progress</span><span id="ptxt">0 / 5</span></div>
+      <div class="bar"><i id="fill"></i></div>
+    </div>
+
+    <div class="foot">
+      The AI Forge<br>
+      <a href="../starter/">The written Starter guide</a>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+
+  <!-- ---------- 01 LEARN ---------- -->
+  <section class="panel on" id="p-learn" role="tabpanel">
+
+    <div class="eyebrow">Why we're here</div>
+    <h2>The chat gets good, and then it's gone</h2>
+    <p class="lede">You know the feeling. The conversation finally clicks. Claude understands your offer, your voice, your people. Then the tab closes, and tomorrow you start from zero and paste it all back in.</p>
+    <p class="lede" style="font-size:17px">You have gotten very good at pasting, which is the sad part.</p>
+
+    <div class="blk">
+      <p><strong>Claude Code is Claude with a folder.</strong> Your voice, your offers, who you serve, your client notes and your projects sit in files, and it opens them before it answers you. It comes with your Claude account, it runs in your browser, and there is nothing to install.</p>
+      <p>Which means it can do four things a chat window cannot:</p>
+      <ul>
+        <li><strong>Start already knowing your business,</strong> every time, with no pasting.</li>
+        <li><strong>Write new files and update old ones,</strong> so what you decide today is still there next month.</li>
+        <li><strong>Do the task rather than describe it.</strong> It drafts the post, saves it, and files it where it belongs.</li>
+        <li><strong>Hand you everything.</strong> The files are plain text on your own account. They work with any AI, and nobody can take them back.</li>
+      </ul>
+      <p>Today we build that.</p>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">Three ways I actually use it</span>
+      <h3 style="font-size:34px;max-width:18ch">Two of these have nothing to do with code</h3>
+
+      <div class="way">
+        <span class="num">01</span>
+        <div>
+          <h3>My Forge Director plans my day with me</h3>
+          <p>Every morning I sit down and we look at what's open. He already knows my business, so there's no pasting in context or re-explaining myself. He reads what we worked on yesterday, adds new ideas into my projects folder, marks the finished ones done, and pulls up any file I need right there on the screen.</p>
+          <p>Ten or fifteen minutes, and then I decide what gets my day. Every other time I've used AI, I was the one holding all of it: the organizing, the saving, the finding, the remembering, the dates. Here we're actually working together.</p>
+          <span class="flag">No code. I just talk to him.</span>
+        </div>
+      </div>
+
+      <div class="way">
+        <span class="num">02</span>
+        <div>
+          <h3>My weekly content runs on a routine</h3>
+          <p>Creating content used to eat at least three hours of my week, every week, one brand at a time. Before I did it myself, I paid a VA $700 a month for the same job.</p>
+          <p>Now I save the insights I collect through the week. A scheduled task fires, and Claude builds a full batch across both brands: around thirty-two pieces, roughly sixteen each. Single-image posts, carousels, e-blasts, sometimes a blog. Another routine pushes the finished batch into Buffer where I schedule from.</p>
+          <p>I still review and refine every piece before it goes out. That part stays mine on purpose, because the voice matters too much to hand off. The blank page is what's gone, and the hours went with it.</p>
+          <span class="flag">Still no code. I set it up by describing what I wanted.</span>
+        </div>
+      </div>
+
+      <div class="way">
+        <span class="num">03</span>
+        <div>
+          <h3>I build small tools for my members</h3>
+          <p>Spread guides, trackers, workbooks, artifact templates people can click through and actually use. I have never written a line of code in my life. I describe the tool the way I'd describe it to a person, and Claude handles the technical steps.</p>
+          <p>The intimidation was always the real cost. There's a short list of one-time setup steps, and after that it's conversation.</p>
+          <span class="flag">Building here uses less of your usage than building the same thing in a chat</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">GitHub in plain English</span>
+      <h3>A filing cabinet with your name on it</h3>
+      <p>Before anything gets built, ten minutes on vocabulary. I used GitHub for months, published real things my students use, and could not have told you what a branch was. Nobody's business should depend on words she's afraid of.</p>
+
+      <div class="arch">
+        <div class="a">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="10" y1="6" x2="14" y2="6"/><line x1="10" y1="12" x2="14" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg></div>
+          <b>Your account</b>
+          <span>The filing cabinet. It has your name on it.</span>
+        </div>
+        <div class="a">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="2"/><line x1="9" y1="12.5" x2="15" y2="12.5"/><path d="M5 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg></div>
+          <b>A repo</b>
+          <span>One drawer. Every project gets its own.</span>
+        </div>
+        <div class="a">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+          <b>Folders</b>
+          <span>Just folders. They nest, same as on your computer.</span>
+        </div>
+        <div class="a">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+          <b>The page</b>
+          <span>What someone sees when they open that folder's link. Always named <code>index.html</code>.</span>
+        </div>
+      </div>
+
+      <p style="margin-top:22px">That name has to be <code>index.html</code> exactly, all lowercase, because a server looks for that exact spelling and nothing else. One capital letter and the page will not load.</p>
+
+      <h4>How a drawer becomes a website</h4>
+      <p><strong>GitHub Pages</strong> is a setting you turn on for one drawer. Turn it on and that drawer gets its own address on the internet, free, and anyone with the link can open it. That is how every tool I have ever published exists. No web host, no monthly fee, no developer.</p>
+      <div class="callout">Everything else in a drawer is supplies. Photos, PDFs, mockups. Drop them in and your pages can point at them.</div>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">The five words nobody explains</span>
+      <h3>Screenshot this part</h3>
+      <p>When Claude Code, or a tutorial, or anybody's video says one of these words, this is what they mean.</p>
+
+      <div class="wordset">
+
+        <div class="wc">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg></div>
+          <b>Commit</b>
+          <span>Saving your changes, with a short note about what you changed. Saved on your side only. Nothing has gone anywhere yet.</span>
+        </div>
+
+        <div class="wc">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/><path d="M4 21h16"/></svg></div>
+          <b>Push</b>
+          <span>Sending those saved changes up to GitHub. This is the step that makes them real. If your drawer is a website, this is the moment it goes live.</span>
+        </div>
+
+        <div class="wc">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></div>
+          <b>Branch</b>
+          <span>A duplicate of your files that you can work on without touching the originals. Change whatever you want on the duplicate. The real ones sit there untouched.</span>
+        </div>
+
+        <div class="wc">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="9" x2="17" y2="9"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="12" y2="17"/></svg></div>
+          <b>Pull request</b>
+          <span>A list of every single line that would change, shown to you before anything happens. Green is what gets added, red is what gets removed. You read it and decide.</span>
+        </div>
+
+        <div class="wc">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M7 3v10a4 4 0 0 0 4 4h6"/><circle cx="7" cy="18" r="3"/><path d="M14 14l3 3-3 3"/></svg></div>
+          <b>Merge</b>
+          <span>Saying yes. The changes from the duplicate get added into your real files. You are the one who clicks it.</span>
+        </div>
+
+      </div>
+
+      <div class="callout warm" style="margin-top:26px"><strong>Commit and push are two separate steps, and almost everybody thinks they're one.</strong> Commit saves. Push sends. You can commit ten times and nothing on GitHub changes until you push. If you have ever wondered why your work isn't showing up, this is usually the answer.</div>
+
+      <div class="callout" style="margin-top:18px"><strong>And here is why any of this matters today.</strong> When Claude Code does work for you, it never changes your real files directly. It works on a duplicate, then shows you the full list of what would change and waits. Your live site and your published tools cannot be touched until you read it and say yes.</div>
+
+      <div class="callout calm" style="margin-top:18px"><strong>So all five of these words exist for one reason:</strong> to make sure nothing of yours gets wrecked without you seeing it first. The thing you were scared of is the safety net.</div>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">A true story</span>
+      <h3>The day I almost quit pushing</h3>
+      <p>Months ago I asked Claude to publish something, and afterward I found a second folder in my repo that I didn't recognize. My rule was one repo, one website, so I decided something was broken and I quietly stopped letting Claude publish anything. For months.</p>
+      <p>What had actually happened: it added a second <em>page</em>. A folder with an index.html in it, a second room in the same house, live at its own address. Everything was fine.</p>
+      <p>I lost months of help to one missing definition. That's the entire reason we just did the vocabulary.</p>
+    </div>
+
+  </section>
+
+  <!-- ---------- 02 STEPS ---------- -->
+  <section class="panel" id="p-steps" role="tabpanel">
+
+    <div class="eyebrow">Follow along</div>
+    <h2>Two accounts, and that's the whole list</h2>
+    <p class="lede">A <strong>Claude plan at Pro or above</strong>, because Claude Code in the browser isn't on the free plan. And a <strong>free GitHub account</strong>. Nothing to install, ever.</p>
+    <div class="callout warm"><strong>Tick each step off as you finish it.</strong> Your progress shows in the sidebar and saves on this device, so if you get pulled away you'll know exactly where you stopped.</div>
+
+    <div class="step" data-step="1">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 1 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step One</span><h3 class="step-t">Get a GitHub account</h3></div>
+      </div>
+      <div class="step-body">
+        <p>GitHub is where your folder lives. A filing cabinet that sits online instead of on your desk, so it's there whether you're on your laptop, your phone, or somebody else's computer.</p>
+        <ul>
+          <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a></li>
+          <li>Use an email you actually check</li>
+          <li><strong>Slow down on the username.</strong> Read the note below first.</li>
+        </ul>
+        <div class="callout warm"><strong>Your username becomes part of every public link you ever make here.</strong> Anything you publish gets an address built from it: <code>yourname.github.io/the-thing/</code>. Every tracker, quiz and client tool carries that name in the link. Pick it the way you'd pick a business email. The handle you made in 2009 is going to look strange in a link you send a paying client.</div>
+        <div class="callout calm">Already have an account? You're set. Carry on.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="2">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 2 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step Two</span><h3 class="step-t">Copy your filing cabinet</h3></div>
+      </div>
+      <div class="step-body">
+        <p>In GitHub a filing cabinet is called a <em>repository</em>. Ugly word, simple thing. A folder that holds other folders.</p>
+        <p>You don't have to build yours. It exists as a template with every folder already named and waiting. You're making your own copy.</p>
+        <ul>
+          <li>Open <a href="https://github.com/sunnysink/claude-code-starter-kit" target="_blank" rel="noopener">the Claude Code Starter Kit</a></li>
+          <li>Click the green <strong>Use this template</strong>, then <strong>Create a new repository</strong></li>
+          <li>Name it <strong>biz-brain</strong>, lowercase, with the hyphen</li>
+          <li>Leave <strong>Include all branches</strong> unchecked</li>
+          <li>Click <strong>Private</strong>. This matters. Your client notes and your offers are in here.</li>
+          <li>Click <strong>Create repository</strong></li>
+        </ul>
+        <div class="callout warm"><strong>Do not skip Private.</strong> Public means anyone on the internet can read it. If you clicked past it, open Settings on the repo and change it now.</div>
+        <div class="callout"><strong>What you just got.</strong> Empty labeled files: your voice, your offers, who you are, who you serve, plus a <code>CLAUDE.md</code> holding the standing instructions Claude reads at the start of every session.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="3">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 3 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step Three</span><h3 class="step-t">Install the Claude app on your GitHub</h3></div>
+      </div>
+      <div class="step-body">
+        <p>This is where Claude gets permission to open your files. About a minute.</p>
+        <div class="callout warm"><strong>Everything here is in your browser. There is nothing to download.</strong> The wording below is exact on purpose. The word that matters is <strong>install</strong>.</div>
+        <ul>
+          <li>Go to <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a> and sign in</li>
+          <li>On <strong>"Setup and start coding,"</strong> click <strong>"want to set up apps later, continue on the web."</strong> It sits below the bigger buttons, so look down the page for it.</li>
+          <li>Click <strong>Get Started</strong></li>
+          <li>Click <strong>"connect a different way,"</strong> then <strong>Sign in with GitHub</strong></li>
+          <li>GitHub asks which account. Pick the one that owns <code>biz-brain</code>.</li>
+          <li>GitHub asks which repositories. Choose <strong>All repositories</strong>, or select <code>biz-brain</code>.</li>
+          <li>Click <strong>Install</strong></li>
+        </ul>
+        <p>You may be asked to create a cloud environment. The defaults are right. Give it any name and click <strong>Create environment</strong>. If you're never asked, nothing is wrong.</p>
+        <p>Back at claude.ai/code, click the repository selector under the message box and choose <code>biz-brain</code>.</p>
+        <h4>No repositories in the list?</h4>
+        <p>The most common wall, and almost always the same cause: Claude knows who you are, but was never given the key to your files. Logging in with GitHub and installing the Claude app on that account are two separate things. Nothing warns you. The list just comes back empty.</p>
+        <ul><li>Install it directly at <a href="https://github.com/apps/claude/installations/new" target="_blank" rel="noopener">github.com/apps/claude/installations/new</a></li></ul>
+        <p>Choose the account that owns your repo, choose <strong>All repositories</strong> or select <code>biz-brain</code>, click <strong>Install</strong>, then reload claude.ai/code.</p>
+        <div class="callout calm">A private repo is not the problem. Private works exactly like public here, as long as the app is installed on the account that owns it.</div>
+        <div class="callout warm"><strong>Don't ask Claude to fix a connection problem.</strong> Claude can't install a GitHub app or change your plan from inside a conversation. It will sound like it's helping and nothing will move. This one is yours to click.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="4">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 4 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step Four</span><h3 class="step-t">Fill the drawers</h3></div>
+      </div>
+      <div class="step-body">
+        <p>Empty folders do nothing. This is the step that turns a tidy structure into an assistant that knows you.</p>
+        <p>Open a <strong>normal Claude conversation</strong>, the regular chat and not Claude Code, and paste this:</p>
+        <div class="prompt-wrap">
+<div class="prompt" id="p2">You've been helping me with my business for a while. I'm building a permanent folder of files so you don't start from scratch every conversation.
+
+Using only what you actually know about me, write me ONE file called business-brain-dump.md, with these four sections inside it:
+
+who-i-am
+My story. What I do, how I got here, what I did before this.
+
+who-i-serve
+My ideal client. Who they are, and what's going on for them when they find me.
+
+voice
+How I sound. Phrases that are mine. Words and tones I'd never use.
+
+offers
+What I sell. Name, price, and what's different for the person afterward.
+
+Important:
+- Use only what you genuinely know about me. Do not fill gaps with reasonable guesses.
+- Anywhere you don't actually know something, write [FILL IN] and move on. I would much rather have a visible gap than a sentence that sounds right and isn't true.
+- Write it in my voice where you can tell what my voice is.
+
+Give me that one file in ONE markdown block. One block, one copy. Do not split it into separate blocks, separate documents, downloads, or attachments.
+
+After the block, in a few lines outside it, tell me which of the four sections came out thin and what's actually missing from each. I want to know where to spend my time.</div>
+          <button class="copy" data-target="p2">Copy the prompt</button>
+        </div>
+        <div class="callout"><strong>If Claude says it doesn't know you, that's the right answer.</strong> A brand new account has no history, so the sections come back as <code>[FILL IN]</code>. That's the tool being honest. An invented price becomes the source of truth for every piece of copy after it.</div>
+        <p style="margin-top:18px">Copy the whole block. Go back to Claude Code, paste it in, and put this underneath:</p>
+        <div class="prompt-wrap">
+<div class="prompt" id="p3">Above is a brain dump with four sections in it. Split it into the matching files in this repo, replacing the placeholders:
+
+who-i-am goes into context/who-i-am.md
+who-i-serve goes into context/who-i-serve.md
+voice goes into brand/voice.md
+offers goes into offers/offers.md
+
+Keep the text exactly as written, including every [FILL IN] marker. Don't tidy them up or fill them in. Then push to main.</div>
+          <button class="copy" data-target="p3">Copy the filing instruction</button>
+        </div>
+        <div class="callout">Claude may mention it can't find <code>business-brain-dump.md</code> in the repo. Expected. You pasted the text rather than committing a file, so there's nothing to look for.</div>
+        <div class="callout warm"><strong>Then read what it wrote.</strong> Every <code>[FILL IN]</code> is a real gap. Anything not marked is something Claude believes about your business. Check the prices. Check the offer names.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="5">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 5 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step Five</span><h3 class="step-t">Make the holes chase you</h3></div>
+      </div>
+      <div class="step-body">
+        <p>You will not have filled everything in. Nobody does. Those <code>[FILL IN]</code> markers will still be there in March unless something goes looking for them.</p>
+        <div class="prompt-wrap">
+<div class="prompt" id="p5">Go through every file in this repo and find every gap left for me: [FILL IN] markers, any text still sitting inside square brackets, and any section that's still a placeholder rather than real information about my business.
+
+Create a file at the root called open-questions.md:
+
+- Turn each gap into a plain question I can actually answer, not a label. "What does the Premium tier cost?" rather than "[FILL IN: price]".
+- Put the file it belongs in next to each question.
+- Use checkboxes so I can watch the list shrink.
+- Order them by how much they're holding back. The gaps that block the most of your future work go at the top. Add one line at the top explaining that order.
+
+Then add this standing rule to CLAUDE.md:
+
+At the start of every session, check open-questions.md. If anything is still unanswered, tell me how many are left and ask me exactly ONE of them, starting from the top. When I answer, write it into the right file, tick it off in open-questions.md, and then carry on with whatever I actually came in to do.
+
+Then push to main.</div>
+          <button class="copy" data-target="p5">Copy the prompt</button>
+        </div>
+        <div class="callout"><strong>Why one question and not the list.</strong> A list of fourteen gets closed and ignored. One question gets answered in thirty seconds while you're already here for something else. Answer one a day and it's done in two weeks without ever sitting down to do it.</div>
+        <div class="callout"><strong>One trick for when it asks about your voice.</strong> Don't describe how you sound. Paste in three things you've written that felt like you and let it work out the pattern. Describing your own voice is genuinely hard. Showing it is easy.</div>
+        <div class="callout warm"><strong>This is the part that keeps working after you close the tab.</strong> Everything before it was setup you do once. This is the folder getting better on its own.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ---------- 03 JOIN ---------- -->
+  <section class="panel" id="p-join" role="tabpanel">
+
+    <div class="eyebrow">The honest gap</div>
+    <h2>It's set up. Now what?</h2>
+    <p class="lede">When I first got Claude Code running, I asked the person who walked me through it exactly that. She sent me a link to book a private session with her for a hundred and sixty dollars.</p>
+
+    <div class="blk">
+      <p>I made my own way instead, and it worked, and it took a lot longer than it needed to. So here is the part nobody gave me: what to actually do with this thing, and people to do it beside.</p>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">Soul-Forged Founders</span>
+      <h3>What you get for $8 a month</h3>
+      <p>Live sessions where we build on your business while you watch. Beginner classrooms that assume nothing. Every tool I have already made, ready to use. And me working through all of this out loud, every week, with tarot readers and coaches figuring it out at the same time you are.</p>
+      <div class="priceline">
+        <span class="big">$8</span><span class="per">per month</span>
+        <span class="tag">7-day free trial · cancel anytime</span>
+      </div>
+      <a class="btn" href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">Start your free trial</a>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">What's waiting inside</span>
+      <h3>Your bonus, two live sessions, and a classroom</h3>
+
+      <div class="bonus">
+        <span class="when2">48 hours only</span>
+        <div>
+          <div class="packmock">
+            <div class="pm-kick">Soul-Forged Founders</div>
+            <div class="pm-title">50 First Prompts</div>
+            <div class="pm-sub">For the business brain you just built.</div>
+
+            <div class="pm-card">
+              <p class="pm-h">Give every client a home</p>
+              <p class="pm-p">Read <span class="c">CLAUDE.md</span>. Make a <span class="c">clients</span> folder with one file per client. Ask me about my current clients one at a time, and for each one capture what she bought, what she's working on, and how she likes to be spoken to…</p>
+              <div class="pm-foot"><span class="pm-n">29 · Client work</span><span class="pm-pill">Copy prompt</span></div>
+            </div>
+
+            <div class="pm-card">
+              <p class="pm-h">Your own link in bio page</p>
+              <p class="pm-p">Build me a single-page links page using my brand colours, which are <span class="g">[your colours]</span>. It needs my name, one line about what I do taken from <span class="c">context/who-i-am.md</span>, and links to <span class="g">[list your links]</span>…</p>
+              <div class="pm-foot"><span class="pm-n">45 · Build something</span><span class="pm-pill">Copy prompt</span></div>
+            </div>
+
+            <p class="pm-tally">50 prompts · 8 sections · copy button on every one</p>
+          </div>
+          <h4>50 First Prompts for Your Business Brain</h4>
+          <p>Fifty prompts that only work once your files exist, and as of today, yours do. Content, client work, offers, your weekly rhythm. Copy one, paste it in, and watch Claude answer using everything it now knows about your business. Yours to keep if you start your trial in the next 48 hours.</p>
+        </div>
+      </div>
+
+      <div class="bonus">
+        <span class="when2">Fri Aug 7</span>
+        <div>
+          <img src="images/triage-session.png" alt="Triage Session, Friday August 7 at 4pm Pacific" onerror="this.style.display='none'">
+          <h4>Triage Session · 4pm PT</h4>
+          <p>Bring whatever step has you stuck. Share your screen and we get it working together, live. If something today didn't land, this is where it gets fixed.</p>
+        </div>
+      </div>
+
+      <div class="bonus">
+        <span class="when2">Mon Aug 17</span>
+        <div>
+          <img src="images/forge-director.png" alt="Build Your Forge Director, Monday August 17 at 11am Pacific" onerror="this.style.display='none'">
+          <h4>Build Your Forge Director · 11am PT</h4>
+          <p>We set up the daily working rhythm I use every morning, on your business, in one sitting. Your projects, your clients, your real deadlines. It holds all the pieces. You make the decisions.</p>
+        </div>
+      </div>
+
+      <div class="bonus">
+        <span class="when2 soon">Coming</span>
+        <div>
+          <h4>Create Your Brand Skill</h4>
+          <p>A seven day build where you teach Claude to sound like you, one piece a day. If you've ever deleted an AI draft because it read like a stranger wrote it, this is the fix.</p>
+        </div>
+      </div>
+
+      <div class="bonus">
+        <span class="when2 always">Inside now</span>
+        <div>
+          <h4>Claude for Beginners</h4>
+          <p>A new video every single day. One win at a time, start to finish, nothing assumed. Members watch it grow in real time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h3>Come build the rest of it with us</h3>
+      <p>You keep what you made today either way. The community is for everything you build after it.</p>
+      <a class="btn" href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">Start your free trial</a>
+    </div>
+
+  </section>
+
+  <!-- ---------- 04 BUILD ---------- -->
+  <section class="panel" id="p-build" role="tabpanel">
+
+    <div class="eyebrow">The part we do together</div>
+    <h2>Build your Anvil</h2>
+    <p class="lede">A filing cabinet holds your business. An anvil is where you shape something with it.</p>
+
+    <div class="blk">
+      <p>We're all going to run <strong>one prompt</strong>. It reads the files you just filled in, works out which project you should do first, and builds you a web page holding that project and five more, each with the prompt to start it.</p>
+      <p>Then we put it on the internet, and you leave with a web address you made.</p>
+      <p>Everyone's page comes out named after their own business, and everyone's first project is different, because everyone's files are different. That's the whole point of the last ninety minutes.</p>
+      <div class="callout warm"><strong>Run this in Claude Code inside <code>biz-brain</code>, not in a regular chat.</strong> The whole trick is that it reads your files before it answers.</div>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">What you're about to make</span>
+      <h3>Six projects, each one a thing you keep and a move you learn</h3>
+      <ol class="next">
+        <li><b>Fill your gaps.</b> Real files instead of placeholders, and a standing rule that makes the folder improve itself.</li>
+        <li><b>Make it check your voice.</b> A sharper voice file, and the idea that your files are a standard to measure against.</li>
+        <li><b>Turn a correction into a rule.</b> One rule that sticks forever, and why saying do this beats repeating don't do that.</li>
+        <li><b>A week of content from one recording.</b> Actual posts, from feeding it your raw material instead of asking it to invent.</li>
+        <li><b>Build one small tool.</b> A tracker or worksheet that works, and the realisation that you can make software by describing it.</li>
+        <li><b>Let it play your client.</b> The questions your messaging can't answer yet, and how to hand Claude a role so it pokes holes in your work.</li>
+      </ol>
+      <div class="callout">Claude decides which of the six goes first for you and tells you why, using something real from your own files. If your files are still mostly empty, it picks number one, because that genuinely is the right first project when the drawers are bare.</div>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">Paste this in</span>
+      <h3>The prompt</h3>
+      <p>It's long. That's on purpose, and you only run it once.</p>
+      <div class="prompt-wrap">
+<div class="prompt" id="pb">Read every file in this repo first: my context files, my brand and voice files, my offers, and CLAUDE.md.
+
+Then build me a single web page called The Anvil. It's my list of what to build next with you.
+
+NAME IT FOR ME
+Find my business name in my files and title the page "[My business name]'s Anvil". If there's no business name, use my first name. If you can't find either, title it "Your Anvil" and tell me at the top that you couldn't find a name.
+
+PICK MY FIRST PROJECT
+Below are six projects. Read my files and choose the ONE that should be first for me specifically. Put it at the top of the page under the heading "Start here" with two sentences saying why that one, for me, pointing at something real you actually found in my files.
+
+If my files are mostly empty or mostly [FILL IN], choose Project 1 and say plainly that there isn't enough in the files yet to choose anything else.
+
+Then list the other five under "Next up", in whatever order makes sense for me.
+
+For every project, the page shows its name, what I end up with, what I learn, and its full prompt in a block I can copy.
+
+THE SIX PROJECTS
+
+1. FILL YOUR GAPS
+I end up with: real files instead of placeholders.
+I learn: a standing rule that makes the folder improve itself.
+Prompt: "Check open-questions.md. Tell me how many are still unanswered, then ask me the top one. When I answer, write it into the right file, tick it off, and push to main."
+
+2. MAKE IT CHECK YOUR VOICE
+I end up with: a sharper voice file.
+I learn: my files are a standard to measure against, not just storage.
+Prompt: "Read brand/voice.md. Then read this piece of my writing: [paste it]. Go through it and tell me every place it drifts from my voice file. Then tell me what my voice file is missing that would have caught those, add it to the file, and push to main."
+
+3. TURN A CORRECTION INTO A RULE
+I end up with: one rule that sticks forever.
+I learn: saying do this beats repeating don't do that.
+Prompt: "Here's a correction I keep giving you: [type it]. Rewrite it as a positive instruction that says what to do rather than what to avoid. Add it to CLAUDE.md and push to main."
+
+4. A WEEK OF CONTENT FROM ONE RECORDING
+I end up with: actual posts.
+I learn: feeding it my raw material instead of asking it to invent.
+Prompt: "Here's a transcript of me talking for a few minutes: [paste it]. Using my voice file and who-i-serve.md, pull out every idea in here worth a post. Give me the list first and wait. Then draft the three strongest in my voice, save them into a content folder, and push to main."
+
+5. BUILD ONE SMALL TOOL
+I end up with: a tracker or worksheet that actually works.
+I learn: I can make software by describing it.
+Prompt: "I want to build [describe the tool] for [who it's for]. Before you write anything, ask me what it needs to give the person at the end. Then build it as one self-contained HTML file with the styling inside it, save it in a folder named after it, and push to main."
+
+6. LET IT PLAY YOUR CLIENT
+I end up with: the questions my messaging can't answer yet.
+I learn: I can hand Claude a role and use it to poke holes in my work.
+Prompt: "Read my files, then act as someone who is considering booking [my offer name] and hasn't decided yet. Ask me the questions that person would really ask before paying. One at a time, and wait for my answer. Any time you hit a question my files can't answer, stop and tell me that's a hole in my messaging."
+
+RULES FOR THE PAGE
+- This page is going on the public internet. Do not put client names, private notes, or anything from my client files on it. My business name and my offer names are fine.
+- Write it as ONE self-contained HTML file, with all the styling inside a style tag. No external files, no downloaded fonts, no images. Nothing that has to load from somewhere else.
+- It has to look right on a phone.
+
+HOW IT SHOULD LOOK
+- If my brand files name actual colours, use mine. If they don't, use a deep charcoal background with warm copper and ember accents.
+- One column, generous spacing, nothing cramped or busy.
+- My first project sits at the top and should feel like the main event: larger heading, brighter, obviously the thing to do first.
+- The other five sit underneath as a calmer list.
+- Every prompt goes in a monospaced block with a visible border and its own copy button, so it's obvious what to copy.
+- System fonts only, since nothing external can load.
+- No emoji and no icons.
+- End the page with exactly this line and nothing after it: "Work down the list in order. One project per sitting is enough." Do not add a sign-off, a closing message, or any phrase in my voice that you have made up. If my files contain a sign-off I actually use, you may put that underneath it, and only if it is genuinely written in my files.
+
+SAVE IT AND TELL ME HOW TO PUBLISH IT
+- Save the page as anvil/index.html in this repo and push to main.
+- Then give me plain numbered steps to put it on the internet: creating a new PUBLIC repo called anvil, adding this file to it, and turning on GitHub Pages.
+- Finish by writing out the exact web address my page will live at, in full, so I can visit it.</div>
+        <button class="copy" data-target="pb">Copy the prompt</button>
+      </div>
+      <div class="callout"><strong>Watch what it does before it writes anything.</strong> It opens your files first. That's the difference between this and every chat you have ever had.</div>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">Put it on the internet</span>
+      <h3>Three clicks and it's live</h3>
+      <p>Claude can write the file and push it. It cannot make a new repo for you or turn the publish setting on, so this last bit is yours. It takes about three minutes and it's the same move you already did once today.</p>
+      <ol class="next">
+        <li><b>Make a new repo called <code>anvil</code>.</b> Go to <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>. Name it <code>anvil</code>, choose <b>Public</b> this time, and <b>tick "Add a README file"</b> before you create it.</li>
+        <li><b>Put your page in it.</b> Claude just wrote the page. Add it to the new repo as <code>index.html</code>, all lowercase.</li>
+        <li><b>Turn on Pages.</b> In that repo: <b>Settings</b>, then <b>Pages</b>. Under Build and deployment set Source to <b>Deploy from a branch</b>, branch <code>main</code>, folder <code>/ (root)</code>, then <b>Save</b>.</li>
+      </ol>
+      <div class="callout warm"><strong>Don't skip the README tick.</strong> A brand new empty repo has no branch yet, and Pages has nothing to publish from. That one checkbox creates <code>main</code> and saves you standing there wondering why the branch list is empty.</div>
+      <div class="callout warm"><strong>Your business notes stay private.</strong> <code>biz-brain</code> never becomes public. Only this one page moves across, and the prompt already told Claude to keep client names off it.</div>
+      <div class="callout calm">Give it a minute after you save. Pages takes a moment the first time. Then visit the address Claude gave you, and that's yours.</div>
+    </div>
+
+    <div class="blk">
+      <h3>What you just did</h3>
+      <p>You set up Claude Code, gave it a permanent memory of your business, had it read that memory and decide what you should work on next, built a web page out of the answer, and published it to the internet.</p>
+      <p>Ninety minutes, and you have never written a line of code.</p>
+    </div>
+
+    <div class="blk">
+      <h3>Keep this page</h3>
+      <p>Your ticks are saved on this device. Come back whenever a step slips.</p>
+      <a class="btn-ghost" href="../starter/">The written Starter guide</a>
+      <a class="btn" href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">Join the community</a>
+    </div>
+
+  </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var names = ['learn','steps','join','build'];
+  var tabs = [].slice.call(document.querySelectorAll('.nav button'));
+
+  function show(name, push){
+    tabs.forEach(function(t){
+      t.setAttribute('aria-selected', t.dataset.p === name ? 'true' : 'false');
+    });
+    [].slice.call(document.querySelectorAll('.panel')).forEach(function(p){
+      p.classList.toggle('on', p.id === 'p-' + name);
+    });
+    if(push && history.replaceState) history.replaceState(null, '', '#' + name);
+    window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.dataset.p, true); });
+  });
+  var start = (location.hash || '').replace('#','');
+  if(names.indexOf(start) > -1) show(start, false);
+
+  /* step progress */
+  var KEY = 'sff-workshop-aug4';
+  var steps = [].slice.call(document.querySelectorAll('.step'));
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ saved = {}; }
+  function paint(){
+    var n = 0;
+    steps.forEach(function(s){
+      if(saved[s.dataset.step]){ s.classList.add('done'); n++; }
+      else s.classList.remove('done');
+    });
+    document.getElementById('ptxt').textContent = n + ' / ' + steps.length;
+    document.getElementById('fill').style.width = (n / steps.length * 100) + '%';
+  }
+  steps.forEach(function(s){
+    s.querySelector('.tick').addEventListener('click', function(){
+      saved[s.dataset.step] = !saved[s.dataset.step];
+      try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(e){}
+      paint();
+    });
+  });
+  paint();
+
+  /* copy buttons */
+  [].slice.call(document.querySelectorAll('.copy')).forEach(function(b){
+    b.addEventListener('click', function(){
+      var txt = document.getElementById(b.dataset.target).innerText;
+      var done = function(){
+        var old = b.textContent;
+        b.textContent = 'Copied';
+        b.classList.add('ok');
+        setTimeout(function(){ b.textContent = old; b.classList.remove('ok'); }, 1800);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done).catch(function(){});
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = txt; document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){}
+        ta.remove();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
