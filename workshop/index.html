@@ -199,8 +199,11 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
 .shot-dot{width:9px;height:9px;padding:0;border:none;border-radius:50%;
   background:rgba(140,104,50,.28);cursor:pointer;transition:background .18s}
 .shot-dot.on{background:var(--copper)}
-.shot-cap{margin-top:12px;max-width:62ch;font-size:16px;color:var(--ink-dim)}
-.shot-cap strong{color:var(--ink)}
+.shot-cap{border-top:1px solid var(--line);background:var(--bg2);padding:16px 20px}
+.shot-cap p{margin:0;font-size:16px;line-height:1.6;color:var(--ink-dim);max-width:70ch}
+.shot-cap strong{color:var(--ink);font-weight:600}
+.shot-cap .capnum{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:700;
+  letter-spacing:1.6px;color:var(--copper);margin-right:9px;vertical-align:1px}
 
 /* join */
 .priceline{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
@@ -563,6 +566,15 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
               <img src="images/slide-7.png" alt="Setup screen 7" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
               <div class="shot-missing">SLIDE 7<br>images/slide-7.png</div>
             </figure>
+          <div class="shot-cap">
+            <p data-cap><span class="capnum">1 / 7</span><strong>"Set up and start coding." Scroll down and click "Continue on web."</strong> The big Download button is the loudest thing on this screen and it isn't the one you want. What you're looking for sits near the bottom, under "Want to set up apps later?"</p>
+            <p data-cap><span class="capnum">2 / 7</span><strong>"Code with Claude anywhere." Click Get started.</strong></p>
+            <p data-cap><span class="capnum">3 / 7</span><strong>"Connect your terminal." Ignore the terminal and click "Connect a different way."</strong> The black box is for people who already installed Claude Code on their computer. You're staying in the browser, so the link underneath is yours.</p>
+            <p data-cap><span class="capnum">4 / 7</span><strong>"Connect with GitHub." Click Continue with GitHub</strong> on the right, the one marked Fewer steps. The Personal access token option on the left is a longer road to the same place.</p>
+            <p data-cap><span class="capnum">5 / 7</span><strong>"Authorize Claude." Check the username, then click Continue.</strong> Make sure it's the account that owns <code>biz-brain</code>.</p>
+            <p data-cap><span class="capnum">6 / 7</span><strong>Click New session.</strong></p>
+            <p data-cap><span class="capnum">7 / 7</span><strong>Now the real test: is your repository there?</strong> Click <strong>Select repo</strong> and look for <code>biz-brain</code>. If it's missing, you've hit the most common wall in this whole setup, and the fix is right below.</p>
+          </div>
           </div>
           <div class="shot-bar">
             <button class="shot-nav" data-dir="-1">Back</button>
@@ -570,15 +582,7 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
             <span class="shot-count"></span>
             <span class="shot-dots"></span>
           </div>
-          <div class="shot-cap">
-            <p data-cap><strong>"Set up and start coding." Scroll down and click "Continue on web."</strong> The big Download button is the loudest thing on this screen and it isn't the one you want. What you're looking for sits near the bottom, under "Want to set up apps later?"</p>
-            <p data-cap><strong>"Code with Claude anywhere." Click Get started.</strong></p>
-            <p data-cap><strong>"Connect your terminal." Ignore the terminal and click "Connect a different way."</strong> The black box is for people who already installed Claude Code on their computer. You're staying in the browser, so the link underneath is yours.</p>
-            <p data-cap><strong>"Connect with GitHub." Click Continue with GitHub</strong> on the right, the one marked Fewer steps. The Personal access token option on the left is a longer road to the same place.</p>
-            <p data-cap><strong>"Authorize Claude." Check the username, then click Continue.</strong> Make sure it's the account that owns <code>biz-brain</code>.</p>
-            <p data-cap><strong>Click New session.</strong></p>
-            <p data-cap><strong>Now the real test: is your repository there?</strong> Click <strong>Select repo</strong> and look for <code>biz-brain</code>. If it's missing, you've hit the most common wall in this whole setup, and the fix is right below.</p>
-          </div>
+
         </div>
 
         <ul>
