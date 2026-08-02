@@ -177,6 +177,31 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
 .copy:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(140,104,50,.22)}
 .copy.ok{background:linear-gradient(135deg,var(--forest),#2B4640)}
 
+/* step slideshow */
+.shots{margin:20px 0 24px 0;max-width:none}
+/* reclaim the step-body indent so the screenshots get the full column */
+.step-body .shots{margin-left:-44px;width:calc(100% + 44px)}
+@media (max-width:940px){ .step-body .shots{margin-left:0;width:100%} }
+.shot-frame{background:var(--bg3);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.shot{display:none}
+.shot.on{display:block}
+.shot img{display:block;width:100%;height:auto}
+.shot-missing{display:none;padding:44px 22px;text-align:center;font-family:var(--mono);
+  font-size:12px;line-height:1.9;color:var(--ink-faint)}
+.shot-bar{display:flex;align-items:center;gap:12px;margin-top:13px;flex-wrap:wrap}
+.shot-nav{background:linear-gradient(135deg,var(--copper),var(--copper-dk));color:#FFFDFA;
+  border:none;border-radius:30px;padding:9px 21px;font-family:var(--sans);font-size:14px;
+  font-weight:700;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.shot-nav:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px rgba(140,104,50,.22)}
+.shot-nav:disabled{background:var(--bg3);color:var(--ink-faint);cursor:default;box-shadow:none}
+.shot-count{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;color:var(--ink-faint)}
+.shot-dots{display:flex;gap:7px;margin-left:auto}
+.shot-dot{width:9px;height:9px;padding:0;border:none;border-radius:50%;
+  background:rgba(140,104,50,.28);cursor:pointer;transition:background .18s}
+.shot-dot.on{background:var(--copper)}
+.shot-cap{margin-top:12px;max-width:62ch;font-size:16px;color:var(--ink-dim)}
+.shot-cap strong{color:var(--ink)}
+
 /* join */
 .priceline{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
   padding:22px 0 4px;border-top:1.5px solid var(--ink);margin:22px 0 0}
@@ -507,6 +532,55 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
       <div class="step-body">
         <p>This is where Claude gets permission to open your files. About a minute.</p>
         <div class="callout warm"><strong>Everything here is in your browser. There is nothing to download.</strong> The wording below is exact on purpose. The word that matters is <strong>install</strong>.</div>
+
+        <div class="shots" id="shots3">
+          <div class="shot-frame">
+            <figure class="shot on">
+              <img src="images/slide-1.png" alt="Setup screen 1" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <div class="shot-missing">SLIDE 1<br>images/slide-1.png</div>
+            </figure>
+            <figure class="shot">
+              <img src="images/slide-2.png" alt="Setup screen 2" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <div class="shot-missing">SLIDE 2<br>images/slide-2.png</div>
+            </figure>
+            <figure class="shot">
+              <img src="images/slide-3.png" alt="Setup screen 3" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <div class="shot-missing">SLIDE 3<br>images/slide-3.png</div>
+            </figure>
+            <figure class="shot">
+              <img src="images/slide-4.png" alt="Setup screen 4" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <div class="shot-missing">SLIDE 4<br>images/slide-4.png</div>
+            </figure>
+            <figure class="shot">
+              <img src="images/slide-5.png" alt="Setup screen 5" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <div class="shot-missing">SLIDE 5<br>images/slide-5.png</div>
+            </figure>
+            <figure class="shot">
+              <img src="images/slide-6.png" alt="Setup screen 6" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <div class="shot-missing">SLIDE 6<br>images/slide-6.png</div>
+            </figure>
+            <figure class="shot">
+              <img src="images/slide-7.png" alt="Setup screen 7" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <div class="shot-missing">SLIDE 7<br>images/slide-7.png</div>
+            </figure>
+          </div>
+          <div class="shot-bar">
+            <button class="shot-nav" data-dir="-1">Back</button>
+            <button class="shot-nav" data-dir="1">Next</button>
+            <span class="shot-count"></span>
+            <span class="shot-dots"></span>
+          </div>
+          <div class="shot-cap">
+            <p data-cap><strong>"Set up and start coding." Scroll down and click "Continue on web."</strong> The big Download button is the loudest thing on this screen and it isn't the one you want. What you're looking for sits near the bottom, under "Want to set up apps later?"</p>
+            <p data-cap><strong>"Code with Claude anywhere." Click Get started.</strong></p>
+            <p data-cap><strong>"Connect your terminal." Ignore the terminal and click "Connect a different way."</strong> The black box is for people who already installed Claude Code on their computer. You're staying in the browser, so the link underneath is yours.</p>
+            <p data-cap><strong>"Connect with GitHub." Click Continue with GitHub</strong> on the right, the one marked Fewer steps. The Personal access token option on the left is a longer road to the same place.</p>
+            <p data-cap><strong>"Authorize Claude." Check the username, then click Continue.</strong> Make sure it's the account that owns <code>biz-brain</code>.</p>
+            <p data-cap><strong>Click New session.</strong></p>
+            <p data-cap><strong>Now the real test: is your repository there?</strong> Click <strong>Select repo</strong> and look for <code>biz-brain</code>. If it's missing, you've hit the most common wall in this whole setup, and the fix is right below.</p>
+          </div>
+        </div>
+
         <ul>
           <li>Go to <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a> and sign in</li>
           <li>On <strong>"Setup and start coding,"</strong> click <strong>"want to set up apps later, continue on the web."</strong> It sits below the bigger buttons, so look down the page for it.</li>
@@ -518,12 +592,14 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
         </ul>
         <p>You may be asked to create a cloud environment. The defaults are right. Give it any name and click <strong>Create environment</strong>. If you're never asked, nothing is wrong.</p>
         <p>Back at claude.ai/code, click the repository selector under the message box and choose <code>biz-brain</code>.</p>
+        <div class="callout warm"><strong>This is the step that needs Pro.</strong> If you're on the free plan you'll get stopped here, and it's the plan, not anything you did wrong.</div>
         <h4>No repositories in the list?</h4>
         <p>The most common wall, and almost always the same cause: Claude knows who you are, but was never given the key to your files. Logging in with GitHub and installing the Claude app on that account are two separate things. Nothing warns you. The list just comes back empty.</p>
         <ul><li>Install it directly at <a href="https://github.com/apps/claude/installations/new" target="_blank" rel="noopener">github.com/apps/claude/installations/new</a></li></ul>
         <p>Choose the account that owns your repo, choose <strong>All repositories</strong> or select <code>biz-brain</code>, click <strong>Install</strong>, then reload claude.ai/code.</p>
         <div class="callout calm">A private repo is not the problem. Private works exactly like public here, as long as the app is installed on the account that owns it.</div>
         <div class="callout warm"><strong>Don't ask Claude to fix a connection problem.</strong> Claude can't install a GitHub app or change your plan from inside a conversation. It will sound like it's helping and nothing will move. This one is yours to click.</div>
+        <div class="callout">Buttons move around as things get updated. If a label reads a little differently than what's written here, you're still in the right place. Look for the word <em>connect</em> or <em>repository</em> and follow it.</div>
       </div>
     </div>
 
@@ -563,7 +639,9 @@ After the block, in a few lines outside it, tell me which of the four sections c
           <button class="copy" data-target="p2">Copy the prompt</button>
         </div>
         <div class="callout"><strong>If Claude says it doesn't know you, that's the right answer.</strong> A brand new account has no history, so the sections come back as <code>[FILL IN]</code>. That's the tool being honest. An invented price becomes the source of truth for every piece of copy after it.</div>
+        <div class="callout"><strong>Why one file and not four.</strong> Ask for four files and Claude tends to hand you four separate boxes, which is four copies and four chances to lose one. One file with four sections inside it comes back as a single block. Claude Code does the splitting in the next step, which is the part it's good at.</div>
         <p style="margin-top:18px">Copy the whole block. Go back to Claude Code, paste it in, and put this underneath:</p>
+        <div class="callout calm">If it still splits the answer into separate boxes, say <em>"put the whole thing in one markdown block so I can copy it in one go"</em> and it'll redo it.</div>
         <div class="prompt-wrap">
 <div class="prompt" id="p3">Above is a brain dump with four sections in it. Split it into the matching files in this repo, replacing the placeholders:
 
@@ -886,6 +964,55 @@ SAVE IT AND TELL ME HOW TO PUBLISH IT
 
   </main>
 </div>
+
+<script>
+/* step slideshows: any .shots block with .shot figures and matching [data-cap] lines */
+(function(){
+  [].slice.call(document.querySelectorAll('.shots')).forEach(function(box){
+    var shots = [].slice.call(box.querySelectorAll('.shot'));
+    var caps  = [].slice.call(box.querySelectorAll('[data-cap]'));
+    var navs  = [].slice.call(box.querySelectorAll('.shot-nav'));
+    var count = box.querySelector('.shot-count');
+    var dotbox= box.querySelector('.shot-dots');
+    if(!shots.length) return;
+    var at = 0, dots = [];
+
+    shots.forEach(function(s,i){
+      var d = document.createElement('button');
+      d.className = 'shot-dot';
+      d.setAttribute('aria-label','Screen ' + (i+1));
+      d.addEventListener('click', function(){ go(i); });
+      dotbox.appendChild(d); dots.push(d);
+    });
+
+    function go(n){
+      at = Math.max(0, Math.min(shots.length - 1, n));
+      shots.forEach(function(s,i){ s.classList.toggle('on', i === at); });
+      caps.forEach(function(c,i){ c.style.display = (i === at) ? '' : 'none'; });
+      dots.forEach(function(d,i){ d.classList.toggle('on', i === at); });
+      count.textContent = (at + 1) + ' / ' + shots.length;
+      navs.forEach(function(b){
+        var dir = parseInt(b.getAttribute('data-dir'), 10);
+        b.disabled = (dir < 0 && at === 0) || (dir > 0 && at === shots.length - 1);
+      });
+    }
+
+    navs.forEach(function(b){
+      b.addEventListener('click', function(){
+        go(at + parseInt(b.getAttribute('data-dir'), 10));
+      });
+    });
+
+    box.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowRight') go(at + 1);
+      if(e.key === 'ArrowLeft')  go(at - 1);
+    });
+    box.setAttribute('tabindex','0');
+
+    go(0);
+  });
+})();
+</script>
 
 <script>
 (function(){
