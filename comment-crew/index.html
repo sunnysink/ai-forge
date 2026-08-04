@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comment Watch Brief — Aug 4 Workshop</title>
+<style>
+  :root{
+    --bg:#0d1411; --ink:#F1E7D6; --ink-dim:#BDB09A;
+    --copper:#C6955C; --copper-lt:#E2B884; --ember:#E8743B; --ember-glow:#FF8A4C;
+    --forest:#2C5F5A; --gold:#D8B968; --red:#E5675A; --green:#6FB58A;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    --mono:ui-monospace,'SF Mono',Menlo,monospace;
+    --card:rgba(22,34,28,0.72); --cardborder:rgba(198,149,92,0.20);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);
+    background-image:radial-gradient(900px 500px at 12% -8%,rgba(232,116,59,0.10),transparent 60%),
+      radial-gradient(800px 500px at 100% 0%,rgba(44,95,90,0.14),transparent 55%);
+    min-height:100vh;padding:28px 20px 70px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto}
+
+  h1{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.05;
+    background:linear-gradient(92deg,var(--copper-lt),var(--ember-glow) 45%,var(--gold));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--copper);margin-bottom:8px}
+  .sub{color:var(--ink-dim);font-size:15px;margin-top:8px}
+
+  .lab{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ink-dim);margin:34px 0 14px;display:flex;align-items:center;gap:12px}
+  .lab::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(198,149,92,.35),transparent)}
+
+  .rules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .rule{background:var(--card);border:1px solid var(--cardborder);border-radius:14px;padding:16px 18px}
+  .rule.now{border-color:rgba(229,103,90,.5);background:linear-gradient(135deg,rgba(229,103,90,.12),rgba(22,34,28,.78))}
+  .rule.you{border-color:rgba(111,181,138,.45)}
+  .rule.later{border-color:rgba(216,185,104,.4)}
+  .rule h3{font-family:var(--serif);font-size:20px;margin-bottom:8px}
+  .rule.now h3{color:var(--red)} .rule.you h3{color:var(--green)} .rule.later h3{color:var(--gold)}
+  .rule p{font-size:13px;color:var(--ink-dim);line-height:1.5}
+  .rule p+p{margin-top:7px}
+  .rule b{color:var(--ink)}
+  @media(max-width:760px){.rules{grid-template-columns:1fr}}
+
+  .bigrule{margin-top:14px;background:linear-gradient(135deg,rgba(232,116,59,.16),rgba(22,34,28,.8));
+    border:1px solid rgba(232,116,59,.4);border-radius:14px;padding:18px 22px}
+  .bigrule p{font-size:15px;color:var(--ink);line-height:1.55}
+  .bigrule b{color:var(--ember-glow)}
+
+  #filter{width:100%;padding:14px 16px;border-radius:12px;background:rgba(13,20,17,.7);
+    border:1px solid var(--cardborder);color:var(--ink);font-family:var(--sans);font-size:15px;
+    margin-bottom:14px}
+  #filter:focus{outline:none;border-color:var(--copper)}
+  #filter::placeholder{color:var(--ink-dim);opacity:.7}
+
+  .qa{background:var(--card);border:1px solid var(--cardborder);border-radius:14px;
+    padding:16px 18px;margin-bottom:10px}
+  .qa .trig{font-size:12px;color:var(--gold);font-family:var(--mono);letter-spacing:.04em;margin-bottom:8px}
+  .qa .ans{font-size:14.5px;color:var(--ink);line-height:1.55;
+    background:rgba(13,20,17,.55);border-left:2px solid var(--copper);
+    border-radius:0 8px 8px 0;padding:12px 14px;white-space:pre-wrap}
+  .qa .row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px}
+  .qa .note{font-size:12px;color:var(--ink-dim);line-height:1.45;flex:1}
+  .cbtn{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--bg);background:var(--copper);border:none;border-radius:20px;padding:7px 15px;
+    cursor:pointer;white-space:nowrap;transition:background .18s}
+  .cbtn:hover{background:var(--copper-lt)}
+  .cbtn.copied{background:var(--green)}
+
+  .never{background:linear-gradient(135deg,rgba(229,103,90,.14),rgba(22,34,28,.75));
+    border:1px solid rgba(229,103,90,.45);border-radius:14px;padding:18px 22px}
+  .never ul{margin:8px 0 0 18px}
+  .never li{font-size:14px;color:var(--ink-dim);line-height:1.55;margin-bottom:8px}
+  .never b{color:var(--ink)}
+
+  footer{margin-top:44px;text-align:center;font-family:var(--mono);font-size:11px;
+    color:var(--ink-dim);opacity:.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Soul-Forged Founders</div>
+  <h1>Comment Watch Brief</h1>
+  <div class="sub">Claude Code Setup Workshop &middot; Tuesday August 4, 4:00&ndash;5:30pm PT &middot; 257 registered &middot; live on YouTube</div>
+
+  <div class="lab">The three buckets</div>
+  <div class="rules">
+    <div class="rule now">
+      <h3>🔴 Tell Sunny now</h3>
+      <p><b>Three or more people report the same problem.</b> That means the room is stuck, not one person.</p>
+      <p>Nobody can see or hear her. Screen share is frozen or on the wrong window.</p>
+      <p>Anyone says the join link or a payment page is broken.</p>
+    </div>
+    <div class="rule you">
+      <h3>🟢 You answer</h3>
+      <p>Anything on the list below. Paste the answer, no need to personalize it much.</p>
+      <p>If two people ask the same thing, answer both. It is not spam, others are silently stuck on it too.</p>
+    </div>
+    <div class="rule later">
+      <h3>🟡 Send to Friday</h3>
+      <p>Anything about <b>their</b> specific business, offers, or a build that is not today's steps.</p>
+      <p>Long troubleshooting that would need a screen share.</p>
+    </div>
+  </div>
+
+  <div class="bigrule">
+    <p><b>The one number that matters: three.</b> One person stuck is normal and you handle it. Three people stuck on the same step means Sunny has to say it out loud to everyone, and she cannot see that from where she is standing. Count, then tell her.</p>
+  </div>
+
+  <div class="lab">How to reach her mid-stream</div>
+  <div class="bigrule" style="background:linear-gradient(135deg,rgba(44,95,90,.2),rgba(22,34,28,.8));border-color:rgba(44,95,90,.5)">
+    <p>She is presenting and will not be reading chat. Send it where she has agreed to look, and <b>lead with the word STUCK</b> so it is obvious at a glance.</p>
+    <p style="margin-top:8px;font-family:var(--mono);font-size:13px;color:var(--ink-dim)">Example: STUCK &mdash; 4 people, empty repo list</p>
+  </div>
+
+  <div class="lab">Copy-paste answers</div>
+  <input id="filter" type="text" placeholder="Type a word from their question to filter, e.g. repo, pro, private, replay">
+  <div id="qas">
+
+    <div class="qa">
+      <div class="trig">NO REPOS SHOWING &middot; empty picker &middot; can't find my repository &middot; list is blank</div>
+      <div class="ans">This one catches almost everyone, and it is a two minute fix. Signing into Claude with GitHub is not the same as installing the app. Go to https://github.com/apps/claude/installations/new , pick the account that owns your repo, choose All repositories, click Install, then reload claude.ai/code. Your repo will be there.</div>
+      <div class="row"><span class="note">⭐ The single most likely problem today. If you see it three times, tell Sunny immediately.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">WHAT'S THE LINK &middot; where are the steps &middot; what page is she on &middot; can I follow along</div>
+      <div class="ans">Here is the workshop page with all the steps on it: https://sunnysink.github.io/ai-forge/workshop/ . Keep it open beside the video and you can follow along at your own pace.</div>
+      <div class="row"><span class="note">⭐ Expect this constantly. Paste it freely, and paste it again for latecomers.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">CAN'T FIND CONTINUE ON THE WEB &middot; it wants me to download &middot; do I need VS Code</div>
+      <div class="ans">You do not need to download anything. On that first screen, scroll past Download for Windows, Terminal and VS Code. Underneath all of it there is a line that says you want to set up apps later, continue on the web. That is the one you want.</div>
+      <div class="row"><span class="note">It sits below the download options and is very easy to miss.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">DO I NEED TO PAY &middot; is this free &middot; Claude Pro &middot; $20</div>
+      <div class="ans">Claude Code does need a paid Claude plan, Pro at $20 a month or higher. That is Anthropic's requirement, not ours. Stay with us anyway, watch how it works, and set it up whenever you are ready. Sunny also has trainings inside the community built specifically for the free plan.</div>
+      <div class="row"><span class="note">Say it warmly. This is the one that makes people leave.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">PRIVATE OR PUBLIC &middot; I made it public &middot; did I do it wrong</div>
+      <div class="ans">Private. If you already made it public you can change it: go to the repo, Settings, scroll to the bottom, Change repository visibility, make it private. Worth doing before you put anything real in there, because your offers, prices and notes end up in these files.</div>
+      <div class="row"><span class="note">Sunny did this exact thing yesterday. Nobody should feel silly about it.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">NO GITHUB ACCOUNT &middot; do I need to sign up &middot; I'm not signed up yet</div>
+      <div class="ans">You need a free GitHub account for this. Grab one at github.com now, it takes a couple of minutes and it may ask you to verify your email. Keep watching while you do it, you will catch up fine.</div>
+      <div class="row"><span class="note">Verification email can be slow. Reassure, do not rush them.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">BRANCH LIST EMPTY &middot; Pages won't deploy &middot; nothing to select</div>
+      <div class="ans">A brand new empty repo has no branch yet, so there is nothing for Pages to publish. Easiest fix is to tick Add a README file when you create the repo. If it already exists, add any file to it and the main branch will appear.</div>
+      <div class="row"><span class="note">Only comes up if she gets to the publishing part.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">IT MADE A BRANCH &middot; weird branch name &middot; my files aren't on main</div>
+      <div class="ans">You can ignore that branch, it is harmless. Your files are going to main, which is what matters, and the instruction file in the template is what makes sure of it.</div>
+      <div class="row"><span class="note">Confirmed harmless in testing. Do not let anyone rabbit-hole on it.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">IT ANSWERED WITHOUT ME &middot; wrote the file before I replied &middot; didn't wait</div>
+      <div class="ans">That happens if there is a long pause. The session keeps going and writes the file without your answer, with no error. Just tell it what you actually wanted and ask it to redo that part. Nothing is broken.</div>
+      <div class="row"><span class="note">Known behavior, not a mistake they made.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">CAN I USE CHATGPT &middot; does this work with other AI &middot; I don't use Claude</div>
+      <div class="ans">The thinking behind all of this works with any AI. This specific tool is Claude's, so today's steps are Claude. Claude is what Sunny recommends and uses, and it is not a requirement for most of what she teaches.</div>
+      <div class="row"><span class="note">Never make anyone feel wrong for using something else.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">REPLAY &middot; will this be recorded &middot; I have to leave</div>
+      <div class="ans">Yes, the replay goes out by email tonight. Heads up that it comes down Thursday morning, so watch it before then.</div>
+      <div class="row"><span class="note">True: Email 5 tonight, closes Thursday. Do not promise it stays up.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">HOW DO I JOIN &middot; the community &middot; where do I get more &middot; what's next</div>
+      <div class="ans">Everything lives in the community here: https://www.skool.com/soul-forged-founders . It is a 7-day free trial, then $8 a month, and it has the beginner Claude classroom plus the whole toolkit inside it.</div>
+      <div class="row"><span class="note">Free trial is always "7-day free trial." Standard is $8/month.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">I'M LOST &middot; what step are we on &middot; can she go back</div>
+      <div class="ans">No worries! The replay will be sent out tonight and you can redo any part at your own pace. Tell me which step lost you and I will get you caught up.</div>
+      <div class="row"><span class="note">She is not going back over steps live. If three people say this, tell Sunny.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+    <div class="qa">
+      <div class="trig">BUSINESS QUESTION &middot; my offer &middot; my website &middot; can you look at mine</div>
+      <div class="ans">Great question. Sunny is running a live Triage session this Friday at 4pm PT inside the community where she works through exactly this kind of thing. Bring it there. If you are not in the membership you can attend free with the 7-day free trial: https://www.skool.com/soul-forged-founders</div>
+      <div class="row"><span class="note">Friday Aug 7, 4:00–6:00pm PT. Promised in Email 5, it is real and on the calendar.</span><button class="cbtn" onclick="cp(this)">Copy</button></div>
+    </div>
+
+  </div>
+
+  <div class="lab">Do not post these</div>
+  <div class="never">
+    <ul>
+      <li><b>The 50 First Prompts bonus link.</b> It goes only to people who start a trial in the 48-hour window, and Sunny hands it out herself. Do not paste it in chat.</li>
+      <li><b>Any price other than $8 a month for Standard</b>, and always call it a 7-day free trial.</li>
+      <li><b>Anything you are unsure about.</b> "Let me check with Sunny" is always a fine answer and costs nothing.</li>
+    </ul>
+  </div>
+
+  <footer>Prepared for Vanessa &middot; August 4, 2026</footer>
+
+</div>
+<script>
+  function cp(btn){
+    var t = btn.closest('.qa').querySelector('.ans').innerText.trim();
+    navigator.clipboard.writeText(t).then(function(){
+      btn.textContent='Copied'; btn.classList.add('copied');
+      setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},1500);
+    });
+  }
+  document.getElementById('filter').addEventListener('input',function(e){
+    var q=e.target.value.toLowerCase();
+    document.querySelectorAll('#qas .qa').forEach(function(el){
+      el.style.display = el.innerText.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+</script>
+</body>
+</html>
