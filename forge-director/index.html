@@ -463,7 +463,7 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
 
     <div class="blk">
       <h3>Keep this page</h3>
-      <p>Your ticks are saved on this device. Come back whenever a step slips, or when you are ready to add the next piece.</p>
+      <p>Everything you tick and everything you type is saved on this device, so it is all here when you come back. It saves per browser, so if you open this page somewhere else it starts fresh. Come back whenever a step slips, or when you are ready to add the next piece.</p>
     </div>
 
   </section>
@@ -584,6 +584,33 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
   COMPONENTS.forEach(function(c){ chosen[c.id] = !!c.always; });
   ['due','projects','clients','focus'].forEach(function(id){ chosen[id] = true; });
 
+  /* remember every choice, toggle and word typed, per device */
+  var BKEY = 'sff-forge-director-build';
+  function saveBuild(){
+    try{
+      localStorage.setItem(BKEY, JSON.stringify({
+        mode: mode,
+        chosen: chosen,
+        projects: taP ? taP.value : '',
+        clients: taC ? taC.value : ''
+      }));
+    }catch(e){}
+  }
+  (function restoreBuild(){
+    var data;
+    try{ data = JSON.parse(localStorage.getItem(BKEY)); }catch(e){ data = null; }
+    if(!data) return;
+    if(data.mode === 'code' || data.mode === 'cowork') mode = data.mode;
+    if(data.chosen){
+      COMPONENTS.forEach(function(c){
+        if(c.always){ chosen[c.id] = true; return; }
+        if(typeof data.chosen[c.id] === 'boolean') chosen[c.id] = data.chosen[c.id];
+      });
+    }
+    if(taP && typeof data.projects === 'string') taP.value = data.projects;
+    if(taC && typeof data.clients === 'string') taC.value = data.clients;
+  })();
+
   var CHECK = '<span class="cbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>';
 
   COMPONENTS.forEach(function(c){
@@ -602,6 +629,7 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
         el.setAttribute('aria-checked', chosen[c.id] ? 'true' : 'false');
         syncFills();
         render();
+        saveBuild();
       };
       el.addEventListener('click', toggle);
       el.addEventListener('keydown', function(e){
@@ -706,13 +734,19 @@ code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
       });
       note.innerHTML = (mode === 'code') ? NOTE_CODE : NOTE_COWORK;
       render();
+      saveBuild();
     });
   });
 
-  if(taP) taP.addEventListener('input', render);
-  if(taC) taC.addEventListener('input', render);
+  function onFill(){ render(); saveBuild(); }
+  if(taP) taP.addEventListener('input', onFill);
+  if(taC) taC.addEventListener('input', onFill);
 
-  note.innerHTML = NOTE_CODE;
+  /* reflect whatever was restored from this device */
+  [].slice.call(seg.querySelectorAll('button')).forEach(function(x){
+    x.setAttribute('aria-pressed', x.getAttribute('data-mode') === mode ? 'true' : 'false');
+  });
+  note.innerHTML = (mode === 'code') ? NOTE_CODE : NOTE_COWORK;
   syncFills();
   render();
 })();
