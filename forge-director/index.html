@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Your Forge Director — Live Workshop · August 17</title>
+<meta name="description" content="Your companion page for the live workshop. You already built your business brain. Today we turn it into a morning brief.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF; --bg2:#EDEAE4; --bg3:#E5E1DA;
+  --dark:#1A1714; --dark2:#241F1B;
+  --ink:#1A1714; --ink-dim:#4A4540; --ink-faint:#7D786F;
+  --copper:#8C6832; --copper-lt:#755525; --copper-dk:#5E441C; --brass:#B8935A;
+  --ember:#B84C14; --forest:#3A5C54; --mauve:#6E5560; --gold:#947A20;
+  --line:rgba(140,104,50,.22); --line-2:rgba(26,23,20,.09);
+  --serif:'Cormorant Garamond','Hoefler Text',Georgia,serif;
+  --sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --side:282px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--copper-lt)}
+
+.shell{display:grid;grid-template-columns:var(--side) 1fr;min-height:100vh}
+
+/* ---------------- sidebar ---------------- */
+.side{background:var(--dark);color:#EDEAE4;padding:36px 26px 28px;
+  position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow-y:auto}
+.side::-webkit-scrollbar{width:6px}
+.side::-webkit-scrollbar-thumb{background:rgba(184,147,90,.25);border-radius:99px}
+.brand{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2.4px;
+  text-transform:uppercase;color:var(--brass);margin-bottom:24px}
+.side h1{font-family:var(--serif);font-size:32px;font-weight:700;line-height:1.12;
+  margin:0 0 10px;color:#FFFDFA;letter-spacing:-.3px}
+.side .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;
+  color:#9A938A;margin-bottom:28px;line-height:1.9}
+.side .meta b{color:var(--brass);font-weight:700}
+
+.nav{list-style:none;padding:0;margin:0}
+.nav li{margin-bottom:3px}
+.nav button{width:100%;display:flex;gap:12px;align-items:center;padding:11px 13px;
+  border-radius:10px;background:transparent;border:none;cursor:pointer;
+  color:#C9C2B8;font-family:var(--sans);font-size:15px;font-weight:500;
+  text-align:left;transition:all .18s}
+.nav button:hover{background:rgba(184,147,90,.11);color:#FFFDFA}
+.nav button[aria-selected="true"]{background:linear-gradient(135deg,var(--copper),var(--copper-dk));
+  color:#FFFDFA;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.nav .n{font-family:var(--mono);font-size:10px;font-weight:700;opacity:.62}
+.nav button[aria-selected="true"] .n{opacity:.85}
+
+.prog{margin-top:26px;padding-top:22px;border-top:1px solid rgba(184,147,90,.2)}
+.prog .t{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--brass);margin-bottom:10px;display:flex;
+  justify-content:space-between;gap:10px}
+.bar{height:5px;background:rgba(255,255,255,.11);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;transition:width .45s ease;
+  background:linear-gradient(90deg,var(--copper),var(--ember),var(--gold))}
+
+.side .foot{margin-top:auto;padding-top:26px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:1.4px;text-transform:uppercase;color:#6B655D;line-height:2}
+.side .foot a{color:#9A938A;text-decoration:none;border-bottom:1px solid rgba(154,147,138,.3)}
+.side .foot a:hover{color:var(--brass);border-bottom-color:var(--brass)}
+
+/* ---------------- main ---------------- */
+.main{padding:60px 60px 110px;max-width:900px;position:relative}
+.panel{display:none}
+.panel.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:2.2px;
+  text-transform:uppercase;color:var(--ember);margin-bottom:14px}
+.main h2{font-family:var(--serif);font-size:clamp(32px,4vw,47px);font-weight:700;
+  line-height:1.09;margin:0 0 18px;letter-spacing:-.7px;max-width:20ch}
+.lede{font-size:20px;color:var(--ink-dim);max-width:57ch;margin:0 0 8px}
+.lede strong{color:var(--ink);font-weight:600}
+
+.blk{padding:36px 0;border-top:1px solid var(--line-2)}
+.blk:first-of-type{border-top:none}
+.blk h3{font-family:var(--serif);font-size:28px;font-weight:700;margin:0 0 11px;line-height:1.2}
+.blk h4{font-family:var(--serif);font-size:22px;font-weight:700;margin:26px 0 8px}
+.blk p{margin:0 0 15px;max-width:63ch;color:var(--ink-dim)}
+.blk p strong{color:var(--ink);font-weight:600}
+.blk ul{margin:0 0 15px;padding-left:20px;max-width:63ch;color:var(--ink-dim)}
+.blk li{margin-bottom:8px}
+.blk li strong{color:var(--ink)}
+.blk a{font-weight:600;text-decoration:none;border-bottom:1.5px solid rgba(140,104,50,.35)}
+.blk a:hover{color:var(--ember);border-bottom-color:var(--ember)}
+.sec-n{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--copper);display:block;margin-bottom:9px}
+
+.callout{border-left:3px solid var(--copper);padding:3px 0 3px 20px;margin:20px 0;
+  max-width:61ch;font-size:16px;color:var(--ink-dim)}
+.callout strong{color:var(--ink)}
+.callout.warm{border-left-color:var(--ember)}
+.callout.calm{border-left-color:var(--forest)}
+
+code{font-family:var(--mono);font-size:.88em;background:rgba(140,104,50,.09);
+  border-radius:5px;padding:1px 6px;color:var(--copper-lt);white-space:nowrap}
+
+/* numbered ways */
+.way{display:grid;grid-template-columns:auto 1fr;gap:24px;padding:30px 0;
+  border-top:1px solid var(--line-2)}
+.way:first-of-type{border-top:none;padding-top:6px}
+.way .num{font-family:var(--serif);font-size:52px;font-weight:700;line-height:.82;
+  color:transparent;-webkit-text-stroke:1.5px var(--copper)}
+.way h3{margin:0 0 9px}
+.way p{margin:0 0 11px}
+.flag{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--forest);display:block}
+
+/* source cards */
+.arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0 6px}
+.arch .a{padding:22px 18px 18px;border:1px solid var(--line);border-radius:14px;
+  background:rgba(255,253,250,.5)}
+.arch .a .ico{width:38px;height:38px;margin:0 0 12px;color:var(--copper)}
+.arch .a .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round}
+.arch .a b{display:block;font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:5px}
+.arch .a span{font-size:14.5px;color:var(--ink-dim);line-height:1.55}
+.arch .a code{font-size:.85em}
+
+/* steps */
+.step{padding:32px 0;border-top:1px solid var(--line-2);transition:opacity .25s}
+.step:first-of-type{border-top:none}
+.step.done{opacity:.55}
+.step-head{display:flex;align-items:flex-start;gap:15px;margin-bottom:10px}
+.tick{flex:0 0 auto;width:29px;height:29px;margin-top:4px;border-radius:50%;
+  border:1.5px solid var(--line);background:transparent;cursor:pointer;
+  display:grid;place-items:center;transition:all .2s;padding:0}
+.tick:hover{border-color:var(--copper);box-shadow:0 0 0 4px rgba(140,104,50,.09)}
+.tick svg{width:15px;height:15px;opacity:0;transition:opacity .2s}
+.step.done .tick{background:linear-gradient(135deg,var(--copper),var(--copper-dk));border-color:transparent}
+.step.done .tick svg{opacity:1}
+.step-n{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--copper);display:block;margin-bottom:3px}
+.step-t{font-family:var(--serif);font-size:29px;font-weight:700;line-height:1.16;margin:0}
+.step-body{padding-left:44px}
+.step-body p{margin:0 0 13px;max-width:62ch;color:var(--ink-dim)}
+.step-body ul{margin:0 0 13px;padding-left:20px;max-width:62ch;color:var(--ink-dim)}
+.step-body li{margin-bottom:7px}
+.step-body a{font-weight:600;text-decoration:none;border-bottom:1.5px solid rgba(140,104,50,.35)}
+.step-body a:hover{color:var(--ember);border-bottom-color:var(--ember)}
+
+/* prompts */
+.prompt-wrap{margin:18px 0 0;max-width:66ch}
+.prompt{background:var(--dark);color:#DCD5CB;border-radius:12px;padding:22px 24px;
+  font-family:var(--mono);font-size:13px;line-height:1.75;white-space:pre-wrap;overflow-x:auto}
+.copy{margin-top:12px;background:linear-gradient(135deg,var(--copper),var(--copper-dk));
+  color:#FFFDFA;border:none;border-radius:30px;padding:11px 25px;font-family:var(--sans);
+  font-size:14px;font-weight:700;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.copy:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(140,104,50,.22)}
+.copy.ok{background:linear-gradient(135deg,var(--forest),#2B4640)}
+
+/* interactive builder: tool toggle */
+.seg{display:inline-flex;background:var(--bg3);border:1px solid var(--line);border-radius:30px;
+  padding:4px;gap:4px;margin:2px 0 6px}
+.seg button{border:none;background:transparent;cursor:pointer;font-family:var(--sans);font-size:14px;
+  font-weight:600;color:var(--ink-dim);padding:9px 22px;border-radius:30px;transition:all .18s}
+.seg button[aria-pressed="true"]{background:linear-gradient(135deg,var(--copper),var(--copper-dk));
+  color:#FFFDFA;box-shadow:0 3px 10px rgba(140,104,50,.22)}
+.modenote{font-size:15px;color:var(--ink-dim);max-width:62ch;margin:0 0 4px}
+.modenote strong{color:var(--ink)}
+
+/* interactive builder: pick list */
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 6px;max-width:68ch}
+@media(max-width:620px){.picks{grid-template-columns:1fr}}
+.pick{position:relative;display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);
+  border-radius:12px;padding:14px 15px;cursor:pointer;background:rgba(255,253,250,.5);
+  transition:border-color .18s,background .18s}
+.pick:hover{border-color:var(--copper)}
+.pick.on{border-color:var(--copper);background:rgba(140,104,50,.07)}
+.pick input{position:absolute;opacity:0;width:0;height:0}
+.pick .cbox{flex:0 0 auto;width:22px;height:22px;margin-top:1px;border-radius:6px;
+  border:1.5px solid var(--line);display:grid;place-items:center;transition:all .18s}
+.pick .cbox svg{width:13px;height:13px;opacity:0;transition:opacity .15s;stroke:#FFFDFA;fill:none;
+  stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.pick.on .cbox{background:linear-gradient(135deg,var(--copper),var(--copper-dk));border-color:transparent}
+.pick.on .cbox svg{opacity:1}
+.pick.lock{cursor:default}
+.pick .plabel{font-size:15px;color:var(--ink);line-height:1.3;font-weight:600}
+.pick .psub{display:block;font-size:12.5px;color:var(--ink-faint);font-weight:400;margin-top:3px}
+
+/* interactive builder: fill-in boxes */
+.fillbox{margin:2px 0 4px;max-width:68ch}
+.filllabel{display:block;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--copper);margin:14px 0 7px}
+.filllabel span{font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0;
+  text-transform:none;color:var(--ink-faint);margin-left:8px}
+.fillbox textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 15px;
+  font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--ink);
+  background:rgba(255,253,250,.7);resize:vertical;min-height:88px}
+.fillbox textarea:focus{outline:none;border-color:var(--copper);box-shadow:0 0 0 3px rgba(140,104,50,.1)}
+.fillbox textarea::placeholder{color:var(--ink-faint)}
+
+/* next list */
+.next{counter-reset:n;list-style:none;padding:0;margin:18px 0 0;max-width:64ch}
+.next li{counter-increment:n;position:relative;padding:15px 0 15px 44px;
+  border-top:1px solid var(--line-2);font-size:16.5px;color:var(--ink-dim)}
+.next li:first-child{border-top:none}
+.next li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:16px;
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--copper)}
+.next b{color:var(--ink);font-weight:600}
+
+.btn{display:inline-block;margin-top:20px;background:linear-gradient(135deg,var(--copper),var(--copper-dk));
+  color:#FFFDFA;text-decoration:none;border-radius:30px;padding:15px 36px;
+  font-weight:700;font-size:16px;transition:transform .18s,box-shadow .18s;border:none}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(140,104,50,.22);color:#FFFDFA}
+
+@media (max-width:940px){
+  .shell{grid-template-columns:1fr}
+  .side{position:sticky;top:0;height:auto;padding:20px 18px 16px;z-index:20}
+  .side h1{font-size:24px;margin-bottom:6px}
+  .side .meta{margin-bottom:16px}
+  .nav{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .nav::-webkit-scrollbar{display:none}
+  .nav li{margin-bottom:0;flex:0 0 auto}
+  .nav button{white-space:nowrap;padding:9px 15px;font-size:14px;border-radius:30px}
+  .prog{margin-top:16px;padding-top:14px}
+  .side .foot{display:none}
+  .main{padding:34px 20px 80px}
+  .step-body{padding-left:0}
+  .way{grid-template-columns:1fr;gap:6px}
+  .way .num{font-size:38px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side">
+    <div class="brand">Soul-Forged Founders</div>
+    <h1>Build Your Forge Director</h1>
+    <div class="meta"><b>MON AUG 17</b> · 11AM PT<br>LIVE · IN YOUR BROWSER</div>
+
+    <ul class="nav" role="tablist">
+      <li><button role="tab" data-p="learn" aria-selected="true"><span class="n">01</span> Learn</button></li>
+      <li><button role="tab" data-p="steps" aria-selected="false"><span class="n">02</span> Steps</button></li>
+      <li><button role="tab" data-p="more" aria-selected="false"><span class="n">03</span> Keep going</button></li>
+    </ul>
+
+    <div class="prog">
+      <div class="t"><span>Build progress</span><span id="ptxt">0 / 5</span></div>
+      <div class="bar"><i id="fill"></i></div>
+    </div>
+
+    <div class="foot">
+      The AI Forge<br>
+      <a href="../workshop/">The Claude Code Setup guide</a>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+
+  <!-- ---------- 01 LEARN ---------- -->
+  <section class="panel on" id="p-learn" role="tabpanel">
+
+    <div class="eyebrow">Why we're here</div>
+    <h2>You built the brain. This is the morning it was for.</h2>
+    <p class="lede">Last time, you gave Claude a permanent memory of your business. The files are there, and it reads them before it answers. Today we turn that into a <strong>morning brief</strong>: you sit down, say good morning, and the whole day is already in front of you.</p>
+    <p class="lede" style="font-size:17px">No more opening a blank tab and re-explaining yourself before you can even start.</p>
+
+    <div class="blk">
+      <p><strong>A morning brief is your Forge Director in action.</strong> One short conversation at the start of the day. It reads everything it can reach and hands you the picture: what is on your calendar, what is due, which client is owed something, what you said last week you wanted to get to, and the ideas you did not want to lose.</p>
+      <p>You already have the hard part, the business brain. Today we add two things to it: <strong>the tools it reads from</strong>, and <strong>your instructions for what a good morning looks like</strong>.</p>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">What it reads each morning</span>
+      <h3>Four sources, one picture</h3>
+      <p>Your brief is only as good as what it can see. Here is everything it pulls from, and you decide which of these you turn on.</p>
+
+      <div class="arch">
+        <div class="a">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4a2 2 0 0 1 2-2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M15 2v5h5"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+          <b>Your files</b>
+          <span>The business brain you already built. Clients, projects, offers, your voice. It opens them first, every time.</span>
+        </div>
+        <div class="a">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><circle cx="12" cy="15" r="1.4"/></svg></div>
+          <b>Your calendar</b>
+          <span>Connect it once and your real day shows up: what is booked, what is due, what is about to sneak up on you.</span>
+        </div>
+        <div class="a">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <b>Your inbox and drive</b>
+          <span>The email that came in overnight, the docs you keep your work in. It can reach the tools you already live in.</span>
+        </div>
+        <div class="a">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div>
+          <b>Your instructions</b>
+          <span>You tell it what a good morning looks like, and it follows that every day without being re-asked.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <span class="sec-n">How I use mine</span>
+      <h3>Ten minutes, and the day is decided</h3>
+
+      <div class="way">
+        <span class="num">01</span>
+        <div>
+          <p>Every morning I say good morning and the whole business is already in front of me. What is on my calendar today, what is due, which client is owed something, the idea I had on the weekend that I did not want to lose. It reads yesterday, marks the finished things done, adds new ideas into my projects folder, and pulls up any file I need right there on the screen.</p>
+          <p>Ten or fifteen minutes, and then I decide what gets my day. That is the whole of it.</p>
+          <span class="flag">No coding. I just say good morning.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="callout warm"><strong>It hands you the day. You still make every call.</strong> The brief is the picture, not the decision. Nothing gets sent, changed, or acted on until you say so. What it takes off your plate is the holding: the remembering, the looking for the file, the keeping track of what you already decided.</div>
+    </div>
+
+  </section>
+
+  <!-- ---------- 02 STEPS ---------- -->
+  <section class="panel" id="p-steps" role="tabpanel">
+
+    <div class="eyebrow">Follow along</div>
+    <h2>Five steps, and the hard part is already done</h2>
+    <p class="lede">This one assumes you finished the Claude Code Setup and your <code>biz-brain</code> repo is filled in. If that is you, everything here is a short conversation or a couple of clicks.</p>
+    <div class="callout calm"><strong>No business brain yet? You can still build a morning brief in Claude Cowork.</strong> It is the easiest place to start if code is not your thing. It works from Google Drive instead of a repo: it reads your calendar and a Morning Brief folder, and writes each day's brief as a new dated Google Doc you can open from your phone. In Step Three, tap the Cowork option and the prompt rewrites itself for you.</div>
+    <div class="callout warm"><strong>Tick each step off as you finish it.</strong> Your progress shows in the sidebar and saves on this device, so if you get pulled away you will know exactly where you stopped.</div>
+
+    <div class="step" data-step="1">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 1 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step One</span><h3 class="step-t">Connect your calendar</h3></div>
+      </div>
+      <div class="step-body">
+        <p>This is the one that turns a nice summary into a real day. Connect your calendar once and Claude can read what is actually booked, instead of guessing.</p>
+        <ul>
+          <li>In Claude, open <strong>Settings</strong>, then <strong>Connectors</strong></li>
+          <li>Turn on <strong>Google Calendar</strong>, or whichever calendar you live in</li>
+          <li>Sign in when it asks, and allow it to <strong>read</strong> your calendar</li>
+        </ul>
+        <div class="callout calm"><strong>Read access is enough.</strong> It is reading your day back to you, not moving anything around. Nothing on your calendar changes.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="2">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 2 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step Two</span><h3 class="step-t">Connect the rest of your world</h3></div>
+      </div>
+      <div class="step-body">
+        <p>Your calendar is the anchor. Then add the tools you already open every day, so the brief reaches your real work and not only your files.</p>
+        <p>In the same <strong>Connectors</strong> screen, turn on the ones you use:</p>
+        <ul>
+          <li><strong>Your email</strong>, so it can tell you what came in overnight</li>
+          <li><strong>Your drive or docs</strong>, so it can reach the files you keep your work in</li>
+          <li><strong>Whatever else you use daily</strong> that Claude offers a connector for</li>
+        </ul>
+        <p>Then, and this is the part nearly everyone skips, <strong>open each connector's settings and check them.</strong> A connector can read as "connected" and still not have access to the calendar or the folder you actually need.</p>
+        <div class="callout warm"><strong>Do not breeze past the settings.</strong> This is the one that comes back to bite you: switched on, but never actually granted access to the right calendar or the right folder. Open each connector, confirm it can reach what you want, before you move on. Two minutes now saves you finding out at 6am tomorrow that the brief came back empty.</div>
+        <div class="callout calm">You do not need all of them. Start with your calendar and one more, and pick the tools you open every single day. If you rarely check it, it does not belong in your morning.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="3">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 3 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step Three</span><h3 class="step-t">Build your morning brief</h3></div>
+      </div>
+      <div class="step-body">
+        <p>This is the heart of it. Pick where you are building, tick what you want your morning to hold, and the prompt below writes itself. Copy it into your tool and it sets up whatever is needed, writes your brief, and builds you a one-page artifact to read it on.</p>
+
+        <span class="sec-n">Where are you building?</span>
+        <div class="seg" id="modeSeg" role="group" aria-label="Choose your tool">
+          <button type="button" data-mode="code" aria-pressed="true">Claude Code</button>
+          <button type="button" data-mode="cowork" aria-pressed="false">Claude Cowork</button>
+        </div>
+        <p class="modenote" id="modeNote"></p>
+
+        <span class="sec-n">What do you want in your morning?</span>
+        <div class="picks" id="picks"></div>
+
+        <div class="fillbox" id="fill-projects" hidden>
+          <label class="filllabel" for="ta-projects">Your current projects<span>optional — whatever you type drops into the prompt</span></label>
+          <textarea id="ta-projects" rows="4" placeholder="Brain-dump what you're working on now, plus a few ideas and things you want to get to. One per line is fine."></textarea>
+        </div>
+        <div class="fillbox" id="fill-clients" hidden>
+          <label class="filllabel" for="ta-clients">Your clients<span>optional</span></label>
+          <textarea id="ta-clients" rows="4" placeholder="Who they are, what they bought, and what's owed. One client per line."></textarea>
+        </div>
+
+        <div class="prompt-wrap">
+<div class="prompt" id="pm"></div>
+          <button class="copy" data-target="pm">Copy the prompt</button>
+        </div>
+        <div class="callout"><strong>About your projects.</strong> You do not need a perfect list to start. Brain-dump what you are working on now, a few ideas, a few things you want to get to. Then as new things come up you tell Claude, and they get added. The list fills itself in over the first week.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="4">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 4 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step Four</span><h3 class="step-t">Run your first brief and check it over</h3></div>
+      </div>
+      <div class="step-body">
+        <p>Before the first run, a minute on the settings that decide how hands-off this is:</p>
+        <ul>
+          <li><strong>The model.</strong> Check you are routed to the model you want it running on.</li>
+          <li><strong>Automatic approvals.</strong> Your call. You can approve each action yourself, or let it approve on its own. If you want the brief written and waiting when you open your computer in the morning, the more automatic path is what gets you there. If you would rather see each step first, keep it manual.</li>
+          <li><strong>The time</strong> (for the Cowork task). Confirm it is set to run at the hour you actually want each morning.</li>
+        </ul>
+        <p>Now run it. In Claude Code, say <strong>good morning</strong>. In Cowork, run the task or ask it to make today's brief. Then <strong>actually read what it hands you</strong>, because this first one is a draft of your morning, not the final version. In Cowork, open the scheduled task too and confirm it looks the way you want.</p>
+        <p>Then shape it. React out loud:</p>
+        <ul>
+          <li>Too long? Tell it what to cut.</li>
+          <li>Missing something? Tell it what you always want to see.</li>
+          <li>Wrong tone? Tell it how you want to be met in the morning.</li>
+        </ul>
+        <div class="callout warm"><strong>Every correction, ask it to save for next time.</strong> In Claude Code it writes the change into your brief file and pushes it. In Cowork, ask it to remember the change going forward. Either way, tomorrow's brief already has it, and it gets sharper while you do nothing but read and react.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="5">
+      <div class="step-head">
+        <button class="tick" aria-label="Mark step 5 complete"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <div><span class="step-n">Step Five</span><h3 class="step-t">Make it your morning</h3></div>
+      </div>
+      <div class="step-body">
+        <p>That is the whole build. From here it is a habit. In Claude Code you say good morning and it reads your live calendar and hands you the day. In Cowork the scheduled task writes it for you each morning. You read the day and make your decisions, ten minutes, and your business is out of your head and in front of you.</p>
+        <div class="callout calm"><strong>One conversation a day.</strong> Your business stops living in your head and starts living somewhere you actually trust.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ---------- 03 KEEP GOING ---------- -->
+  <section class="panel" id="p-more" role="tabpanel">
+
+    <div class="eyebrow">After today</div>
+    <h2>The brief grows with you</h2>
+    <p class="lede">You built the core in one sitting. From here it gets richer one small thing at a time, whenever you notice a gap. None of this is homework. It is the list to reach for when you want more.</p>
+
+    <div class="blk">
+      <span class="sec-n">What people add over the following weeks</span>
+      <h3>One small thing at a time</h3>
+      <ol class="next">
+        <li><b>Add another connector when you want the brief to see more.</b> Your email, your payments, whatever tool you start wishing it knew about. Turn it on, check its settings, and it is in tomorrow's brief.</li>
+        <li><b>Point it at more of your files.</b> A new client, a new project, a new ideas file. The brief reads whatever you give it, so growing the brain grows the brief.</li>
+        <li><b>Feed it as things come up.</b> Pop in any time and say "add this to my projects" or "put this in my ideas." A new client, an idea you do not want to lose, a decision you just made. In the morning brief or outside it, whenever it happens. Keeping the brain current is what keeps the brief worth reading.</li>
+      </ol>
+    </div>
+
+    <div class="blk">
+      <h3>Keep building with us</h3>
+      <p>You keep what you set up today either way. The community is where we build everything after it, out loud, every week, with readers and coaches figuring it out at the same time you are.</p>
+      <a class="btn" href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">Soul-Forged Founders</a>
+    </div>
+
+    <div class="blk">
+      <h3>Keep this page</h3>
+      <p>Your ticks are saved on this device. Come back whenever a step slips, or when you are ready to add the next piece.</p>
+    </div>
+
+  </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var names = ['learn','steps','more'];
+  var tabs = [].slice.call(document.querySelectorAll('.nav button'));
+
+  function show(name, push){
+    tabs.forEach(function(t){
+      t.setAttribute('aria-selected', t.dataset.p === name ? 'true' : 'false');
+    });
+    [].slice.call(document.querySelectorAll('.panel')).forEach(function(p){
+      p.classList.toggle('on', p.id === 'p-' + name);
+    });
+    if(push && history.replaceState) history.replaceState(null, '', '#' + name);
+    window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.dataset.p, true); });
+  });
+  var start = (location.hash || '').replace('#','');
+  if(names.indexOf(start) > -1) show(start, false);
+
+  /* step progress */
+  var KEY = 'sff-forge-director';
+  var steps = [].slice.call(document.querySelectorAll('.step'));
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ saved = {}; }
+  function paint(){
+    var n = 0;
+    steps.forEach(function(s){
+      if(saved[s.dataset.step]){ s.classList.add('done'); n++; }
+      else s.classList.remove('done');
+    });
+    document.getElementById('ptxt').textContent = n + ' / ' + steps.length;
+    document.getElementById('fill').style.width = (n / steps.length * 100) + '%';
+  }
+  steps.forEach(function(s){
+    s.querySelector('.tick').addEventListener('click', function(){
+      saved[s.dataset.step] = !saved[s.dataset.step];
+      try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(e){}
+      paint();
+    });
+  });
+  paint();
+
+  /* copy buttons */
+  [].slice.call(document.querySelectorAll('.copy')).forEach(function(b){
+    b.addEventListener('click', function(){
+      var txt = document.getElementById(b.dataset.target).innerText;
+      var done = function(){
+        var old = b.textContent;
+        b.textContent = 'Copied';
+        b.classList.add('ok');
+        setTimeout(function(){ b.textContent = old; b.classList.remove('ok'); }, 1800);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done).catch(function(){});
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = txt; document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){}
+        ta.remove();
+      }
+    });
+  });
+})();
+
+/* ---- interactive prompt builder ---- */
+(function(){
+  var picksBox = document.getElementById('picks');
+  var seg = document.getElementById('modeSeg');
+  var note = document.getElementById('modeNote');
+  var pm = document.getElementById('pm');
+  var taP = document.getElementById('ta-projects');
+  var taC = document.getElementById('ta-clients');
+  var fillP = document.getElementById('fill-projects');
+  var fillC = document.getElementById('fill-clients');
+  if(!picksBox || !seg || !pm) return;
+
+  var COMPONENTS = [
+    {id:'cal', label:"Today's calendar and the week ahead", sub:"Your calendar, connected", always:true,
+      brief:"read my calendar for today and the week ahead"},
+    {id:'due', label:"What's due and coming up", sub:"Deadlines before they sneak up",
+      brief:"tell me what's due and what's about to sneak up on me"},
+    {id:'projects', label:"My projects", sub:"Current work, ideas, and what's next",
+      code:"a projects file at context/projects.md, with a starter list of what I'm working on now and room for ideas and future work",
+      cowork:"my projects live in a connected Google Drive folder called Projects, a running list of current work plus ideas",
+      brief:"read my projects, tell me what's open, and capture anything new I mention"},
+    {id:'clients', label:"My clients", sub:"Who's owed something",
+      code:"a clients folder at clients/, one file per client, with what they bought and what's owed",
+      cowork:"my client notes live in a connected Google Drive folder called Clients",
+      brief:"tell me which client is owed something"},
+    {id:'email', label:"What came in overnight", sub:"Your email, connected",
+      brief:"check my connected email and flag anything overnight worth knowing"},
+    {id:'content', label:"Content and marketing", sub:"What's going out, what needs writing",
+      code:"a content folder where my posts and campaigns live",
+      cowork:"my content lives in a connected Google Drive folder",
+      brief:"tell me what content is going out and what still needs writing"},
+    {id:'money', label:"Money in", sub:"Sales and orders, if you track them",
+      brief:"tell me any sales or money in, if I've connected a source for it"},
+    {id:'focus', label:"One focus for today", sub:"The single most important thing",
+      brief:"end with the one thing that matters most for me to decide or do today"},
+    {id:'ideas', label:"Capture new ideas", sub:"So nothing lands on a sticky note",
+      code:"an ideas file at context/ideas.md",
+      cowork:"a notes file in my connected Drive folder for ideas",
+      brief:"if I mention a new idea, capture it where I'll find it again"}
+  ];
+
+  var mode = 'code';
+  var chosen = {};
+  COMPONENTS.forEach(function(c){ chosen[c.id] = !!c.always; });
+  ['due','projects','clients','focus'].forEach(function(id){ chosen[id] = true; });
+
+  var CHECK = '<span class="cbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>';
+
+  COMPONENTS.forEach(function(c){
+    var el = document.createElement('div');
+    el.className = 'pick' + (chosen[c.id] ? ' on' : '') + (c.always ? ' lock' : '');
+    el.setAttribute('role','checkbox');
+    el.setAttribute('aria-checked', chosen[c.id] ? 'true' : 'false');
+    el.setAttribute('tabindex', c.always ? '-1' : '0');
+    el.innerHTML = CHECK +
+      '<span class="plabel">' + c.label +
+      '<span class="psub">' + c.sub + (c.always ? ' · always on' : '') + '</span></span>';
+    if(!c.always){
+      var toggle = function(){
+        chosen[c.id] = !chosen[c.id];
+        el.classList.toggle('on', chosen[c.id]);
+        el.setAttribute('aria-checked', chosen[c.id] ? 'true' : 'false');
+        syncFills();
+        render();
+      };
+      el.addEventListener('click', toggle);
+      el.addEventListener('keydown', function(e){
+        if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(); }
+      });
+    }
+    picksBox.appendChild(el);
+  });
+
+  function indent(text){
+    return text.split(/\r?\n/).map(function(s){ return s.trim(); })
+      .filter(function(s){ return s.length; }).map(function(s){ return '  ' + s; }).join('\n');
+  }
+
+  function build(){
+    var pText = (chosen.projects && taP && taP.value.trim()) ? taP.value.trim() : '';
+    var cText = (chosen.clients && taC && taC.value.trim()) ? taC.value.trim() : '';
+
+    // what the brief shows, in reading order (the decision goes to the very top)
+    var CONTENT = {
+      due:      "what's due today and what's about to sneak up on me",
+      projects: "what's open in my projects",
+      clients:  "which client is owed something, and what I'm owed",
+      email:    "anything overnight in email worth flagging",
+      content:  "what content is going out and what still needs writing",
+      money:    "any sales or money in, if a source is connected"
+    };
+    var holds = [];
+    if(chosen.focus) holds.push("the one thing that matters most for me to decide or do today, at the very top");
+    ['due','projects','clients','email','content','money'].forEach(function(id){
+      if(chosen[id]) holds.push(CONTENT[id]);
+    });
+    var holdsBlock = holds.map(function(s){ return '- ' + s; }).join('\n');
+
+    var starter = '';
+    if(pText || cText){
+      starter = "\n\nStart Projects and Clients with exactly this, and leave room below for more:";
+      if(pText) starter += "\nProjects:\n" + indent(pText);
+      if(cText) starter += "\nClients:\n" + indent(cText);
+    }
+
+    if(mode === 'code'){
+      var files = [];
+      if(chosen.projects) files.push('- a projects file at context/projects.md');
+      if(chosen.clients)  files.push('- a clients folder at clients/, one file per client');
+      if(chosen.content)  files.push('- a content folder for what I post');
+      if(chosen.ideas)    files.push('- an ideas file at context/ideas.md');
+      var fileBlock = files.length ? files.join('\n')
+        : '- nothing new; my brief reads my calendar and connected tools';
+      var srcC = "read my calendar for today and the week ahead, read my files"
+        + (chosen.email ? ", check my connected email" : "")
+        + (chosen.money ? ", check my connected sales or payment source" : "");
+      return "Set up a morning brief for my business and save it so it runs the same way every day.\n\n" +
+        "FIRST, create anything missing:\n" + fileBlock + starter + "\n\n" +
+        "THEN create workflows/morning-brief.md. When I say \"good morning\", follow it: " + srcC + ", then give me one short brief holding:\n" + holdsBlock + "\n\n" +
+        "If I mention something new, write it into the right file and push. Never invent a fact or a date; if a source is not connected, say so plainly instead of guessing.\n\n" +
+        "THEN build me a simple one-page brief artifact of the same brief and save it in the repo. Use my brand colours if my files name them; if not, a clean, calm palette with one accent colour. Each section in its own card, the one decision highlighted at the top.\n\n" +
+        "Last, add one line to CLAUDE.md: when I say \"good morning\", follow workflows/morning-brief.md. Then push to main.";
+    }
+
+    // Cowork: build around the constraint that it cannot edit a Google Doc in place
+    var docs = ['- an "Instructions" doc (the standing spec, below)',
+                '- a "Brand" doc (my colours and voice, so what you build looks and sounds like me)'];
+    if(chosen.projects) docs.push('- a "Projects" doc');
+    if(chosen.clients)  docs.push('- a "Clients" doc');
+    var folders = [];
+    if(chosen.ideas)   folders.push('- an "Ideas" folder (each new idea is its own dated doc)');
+    if(chosen.content) folders.push('- a "Content" folder, with one doc called "Content Pipeline" for at-a-glance status');
+    var folderBlock = folders.length
+      ? "\n\nFolders (these only grow, so new entries arrive as new docs):\n" + folders.join('\n') : '';
+    var srcW = "read my calendar for today and the week ahead, read the docs and folders in this folder"
+      + (chosen.email ? ", check my connected email for anything overnight" : "")
+      + (chosen.money ? ", check any connected sales or payment source for money in" : "");
+    var ideasLine = chosen.ideas ? "\n\nIf I mention a new idea, also write it into the Ideas folder as its own dated doc." : "";
+
+    return "Set up a daily morning brief for my business in my connected Google Drive.\n\n" +
+      "PLATFORM NOTE, and everything below is built around it: in Cowork you can create new Google Docs but you cannot edit an existing one in place. So anything that grows over time has to grow by adding new files, never by appending to a doc. Do not give me a structure that needs editing a doc.\n\n" +
+      "BUILD THIS inside a new folder called \"Morning Brief\".\n\n" +
+      "Docs (living records I keep short and current by hand):\n" + docs.join('\n') + folderBlock + starter + "\n\n" +
+      "THE INSTRUCTIONS DOC should tell you: each morning, " + srcW + ", then create a NEW Google Doc named \"Morning Brief YYYY-MM-DD\" (that exact date format, so the archive sorts in order) holding:\n" + holdsBlock + "\n- a \"Captured\" section at the bottom for anything new I mention that belongs in Projects or Clients, so I can move it across myself" + ideasLine + "\n\n" +
+      "THEN build me a simple one-page brief artifact of the same brief so I can take the day in at a glance. Make it clean and calm: a light background, one accent colour, each section in its own card, and the one decision in a highlighted box at the top. Use my colours from the Brand doc if it has any; if not, use a soft, intentional palette with one clear accent, not a muddy brown, and note in the footer that the colours are placeholders. Deliver it so it renders for me, and persist it to my artifact gallery if my desktop app is connected; if not, skip that quietly rather than erroring.\n\n" +
+      "WRITING RULES: short and plain. Lead with what I need to decide today. Never invent a fact or a date. If a source is not connected, say so plainly in the brief instead of guessing.\n\n" +
+      "THEN set up a scheduled task yourself that runs every morning at the time I want (ask me the time and my timezone if I have not told you), opens the Morning Brief folder, reads the Instructions doc, and follows it. Tell me the UTC schedule you used and warn me if it will drift when daylight saving changes. Never delete or overwrite a previous day's brief; the archive is the point.\n\n" +
+      "LAST, verify your own work: list the folder back to me, confirm each doc and folder exists with the right content, and confirm the scheduled task is live with its next run time.";
+  }
+
+  function render(){ pm.textContent = build(); }
+
+  function syncFills(){
+    if(fillP) fillP.hidden = !chosen.projects;
+    if(fillC) fillC.hidden = !chosen.clients;
+  }
+
+  var NOTE_CODE = "<strong>Claude Code.</strong> You have a business brain repo, so the prompt creates any missing files and saves your brief so it runs the same way every time you say good morning.";
+  var NOTE_COWORK = "<strong>Claude Cowork.</strong> No repo needed. It works from Google Drive: it reads your calendar and a Morning Brief folder, then writes each day's brief as a new dated Google Doc you can open from your phone. A scheduled task runs it every morning.";
+
+  [].slice.call(seg.querySelectorAll('button')).forEach(function(b){
+    b.addEventListener('click', function(){
+      mode = b.getAttribute('data-mode');
+      [].slice.call(seg.querySelectorAll('button')).forEach(function(x){
+        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+      });
+      note.innerHTML = (mode === 'code') ? NOTE_CODE : NOTE_COWORK;
+      render();
+    });
+  });
+
+  if(taP) taP.addEventListener('input', render);
+  if(taC) taC.addEventListener('input', render);
+
+  note.innerHTML = NOTE_CODE;
+  syncFills();
+  render();
+})();
+</script>
+</body>
+</html>
