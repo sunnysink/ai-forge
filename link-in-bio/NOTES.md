@@ -7,7 +7,7 @@ Staged 2026-08-21. Nothing here is finished or announced.
 | File | What it is |
 |---|---|
 | `index.html` | The **Fire Linktree This Weekend** student walkthrough. Serves at `sunnysink.github.io/ai-forge/link-in-bio/`. Diagnose the QR, build a free page, repoint the domain, cancel Linktree. |
-| `build-prompt.md` | The paste-ready prompt to build a link-in-bio *site* (Home / About / Services, client-side routing, no reload, custom brand, no generic-Claude patterns). |
+| `build-prompt.md` | The paste-ready prompt to build the link-in-bio page. One screen (name, photo, one line, buttons), custom brand, no generic-Claude patterns. Not a routed multi-page site. |
 
 ## Two decisions waiting on you
 
