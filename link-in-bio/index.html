@@ -1,0 +1,442 @@
+<meta charset="utf-8">
+<title>Fire Linktree This Weekend</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --bg:       #0d1411;
+    --bg2:      #101a16;
+    --panel:    rgba(22,34,28,0.72);
+    --panel-2:  rgba(16,26,22,0.82);
+    --hair:     rgba(198,149,92,0.20);
+    --hair-soft:rgba(198,149,92,0.12);
+    --ink:      #F1E7D6;
+    --ink-dim:  #BDB09A;
+    --ink-faint:#8c8471;
+    --copper:   #C6955C;
+    --copper-lt:#E2B884;
+    --ember:    #E8743B;
+    --ember-glow:#FF8A4C;
+    --forest:   #4f9a8f;
+    --forest-deep:#2C5F5A;
+    --mauve:    #9B7C8B;
+    --gold:     #D8B968;
+    --ok:       #6fbf8f;
+    --warn:     #E8743B;
+    --glow:     rgba(232,116,59,0.18);
+    --shadow:   0 26px 60px -28px rgba(0,0,0,0.72);
+    --serif: 'Cormorant Garamond', 'Hoefler Text', Georgia, serif;
+    --sans:  'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+    --mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1100px 700px at 82% -8%, rgba(232,116,59,0.10), transparent 60%),
+      radial-gradient(900px 620px at 8% 8%, rgba(44,95,90,0.16), transparent 60%),
+      var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.66;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 22px 96px; }
+
+  /* ============ HERO ============ */
+  header.hero {
+    padding: 74px 0 30px;
+    text-align: center;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2.7rem, 7vw, 4.3rem);
+    line-height: 1.02;
+    margin: 0 0 18px;
+    background: linear-gradient(96deg, var(--copper-lt), var(--ember-glow) 42%, var(--gold) 74%, var(--copper));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .lede {
+    font-size: 1.24rem;
+    color: var(--ink-dim);
+    max-width: 40ch;
+    margin: 0 auto;
+  }
+  .subtag {
+    margin: 26px auto 0;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+  }
+
+  /* ============ SECTION SHELL ============ */
+  section { margin-top: 40px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 6px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    line-height: 1.12;
+    margin: 0 0 14px;
+    color: var(--ink);
+  }
+  h3 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.08rem;
+    letter-spacing: 0.01em;
+    margin: 0 0 8px;
+    color: var(--copper-lt);
+  }
+  p { margin: 0 0 16px; }
+  a { color: var(--copper-lt); text-decoration-color: var(--hair); text-underline-offset: 3px; }
+  strong { color: var(--ink); font-weight: 600; }
+
+  /* ============ CARD ============ */
+  .card {
+    position: relative;
+    background: var(--panel);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--hair);
+    border-radius: 16px;
+    padding: 26px 28px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--copper), var(--ember), var(--gold));
+  }
+  .card + .card { margin-top: 18px; }
+
+  /* diagnostic fork */
+  .fork { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  @media (max-width: 620px){ .fork { grid-template-columns: 1fr; } }
+  .fork .card::before { background: var(--case-accent, var(--copper)); }
+  .fork .green { --case-accent: linear-gradient(180deg, var(--ok), var(--forest)); }
+  .fork .amber { --case-accent: linear-gradient(180deg, var(--ember-glow), var(--ember)); }
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .badge.go   { background: rgba(111,191,143,0.14); color: var(--ok); border: 1px solid rgba(111,191,143,0.3); }
+  .badge.slow { background: rgba(232,116,59,0.14); color: var(--ember-glow); border: 1px solid rgba(232,116,59,0.32); }
+
+  /* ============ STEPS ============ */
+  ol.steps { list-style: none; counter-reset: s; margin: 6px 0 0; padding: 0; }
+  ol.steps > li {
+    counter-increment: s;
+    position: relative;
+    padding: 0 0 22px 52px;
+    margin: 0;
+  }
+  ol.steps > li:last-child { padding-bottom: 0; }
+  ol.steps > li::before {
+    content: counter(s);
+    position: absolute; left: 0; top: -2px;
+    width: 34px; height: 34px;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 15px; font-weight: 600;
+    color: var(--bg);
+    background: linear-gradient(140deg, var(--copper-lt), var(--copper));
+    border-radius: 10px;
+  }
+  ol.steps > li:not(:last-child)::after {
+    content: "";
+    position: absolute; left: 16px; top: 38px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--hair), transparent);
+  }
+  ol.steps h3 { margin-top: 3px; }
+
+  /* code block */
+  .code {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.7;
+    background: var(--panel-2);
+    border: 1px solid var(--hair-soft);
+    border-radius: 11px;
+    padding: 14px 16px;
+    margin: 12px 0 6px;
+    overflow-x: auto;
+    color: var(--copper-lt);
+    white-space: pre;
+  }
+  .code .k { color: var(--ink-dim); }
+  .code .v { color: var(--gold); }
+
+  ul.plain { margin: 4px 0 16px; padding-left: 20px; }
+  ul.plain li { margin-bottom: 7px; }
+
+  /* callouts */
+  .note {
+    border-radius: 12px;
+    padding: 15px 18px;
+    margin: 16px 0;
+    font-size: 0.97rem;
+    border: 1px solid var(--hair-soft);
+    background: var(--panel-2);
+  }
+  .note .tag {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .note.forest { border-color: rgba(79,154,143,0.28); }
+  .note.forest .tag { color: var(--forest); }
+  .note.ember  { border-color: rgba(232,116,59,0.3); }
+  .note.ember .tag { color: var(--ember-glow); }
+
+  /* bifocal split */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px; }
+  @media (max-width: 620px){ .split { grid-template-columns: 1fr; } }
+  .split .card { padding: 22px 22px; }
+  .split .col-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--copper); margin: 0 0 8px;
+  }
+  .split .col-label.cool { color: var(--forest); }
+
+  hr.rule { border: none; border-top: 1px solid var(--hair-soft); margin: 44px 0; }
+
+  footer.reskin {
+    margin-top: 40px;
+    border: 1px dashed var(--hair);
+    border-radius: 16px;
+    padding: 24px 26px;
+    background: rgba(16,26,22,0.5);
+  }
+  footer.reskin .eyebrow { color: var(--mauve); }
+  .sig {
+    margin-top: 46px;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink-dim);
+  }
+  .sig .mark {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+
+  /* reveal — content is fully visible with no JS; JS only softens the entrance */
+  @media (prefers-reduced-motion: no-preference) {
+    .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+  }
+
+  @media print {
+    body { background: #fff; color: #111; }
+    .card, .note, footer.reskin { box-shadow: none; border-color: #ccc; background: #fff; }
+    h1, h2 { -webkit-text-fill-color: initial; color: #111; background: none; }
+    .code { color: #111; background: #f4f4f4; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kicker">Soul-Forged Founders &middot; Sovereign Doorway</p>
+    <h1>Fire Linktree This Weekend</h1>
+    <p class="lede">Keep the QR code on your printed cards. Own the page it opens. Stop paying the monthly rent.</p>
+    <p class="subtag">A weekend build &middot; no reprinting &middot; free forever once it&rsquo;s done</p>
+  </header>
+
+  <section class="reveal">
+    <div class="card">
+      <p style="margin-bottom:14px">Here is the trap a lot of practitioners are stuck in. You printed business cards with a QR code that opens your Linktree. Now you keep paying the monthly fee because you think cancelling turns every card you handed out into a dead link.</p>
+      <p style="margin-bottom:0">You can keep every card working and still cancel. The whole job is pointing the same web address at a page you own instead of a page you rent. Your own page can be free, prettier, and fully yours. This walks you through it start to finish.</p>
+    </div>
+  </section>
+
+  <!-- ============ START HERE: THE DIAGNOSTIC ============ -->
+  <section class="reveal">
+    <p class="eyebrow">Start here &middot; two minutes</p>
+    <h2>Scan your own card first</h2>
+    <p>Everything depends on one thing: what your printed QR code actually opens. Pick up a card, open your phone camera, and scan it. Read the web address at the top of the page it loads. It will be one of two kinds, and they take different routes.</p>
+
+    <div class="fork">
+      <div class="card green">
+        <span class="badge go">Green light</span>
+        <h3 style="color:var(--ok)">It opens a domain you own</h3>
+        <p style="margin-bottom:10px">Something like <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">yourname.com</span> or <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">links.yourname.com</span>. You bought this domain, so you control where it points.</p>
+        <p style="margin-bottom:0"><strong>You can do the whole thing.</strong> Repoint the domain to your own page and cancel Linktree completely. This is the paid Linktree feature you&rsquo;ve been renting, and it&rsquo;s the exact case this guide is built for.</p>
+      </div>
+      <div class="card amber">
+        <span class="badge slow">Read this one</span>
+        <h3 style="color:var(--ember-glow)">It opens linktr.ee/yourname</h3>
+        <p style="margin-bottom:10px">The address starts with <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">linktr.ee/</span>. That address lives on Linktree&rsquo;s servers, not yours, so you can&rsquo;t move it off them.</p>
+        <p style="margin-bottom:0"><strong>The printed cards stay on Linktree&rsquo;s free plan.</strong> Downgrade to free (no charge, that link keeps working), build your own page anyway, and point every new card, bio, and post at your page going forward. See the note at the bottom of the build.</p>
+      </div>
+    </div>
+
+    <div class="note forest">
+      <span class="tag">The quiet win most people miss</span>
+      If your card opens a domain you own, the monthly fee you&rsquo;re paying <em>is</em> the custom-domain feature. That is the only thing Linktree is doing for you that free can&rsquo;t. Move the domain to your own page and there is nothing left to pay for.
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ WHAT YOU ARE REPLACING ============ -->
+  <section class="reveal">
+    <p class="eyebrow">One thing before you start</p>
+    <h2>You&rsquo;re only replacing one page</h2>
+    <p>The thing you&rsquo;re building is your <strong>link-in-bio page</strong>: the page your QR code opens, the same one your Instagram bio and your emails point to. That&rsquo;s the page that&rsquo;s living on Linktree right now, and it&rsquo;s the only page you&rsquo;re touching today.</p>
+
+    <div class="note forest">
+      <span class="tag">If you also have a regular website</span>
+      A separate site that shows up when someone Googles &ldquo;tarot reading near me&rdquo; is a different thing, and you leave it completely alone. Rewriting a page that already ranks in Google is how you lose the ranking. Your link-in-bio page and your website do two different jobs, so keep both. This guide only moves the link-in-bio page off Linktree.
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ THE BUILD ============ -->
+  <section class="reveal">
+    <p class="eyebrow">The build &middot; a weekend</p>
+    <h2>Build the page you own</h2>
+    <p>This is the green-light path: your card opens a domain you own. Free hosting, your own design, and the same web address your cards already carry.</p>
+
+    <div class="card">
+      <ol class="steps">
+        <li>
+          <h3>Build your link-in-bio page with Claude</h3>
+          <p>Ask Claude to make you a one-page link-in-bio page in your brand: your name, a short line about what you do, your photo, and a button for each place you send people (booking, your search site, email list, socials, any offer). Ask for it as a single file called <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">index.html</span>.</p>
+          <div class="note forest" style="margin:8px 0 0">
+            <span class="tag">Non-negotiable</span>
+            The file must be named <strong>index.html</strong>, all lowercase. <span style="font-family:var(--mono)">Index.html</span> or <span style="font-family:var(--mono)">INDEX.HTML</span> breaks the hosting and returns a 404.
+          </div>
+        </li>
+        <li>
+          <h3>Host it free on GitHub Pages</h3>
+          <p>Create a free GitHub account. Make a new repository, add your <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">index.html</span>, and in the repo go to <strong>Settings &rarr; Pages</strong> and turn Pages on for the main branch. In about a minute you get a live web address like <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">yourname.github.io</span>. Open it. That&rsquo;s your page, live on the internet, at no cost.</p>
+        </li>
+        <li>
+          <h3>Point your domain at it</h3>
+          <p>Now the piece that keeps your cards alive. You&rsquo;re telling your domain to open your new page instead of Linktree. Two routes, pick one.</p>
+
+          <p style="margin:14px 0 4px"><strong>Route A: connect the domain to GitHub (the clean one).</strong> In your repo&rsquo;s <strong>Settings &rarr; Pages &rarr; Custom domain</strong>, type your domain and save. GitHub shows you the exact records to add. Then log in where your domain lives (GoDaddy, Namecheap, Cloudflare, wherever you bought it) and add them.</p>
+          <p style="margin:0 0 4px">For a subdomain like <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">links.yourname.com</span>, one CNAME record:</p>
+          <div class="code"><span class="k">Type</span>   CNAME
+<span class="k">Name</span>   links
+<span class="k">Value</span>  <span class="v">yourname.github.io</span></div>
+          <p style="margin:10px 0 4px">For the bare domain <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">yourname.com</span>, four A records pointing at GitHub:</p>
+          <div class="code"><span class="k">Type</span>   A     <span class="k">Value</span>  <span class="v">185.199.108.153</span>
+<span class="k">Type</span>   A     <span class="k">Value</span>  <span class="v">185.199.109.153</span>
+<span class="k">Type</span>   A     <span class="k">Value</span>  <span class="v">185.199.110.153</span>
+<span class="k">Type</span>   A     <span class="k">Value</span>  <span class="v">185.199.111.153</span></div>
+          <div class="note ember" style="margin:10px 0 0">
+            <span class="tag">Always trust the screen over this page</span>
+            GitHub prints the exact records for your domain right there in the Pages settings. Those published values are the source of truth. Copy them from that screen, not from memory.
+          </div>
+
+          <p style="margin:18px 0 4px"><strong>Route B: a plain forward (the no-fuss one).</strong> Not ready to touch DNS records? Every domain seller has a &ldquo;Forwarding&rdquo; or &ldquo;Redirect&rdquo; setting. Point your domain to forward to your <span style="font-family:var(--mono);font-size:0.9em;color:var(--gold)">yourname.github.io</span> address. It&rsquo;s a few clicks and no records. The one tradeoff: the visitor may briefly see the github.io address in their bar. For a QR code nobody reads, that&rsquo;s fine.</p>
+        </li>
+        <li>
+          <h3>Wait a minute, then scan your card</h3>
+          <p>DNS changes and GitHub Pages both take a short while to go live. A fresh custom domain can take up to a few minutes, sometimes longer the very first time. If your page 404s right after you save, it isn&rsquo;t broken. It&rsquo;s still building. Wait a minute, hard-refresh, and give a brand-new custom domain up to an hour before you worry.</p>
+          <p style="margin-bottom:0">Then pick up a printed card and scan it with your phone, the same way a client would. When it opens your new page, the cards are safe.</p>
+        </li>
+        <li>
+          <h3>Cancel Linktree</h3>
+          <p style="margin-bottom:0">Your cards point at a page you own. Go into Linktree billing and cancel. Nothing you printed breaks, and the monthly charge stops. Done.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="note ember">
+      <span class="tag">If your card opens linktr.ee/yourname</span>
+      You can&rsquo;t move that address, so don&rsquo;t force it. Downgrade Linktree to the <strong>free</strong> plan, which keeps that printed link working at no charge, and cancel only the paid part. Build your own page anyway and point every new card, every bio, and every post at it. Over time the printed cards age out and your page quietly takes over. You still stop paying today.
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ THE HANDOFF ============ -->
+  <section class="reveal">
+    <p class="eyebrow">The five-second version</p>
+    <h2>What you&rsquo;re actually doing</h2>
+    <div class="card">
+      <ul class="plain" style="margin-bottom:0">
+        <li><strong>The card points at a web address.</strong> That never changes.</li>
+        <li><strong>You change where that address goes:</strong> a page you own, not one you rent.</li>
+        <li><strong>Your own page is free, prettier, and yours.</strong></li>
+        <li><strong>The rent stops.</strong> Linktree Pro is usually around fifteen dollars a month. That&rsquo;s a hundred and eighty a year you keep.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="reskin reveal">
+    <p class="eyebrow">Make it yours</p>
+    <p style="margin-bottom:0">This is the map. When you sit down to build, open Claude and describe your own link-in-bio page: your colors, your buttons, your voice. If you get a terminal or hosting error along the way, paste it to Claude and ask what it means before you assume you broke something. You almost certainly didn&rsquo;t.</p>
+  </footer>
+
+  <p class="sig">
+    Own the doorway.
+    <span class="mark">Soul-Forged Founders</span>
+  </p>
+
+</div>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+    // safety net: if anything is still hidden after 1.6s, show it
+    setTimeout(function () { els.forEach(function (e) { e.classList.add('in'); }); }, 1600);
+  })();
+</script>
