@@ -155,7 +155,7 @@
     <p class="h2note" id="emptyhint" style="margin-top:12px;margin-bottom:0">Start filling the boxes above and your file builds here, ready to copy.</p>
   </section>
 
-  <p class="example-note" style="margin-top:20px">Paste it into Claude once. The first line tells Claude to save it to memory, so it carries your business into your next chat too. Works on the free plan.</p>
+  <p class="example-note" style="margin-top:20px">Paste it into Claude once. It saves your business to Claude's memory and asks you before it changes anything it already knew, so an old offer or price gets caught. Works on the free plan.</p>
 
   <section class="cta">
     <div class="lab">Where this comes from</div>
@@ -208,7 +208,8 @@
     return m ? m[1] : "My";
   }
   function buildText(){
-    var out="Read this and save it to your memory about me and my business. Use it whenever you write for me.\n\n";
+    var out="Read this, then update your memory about me and my business so it matches what I have written here.\n\n";
+    out+="First, compare it to anything you already remember about me. If something is different now, like an old offer, an old price, or an old link, tell me what changed and ask me before you replace it. If you remember something useful that I did not include here, ask whether to keep it. Then use this whenever you write for me.\n\n";
     out+="# "+nameOf()+"'s Business Memory File\n";
     FIELDS.forEach(function(id){
       var v=(document.getElementById(id).value||"").trim();
