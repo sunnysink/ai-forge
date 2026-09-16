@@ -104,7 +104,7 @@
     <div class="kicker">A free tool from Soul-Forged Founders</div>
     <h1>Business Memory File</h1>
     <p class="lede">Claude writes better when it knows your business. Fill this in once, paste it into Claude, and it stops guessing at your offers, your prices, and the way you sound. <b>Everything stays on your screen.</b> Nothing is saved anywhere but your own browser.</p>
-    <p class="example-note">Filled with an example so you can see the shape. Type over each box with yours.</p>
+    <p class="example-note">Fill in the boxes and your file builds below, ready to paste into Claude. Nothing you type leaves this page.</p>
   </header>
 
   <section class="panel">
@@ -152,6 +152,7 @@
       <button class="copybtn" id="copy">Copy my file</button>
     </div>
     <pre class="out" id="out"></pre>
+    <p class="h2note" id="emptyhint" style="margin-top:12px;margin-bottom:0">Start filling the boxes above and your file builds here, ready to copy.</p>
   </section>
 
   <p class="example-note" style="margin-top:20px">Paste it wherever you work with Claude. The first line does the rest, so it works on the free plan with no setup.</p>
@@ -170,13 +171,13 @@
 </div>
 
 <script>
-  var EXAMPLES={
-    f_who:"I'm Sunny. I teach tarot readers, coaches, and spiritual business owners how to run their business with Claude and AI.",
-    f_client:"Spiritual business owners with real clients who want their AI to sound like them and keep their own information. Most have never opened Claude before.",
-    f_offers:"Soul-Forged Founders (Skool community): 7-day free trial, then $8/month. https://www.skool.com/soul-forged-founders\nHigh Priestess Tarot School: $7/month. https://highpriestessts.com/hpts-option",
-    f_voice:"Sound: grounded, warm, a little fiery, plain-spoken.\nWords I use: build, your own, interactive.\nWords I avoid: unlock, dive in, game-changer, and anything that sounds corporate.",
-    f_facts:"Instagram: @SoulForgedFounders and @HighPriestessTS.\nEverything I sell routes to Soul-Forged Founders on Skool.\nAlways use the current price above before writing any offer.",
-    f_use:"Match how I sound, use my real prices and links, and ask me if a detail is missing instead of guessing."
+  var PLACEHOLDERS={
+    f_who:"e.g., I'm Maya. I read tarot and coach women through big life transitions.",
+    f_client:"Who you serve, and what they come to you for.",
+    f_offers:"One per line, with the real price and link. e.g., 60-minute reading, $88, yoursite.com/book",
+    f_voice:"A few words you use, and a few you never want in your copy.",
+    f_facts:"Your handles, your current promotion, anything it should always keep right.",
+    f_use:"Optional. e.g., Match how I sound, and ask me if a detail is missing instead of guessing."
   };
   var FIELDS=["f_who","f_client","f_offers","f_voice","f_facts","f_use"];
   var HEADINGS={
@@ -191,7 +192,8 @@
     FIELDS.forEach(function(id){
       var el=document.getElementById(id);
       if(!el) return;
-      el.value = (saved[id]!==undefined) ? saved[id] : EXAMPLES[id];
+      el.placeholder = PLACEHOLDERS[id] || "";
+      if(saved[id]!==undefined) el.value = saved[id];
       el.addEventListener("input", function(){ save(); render(); });
     });
   }
@@ -228,9 +230,13 @@
         out.appendChild(document.createTextNode(line));
       }
     });
+    var hint=document.getElementById("emptyhint"); if(hint) hint.hidden=anyFilled();
   }
+  function anyFilled(){ return FIELDS.some(function(id){ var el=document.getElementById(id); return el && (el.value||"").trim(); }); }
   document.getElementById("copy").addEventListener("click", function(){
-    var btn=this, txt=buildText();
+    var btn=this;
+    if(!anyFilled()){ btn.textContent="Fill in a box first"; setTimeout(function(){ btn.textContent="Copy my file"; },1800); return; }
+    var txt=buildText();
     function ok(){ btn.classList.add("done"); btn.textContent="Copied. Now paste it into Claude"; setTimeout(function(){ btn.classList.remove("done"); btn.textContent="Copy my file"; },2600); }
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(txt).then(ok).catch(function(){ fallback(txt,ok); });
