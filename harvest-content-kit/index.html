@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="The Harvest Content Kit">
+<meta property="og:description" content="9 stock photos + 4 ChatGPT prompts for your spiritual business.">
+<meta property="og:image" content="https://sunnysink.github.io/ai-forge/harvest-content-kit/cover.jpg">
+<title>The Harvest Content Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: one harvest-table column. The grid is the hero, then the download, then four prompt cards, then the Vault invite. Dark-first, single look (Forge at Twilight family, pulled toward the pack's plum frame). */
+  :root{
+    --bg:#1a1016;          /* plum-black, the shadow side of the photos */
+    --bg-2:#120b10;
+    --plum:#4a2b43;        /* smoked plum */
+    --mauve:#8c6b70;       /* the grid's frame */
+    --ink:#efe2ce;         /* parchment */
+    --ink-dim:#c4b1a3;
+    --gold:#c9a25e;        /* antique gold, pushed toward marigold */
+    --copper:#c8793e;
+    --card:rgba(74,43,67,0.42);
+    --edge:rgba(201,162,94,0.28);
+    --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
+    background-image:radial-gradient(900px 520px at 85% -10%, rgba(201,162,94,0.10), transparent 60%),
+                     radial-gradient(800px 600px at -10% 30%, rgba(140,107,112,0.16), transparent 60%);}
+  .wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:48px 72px;display:grid;gap:44px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px,8vw,64px);line-height:1;margin:10px 0 0;text-wrap:balance;letter-spacing:.3px}
+  h1 em{font-style:italic;color:var(--gold);font-weight:500}
+  .lede{font-size:18px;color:var(--ink);margin:16px 0 0;max-width:62ch}
+  .hero{display:grid;gap:22px}
+  .grid-img{display:block;width:100%;max-width:100%;height:auto;border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:600;font-size:15.5px;text-decoration:none;
+    background:linear-gradient(135deg,var(--gold),var(--copper));color:var(--bg-2);border:0;cursor:pointer}
+  .btn:focus-visible,.copy:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .note{font-size:14px;color:var(--ink-dim)}
+  h2{font-family:var(--serif);font-weight:600;font-size:32px;line-height:1.1;margin:0;text-wrap:balance}
+  .section{display:grid;gap:14px}
+  .section p{margin:0;max-width:62ch}
+  .prompts{display:grid;gap:18px}
+  .prompt{background:var(--card);border:1px solid var(--edge);border-radius:10px;padding:22px;display:grid;gap:12px;backdrop-filter:blur(12px);min-width:0}
+  .prompt .num{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  .prompt h3{font-family:var(--serif);font-size:26px;font-weight:600;margin:0;line-height:1.15}
+  .prompt .how{margin:0;color:var(--ink-dim);font-size:15px}
+  .box{position:relative;background:var(--bg-2);border:1px solid rgba(140,107,112,.4);border-radius:8px;padding:16px 16px 52px;font-family:var(--sans);font-size:15.5px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+  .box b{color:var(--gold);font-weight:600}
+  .copy{position:absolute;right:10px;bottom:10px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:7px 12px;border-radius:999px;
+    background:transparent;color:var(--gold);border:1px solid var(--edge);cursor:pointer}
+  .copy:hover{background:rgba(201,162,94,.12)}
+  .tip{margin:0;font-size:15px}
+  .how .work{color:var(--ink);font-weight:600}
+  .vault{border-top:1px solid var(--edge);padding-top:36px;display:grid;gap:14px}
+  .vault a.link{color:var(--gold)}
+  footer{font-size:13px;color:var(--ink-dim)}
+  @media (max-width:520px){.wrap{padding-block:32px 56px;gap:36px}.prompt{padding:18px}h2{font-size:28px}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<main class="wrap">
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Free · 9 stock photos + 4 ChatGPT prompts</div>
+      <h1>The Harvest <em>Content Kit</em></h1>
+      <p class="lede">Create a full set of fall graphics in your brand colors using the Harvest Stock Photos and four ChatGPT prompts. Your colors, your offers, your words.</p>
+    </div>
+    <img class="grid-img" src="grid.jpg" alt="The nine Harvest photos in a three by three grid: tarot cards in dried marigolds, a woman in autumn leaves, crystals in a woven basket, a woman resting in tall grass, hands holding pears and plums, herb books and jars, a reader at a candlelit table, a crystal grid, and a healing session by the fire." width="1080" height="1080">
+    <div class="actions">
+      <a class="btn" href="https://drive.google.com/file/d/1EszFtUgHdz0tqt59F0EgUVwZDTTgH_wM/view?usp=drive_link" target="_blank" rel="noopener">Download all 9 photos</a>
+      <span class="note">A zip of 9 full-size PNGs. Commercial use: put them on your posts, sales pages, freebies and anything you sell.</span>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="grid-h">
+    <h2 id="grid-h">Your style grid</h2>
+    <p>The grid above is your style reference. Open it full size, then save it or copy it straight into ChatGPT. It goes in with Prompts 1, 2 and 4, so every new image comes back in this palette and style.</p>
+    <div class="actions"><a class="btn" href="style-grid.png" target="_blank" rel="noopener">Open the style grid</a></div>
+  </section>
+
+  <section class="section" aria-labelledby="prompts-h">
+    <h2 id="prompts-h">The four prompts</h2>
+    <p>Fill in the gold brackets with your own details before you send.</p>
+    <div class="prompts">
+
+      <article class="prompt">
+        <div class="num">Prompt 1</div>
+        <h3>Put the whole set in your brand colors</h3>
+        <p class="how">Do this one in <b class="work">ChatGPT Work</b>. Drop in the style grid and paste:</p>
+        <div class="box" id="p1">Use the attached image as the visual reference for the subjects, composition, lighting, mood, and photographic style.
+
+Recreate the nine scenes as nine separate, full-resolution square images. Generate and deliver each image as its own downloadable file, one image at a time. Do not create a collage, contact sheet, mood board, grid, or combined image.
+
+Apply my brand colors throughout the complete set: <b>[your brand colors]</b>. Incorporate the colors naturally into the clothing, flowers, textiles, tarot cards, crystals, books, jewelry, and decorative details. Keep skin tones natural and retain the warm, dramatic lighting and lush mystical editorial feeling of the reference.
+
+Create these nine individual images:
+1. Tarot cards surrounded by dried flowers and herbs
+2. A mystical priestess reclining among rich fabrics and botanicals
+3. A woven basket filled with crystals
+4. A priestess resting among flowers and greenery
+5. Hands holding a sacred offering of fruit
+6. Mystical journals, herbs, and ritual tools arranged on a table
+7. A tarot reader seated at her reading table
+8. A crystal grid arranged on a gold sacred geometry tray
+9. An intuitive healer working with a client
+
+Keep the set visually cohesive. Match the reference image's subjects, close framing, photographic realism, rich texture, light direction, and intimate atmosphere. Each image must feel complete on its own and use the maximum available resolution.<button class="copy" type="button" data-target="p1">Copy</button></div>
+        <p class="tip">You get all nine photos back as separate files, still harvest, with your colors worked into the flowers, fabrics, cards and crystals.</p>
+      </article>
+
+      <article class="prompt">
+        <div class="num">Prompt 2</div>
+        <h3>Make a new image in this style</h3>
+        <p class="how">Drop the style grid into ChatGPT and paste:</p>
+        <div class="box" id="p2">Use the attached image as the color palette and style. Create an image of <b>[what you need]</b> for my <b>[Instagram post / sales page / freebie cover]</b>, <b>[1:1 for a post / 3:2 for a sales page / 9:16 for a story]</b>.<button class="copy" type="button" data-target="p2">Copy</button></div>
+        <p class="tip">Fill the first bracket with your own work: hands shuffling tarot cards by candlelight, a Reiki table by a fire, a journal and a cup of tea, an amethyst pendulum. The size bracket sets the shape, so your image fits where it is going.</p>
+      </article>
+
+      <article class="prompt">
+        <div class="num">Prompt 3</div>
+        <h3>Build a matching set</h3>
+        <p class="how">Do this one in <b class="work">ChatGPT Work</b>. Drop in any photo from the pack, or an image ChatGPT made you, and paste:</p>
+        <div class="box" id="p3">Use this image as the style. Create a set of ten images that match it for my <b>[your kind of business]</b>. Then give me three matching backgrounds I can put text on.<button class="copy" type="button" data-target="p3">Copy</button></div>
+        <p class="tip">When an image misses, ask again in different words. To take something out, tell ChatGPT what to remove and circle the spot so it knows exactly where.</p>
+      </article>
+
+      <article class="prompt">
+        <div class="num">Prompt 4</div>
+        <h3>Plan a seven-part series</h3>
+        <p class="how">Do this one in <b class="work">ChatGPT Work</b> too. Drop in the style grid and paste:</p>
+        <div class="box" id="p4">Use the attached image as the color palette and style. Create a seven-image series for my <b>[your kind of business]</b> on <b>[your topic]</b>, one image per post, that teaches my followers <b>[what they will learn]</b>.
+
+Each image carries three pieces of text:
+1. A headline of 3 to 6 words that names the idea of that post.
+2. One practical tip, one or two short sentences, that a follower can use today.
+3. A small series badge in the same corner of every image, reading "<b>[series name]</b> · 1/7", then 2/7, and so on, in the same font, size and color each time.
+
+Spell every word exactly as written. Keep all text inside the image with clear space around the edges, large enough to read on a phone. Keep the palette, light and look the same across all seven.
+
+Before you create any images, show me the seven headlines and tips so I can approve or change them.<button class="copy" type="button" data-target="p4">Copy</button></div>
+        <p class="tip">Pick a topic your people already ask you about: harvest healing through the chakras, seven fall rituals for your clients, a week of shadow work prompts, seven ways to use one tarot card. Approve the headlines and tips first, so every post teaches something before ChatGPT draws it. Post one a day and you have a full week that looks like it belongs together.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="vault" aria-labelledby="vault-h">
+    <div class="eyebrow">More packs like this one</div>
+    <h2 id="vault-h">29 stock photo packs in the Creator Vault</h2>
+    <p>The Harvest pack is one of 29 stock photo packs in the Creator Vault, along with 100+ tools and templates. The Vault comes with Soul-Forged Founders Standard, $8/month.</p>
+    <div class="actions"><a class="btn" href="https://www.skool.com/soul-forged-founders" target="_blank" rel="noopener">Join Soul-Forged Founders</a></div>
+  </section>
+
+  <footer>✦ Sunny Sink · Soul-Forged Founders</footer>
+</main>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var box = document.getElementById(btn.getAttribute('data-target'));
+      var text = '';
+      box.childNodes.forEach(function(n){ if(n !== btn) text += n.textContent; });
+      text = text.trim();
+      function done(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy'; }, 1800); }
+      function fallback(){
+        var r = document.createRange(); r.selectNodeContents(box);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Selected, press copy';
+        setTimeout(function(){ btn.textContent = 'Copy'; }, 2600);
+      }
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); }
+        else fallback();
+      }catch(e){ fallback(); }
+    });
+  });
+</script>
+
+</body>
+</html>
