@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Graveyard Prompt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1411; --ink:#F1E7D6; --ink-dim:#BDB09A;
+    --copper:#C6955C; --copper-lt:#E2B884; --ember:#E8743B; --ember-glow:#FF8A4C;
+    --gold:#D8B968; --green:#6FB58A;
+    --serif:'Cormorant Garamond','Hoefler Text',Georgia,serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    --card:rgba(22,34,28,0.72); --cardborder:rgba(198,149,92,0.20);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);
+    background-image:
+      radial-gradient(900px 500px at 12% -8%, rgba(232,116,59,0.10), transparent 60%),
+      radial-gradient(800px 500px at 100% 0%, rgba(44,95,90,0.14), transparent 55%),
+      radial-gradient(700px 600px at 60% 120%, rgba(198,149,92,0.08), transparent 60%);
+    min-height:100vh;padding:44px 22px 80px;position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .embers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .ember{position:absolute;bottom:-12px;width:3px;height:3px;border-radius:50%;background:var(--ember-glow);
+    box-shadow:0 0 6px 1px rgba(255,138,76,0.6);opacity:0;animation:rise linear infinite}
+  @keyframes rise{0%{transform:translateY(0);opacity:0}12%{opacity:.7}100%{transform:translateY(-104vh) translateX(26px);opacity:0}}
+  @media (prefers-reduced-motion: reduce){.ember{display:none}}
+  .wrap{max-width:860px;margin:0 auto;position:relative;z-index:1}
+  header{text-align:center;margin-bottom:30px}
+  .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--copper);opacity:.85;margin-bottom:14px}
+  .glyph{font-size:40px;line-height:1;margin-bottom:10px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(42px,7.5vw,70px);line-height:1;
+    background:linear-gradient(92deg,var(--copper-lt),var(--ember-glow) 38%,var(--gold) 70%,var(--copper));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.5px}
+  .subhead{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.4vw,21px);color:var(--ink-dim);margin-top:14px;line-height:1.5}
+  .howto{background:linear-gradient(135deg,rgba(232,116,59,0.13),rgba(22,34,28,0.80));border:1px solid rgba(232,116,59,0.30);
+    border-radius:16px;padding:22px 26px;backdrop-filter:blur(16px);position:relative;overflow:hidden}
+  .howto::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--copper),var(--ember),var(--gold))}
+  .howto h2{font-family:var(--serif);font-weight:600;font-size:23px;margin-bottom:10px}
+  .howto p{font-size:14.5px;color:var(--ink-dim);line-height:1.65}
+  .howto p + p{margin-top:9px}
+  .howto b{color:var(--copper-lt);font-weight:600}
+  .card{background:var(--card);border:1px solid var(--cardborder);border-radius:16px;padding:20px 22px;backdrop-filter:blur(14px);
+    margin-top:22px;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--copper),var(--ember),var(--gold));opacity:.55}
+  .chead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .ptitle{font-family:var(--serif);font-weight:600;font-size:22px}
+  .copy{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#150d08;font-weight:600;
+    background:linear-gradient(96deg,var(--copper-lt),var(--ember-glow) 55%,var(--gold));border:none;border-radius:30px;
+    padding:11px 20px;cursor:pointer;transition:transform .2s}
+  .copy:hover{transform:translateY(-1px)}
+  .copy.ok{background:var(--green)}
+  .prompt{font-family:var(--mono);font-size:13px;line-height:1.72;color:var(--ink-dim);background:rgba(13,20,17,0.62);
+    border:1px solid rgba(198,149,92,0.13);border-radius:11px;padding:16px 18px;white-space:pre-wrap;word-break:break-word}
+  .cta{margin-top:44px;text-align:center;border-radius:16px;padding:36px 26px;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,rgba(232,116,59,0.17),rgba(22,34,28,0.82));border:1px solid rgba(232,116,59,0.34);backdrop-filter:blur(16px)}
+  .cta::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--copper),var(--ember),var(--gold))}
+  .cta h3{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,34px);line-height:1.15;margin-bottom:12px}
+  .cta p{font-size:14.5px;color:var(--ink-dim);line-height:1.65;margin:0 auto 24px}
+  .ctabtn{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+    text-decoration:none;color:#150d08;background:linear-gradient(96deg,var(--copper-lt),var(--ember-glow) 55%,var(--gold));
+    border-radius:30px;padding:16px 34px;box-shadow:0 10px 30px -12px rgba(232,116,59,0.75)}
+  .fine{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);letter-spacing:.1em;margin-top:16px;opacity:.75}
+  footer{margin-top:30px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-dim);opacity:.6;letter-spacing:.05em}
+  @media(max-width:620px){body{padding:32px 16px 60px}.prompt{font-size:12.5px;padding:14px}.howto{padding:20px}}
+</style>
+<!-- link preview -->
+<meta name="description" content="One AI prompt that lists everything in your business that went quiet, then picks the three things worth bringing back first.">
+<link rel="canonical" href="https://sunnysink.github.io/ai-forge/graveyard/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Soul-Forged Founders">
+<meta property="og:title" content="The Graveyard Prompt">
+<meta property="og:description" content="One AI prompt that lists everything in your business that went quiet, then picks the three things worth bringing back first.">
+<meta property="og:url" content="https://sunnysink.github.io/ai-forge/graveyard/">
+<meta property="og:image" content="https://sunnysink.github.io/ai-forge/graveyard/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Graveyard Prompt">
+<meta name="twitter:description" content="One AI prompt that lists everything in your business that went quiet, then picks the three things worth bringing back first.">
+<meta name="twitter:image" content="https://sunnysink.github.io/ai-forge/graveyard/preview.jpg">
+<!-- /link preview -->
+</head>
+<body>
+<div class="embers" id="embers"></div>
+<div class="wrap">
+  <header>
+    <div class="kicker">Raise the Dead · October Claude Challenge</div>
+    <div class="glyph">🪦</div>
+    <h1>The Graveyard Prompt</h1>
+    <div class="subhead">One list of everything in your business that went quiet, and the three things worth bringing back first.</div>
+  </header>
+
+  <div class="howto">
+    <h2>How to use it</h2>
+    <p>Copy the prompt into Claude, ChatGPT or whichever AI you use, and answer its questions. It interviews you one category at a time, so give yourself some time.</p>
+    <p>If your AI can open your files, your email platform or your ads account, it looks things up for you as it goes. <b>The more it can see, the better the list.</b></p>
+  </div>
+
+  <div class="card">
+    <div class="chead">
+      <div class="ptitle">The Graveyard</div>
+      <button class="copy" id="copyBtn" type="button">Copy the prompt</button>
+    </div>
+    <div class="prompt" id="prompt">Help me dig up my business graveyard: one list of everything I made or started that has gone quiet, so the rest of the Raise the Dead board has something to raise.
+
+First, ask me where my business files live, give me these three answers to pick from, and wait:
+1. In a Google Drive folder (my Biz Brain) that you can open
+2. Somewhere else, and I will tell you where
+3. Nowhere yet, so keep the list here in this chat
+
+- If I pick 1 or 2, make a file there called Graveyard. If you cannot open it yet, walk me through connecting it one step at a time, and check I finished each step before you give me the next.
+- If I pick 3, keep the list here and I will paste it into each square instead.
+
+If you can see my files or accounts (a drive, my website, my email tool, my ad account, my sales), offer to look things up for me before asking me to remember. Tell me what you found and where you found it.
+
+Then go through these one category at a time, and wait for my answer each time:
+- Content: old posts, blogs, videos, livestreams and emails that did well once
+- Offers: products, courses, sessions or workshops I stopped selling
+- Freebies and tools: lead magnets, templates, prompts or GPTs I built and stopped using
+- People: past clients, leads who never booked, members who left, a list I stopped emailing
+- Platforms: accounts and pages I stopped posting to
+- Ideas: things I started and shelved
+
+Write each one into the Graveyard as one line: what it is, where it lives, and what it did while it was alive. Add when it went quiet only if I know it.
+
+Before you pick anything, ask me what I can spend on this right now, in time and in money, and wait.
+
+Then tell me the three things on the list with the most life left in them for what I can spend, and which square on the Raise the Dead board raises each one. These are the squares:
+- Evergreen Dig: find the old posts that still hold up
+- Old Post, Rewritten: your best old post, written for who you are now
+- Blog, Back From the Dead: one old blog post, refreshed so it gets found
+- Video, Second Life: one old video or livestream, cut into new posts
+- Best-Of Roundup: your greatest hits, gathered in one place
+- Unfinished Draft: the one that almost went out. Finish it
+- Retired Offer, Revived: bring back something you stopped selling
+- Shelved Product: a product that stopped selling, with a new way in
+- Back-Catalog Bundle: old products, packaged into one new offer
+- Replay Product: an old class or workshop, sold as a recording
+- Freebie Refresh: an old lead magnet, worth an email again
+- Sales Page Tune-Up: an old sales page, brought up to date
+- Cold Lead Note: for the people who asked and never booked
+- Past Client Check-In: reach back out to the people you already helped
+- Silent List Wake-Up: for the list you stopped emailing
+- Lapsed Member: for the people who left
+- Old Review, Put to Work: testimonials you forgot you had
+- Referral Revival: ask the people who loved your work to send someone
+- Abandoned Account: a platform you stopped posting to. Revive it or close it
+- Dead Link Hunt: find every link that goes nowhere
+- Forgotten Tool: a prompt, GPT or template you built and stopped using
+- Shelved Idea: the idea you started and put down. Pick it back up
+- Proper Burial: decide what stays dead, and say goodbye properly
+- Resurrection Story: tell them what you brought back
+
+Rules:
+- Assume I have never set up a connector. No jargon.
+- Use only what I tell you or what you looked up and showed me. Mark [FILL IN] where a detail is missing.
+- One category at a time. Wait for me between them.
+- Keep each line short.</div>
+  </div>
+
+  <div class="cta">
+    <h3>Raise what you dug up 🔥</h3>
+    <p>The Graveyard is the center square of the Raise the Dead board. The other 24 squares bring back what's on your list: the offer you stopped selling, the list you stopped emailing, the old post worth rewriting. Every line you finish enters you in the $50 drawing on November 1, and a new Spark lands every Saturday this month.</p>
+    <a class="ctabtn" href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">Join Soul-Forged Founders</a>
+    <div class="fine">7-day free trial · $8/month</div>
+  </div>
+
+  <footer>Soul-Forged Founders · @SoulForgedFounders</footer>
+</div>
+<script>
+  (function(){
+    var b=document.getElementById('copyBtn'), t=document.getElementById('prompt');
+    b.addEventListener('click',function(){
+      var done=function(){b.textContent='Copied ✓';b.classList.add('ok');setTimeout(function(){b.textContent='Copy the prompt';b.classList.remove('ok')},2200)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.textContent).then(done,fallback)}else{fallback()}
+      function fallback(){var a=document.createElement('textarea');a.value=t.textContent;document.body.appendChild(a);a.select();
+        try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(a)}
+    });
+    var box=document.getElementById('embers');
+    for(var i=0;i<18;i++){var e=document.createElement('div');e.className='ember';e.style.left=(Math.random()*100)+'%';
+      e.style.animationDuration=(9+Math.random()*10)+'s';e.style.animationDelay=(Math.random()*12)+'s';box.appendChild(e)}
+  })();
+</script>
+</body>
+</html>
