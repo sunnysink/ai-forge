@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- link preview -->
+<meta name="description" content="Plan your 3-day live challenge: your days, deliverables, offer and dates, then a prompt that builds your launch command center.">
+<link rel="canonical" href="https://sunnysink.github.io/ai-forge/launch-planner/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Soul-Forged Founders">
+<meta property="og:title" content="3-Day Challenge Launch Planner">
+<meta property="og:description" content="Plan your 3-day live challenge: your days, deliverables, offer and dates, then a prompt that builds your launch command center.">
+<meta property="og:url" content="https://sunnysink.github.io/ai-forge/launch-planner/">
+<meta property="og:image" content="https://sunnysink.github.io/ai-forge/launch-planner/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3-Day Challenge Launch Planner">
+<meta name="twitter:description" content="Plan your 3-day live challenge: your days, deliverables, offer and dates, then a prompt that builds your launch command center.">
+<meta name="twitter:image" content="https://sunnysink.github.io/ai-forge/launch-planner/preview.jpg">
+<!-- /link preview -->
+<title>3-Day Challenge Launch Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: one working column of numbered steps over a plum aurora with rising embers; every date flows from Day 1. Forge at Twilight, dark only */
+  :root{
+    --bg:#0B2422; --bg-2:#071715; --bg-3:#051211;
+    --ink:#EFE2CE; --ink-soft:rgba(239,226,206,0.72); --ink-faint:rgba(239,226,206,0.42);
+    --ember:#C8793E; --ember-glow:#D68847; --gold:#B89156;
+    --forest:#596248; --sage:#8DA07A; --plum:#4A2B43; --mauve:#8C6B70;
+    --card:rgba(11,36,34,0.72); --card-plum:rgba(45,25,40,0.72); --field:rgba(5,18,17,0.78);
+    --line:rgba(184,145,86,0.26); --line-soft:rgba(184,145,86,0.14);
+    --holo:linear-gradient(135deg,#B89156 0%,#C8793E 45%,#EFE2CE 100%);
+    --holo-2:linear-gradient(135deg,#D68847,#C8793E,#B89156);
+    --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:
+    radial-gradient(ellipse at 15% 0%, rgba(200,121,62,0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 0%, rgba(74,43,67,0.44) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 5%, rgba(140,107,112,0.20) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(184,145,86,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(140,107,112,0.28) 0%, transparent 55%);}
+  #cinders{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding-inline:18px;padding-block:44px 72px}
+  header{margin-bottom:28px}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ember-glow);font-weight:600;margin-bottom:10px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(36px,6vw,56px);line-height:1.02;margin:0;text-wrap:balance;background:var(--holo);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lede{color:var(--ink-soft);margin:12px 0 0;max-width:68ch}
+  .savebar{margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--sage);display:inline-block;margin-right:6px}
+
+  section.step{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:16px;padding:24px 24px 26px;margin-bottom:18px}
+  section.step.plum{background:var(--card-plum)}
+  .stephead{display:flex;gap:14px;align-items:baseline;margin-bottom:6px}
+  .num{font-family:var(--mono);font-size:11.5px;color:var(--gold);font-weight:600;letter-spacing:.12em;white-space:nowrap}
+  h2{font-family:var(--serif);font-weight:600;font-size:29px;line-height:1.12;margin:0;text-wrap:balance}
+  .hint{color:var(--ink-soft);font-size:13.5px;margin:4px 0 16px;max-width:74ch}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+  .full{grid-column:1 / -1}
+  label.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+  input[type=text],input[type=date],input[type=number],textarea,select{
+    width:100%;background:var(--field);color:var(--ink);border:1px solid var(--line-soft);border-radius:9px;padding:10px 12px;font:inherit;font-size:14.5px}
+  select{padding-right:8px}
+  textarea{resize:vertical;min-height:74px}
+  input::placeholder,textarea::placeholder{color:var(--ink-faint)}
+  input:focus,textarea:focus,select:focus,button:focus-visible{outline:2px solid var(--ember-glow);outline-offset:1px;border-color:transparent}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:16px}
+  .seg label{cursor:pointer}
+  .seg input{position:absolute;opacity:0;width:1px;height:1px}
+  .seg span{display:block;padding:9px 18px;font-weight:600;font-size:14px;color:var(--ink-soft)}
+  .seg input:checked + span{background:var(--holo-2);color:var(--bg-2)}
+  .seg input:focus-visible + span{outline:2px solid var(--ink);outline-offset:-2px}
+
+  .dayrows{display:grid;gap:10px;margin-top:8px}
+  .dayrow{display:grid;grid-template-columns:118px minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start;padding:12px;border-radius:12px;background:rgba(5,18,17,0.5);border:1px solid var(--line-soft)}
+  .dayrow .dl{display:flex;flex-direction:column;gap:2px;padding-top:4px}
+  .dayrow .dn{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1}
+  .dayrow .dj{font-family:var(--mono);font-size:10px;color:var(--sage);letter-spacing:.06em;text-transform:uppercase}
+  .dlv{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .dlv select{font-size:13px;padding:7px 8px}
+  .dlv input{font-size:13.5px;padding:8px 10px}
+  .colhead{display:grid;grid-template-columns:118px minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:10px;padding:0 12px;margin-top:18px}
+  .colhead span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+
+  .phases{display:grid;gap:10px}
+  .phase{display:grid;grid-template-columns:170px minmax(0,1fr);gap:14px;padding:12px 14px;border-radius:11px;background:rgba(5,18,17,0.5);border:1px solid var(--line-soft)}
+  .phase .when{font-family:var(--mono);font-size:12px;color:var(--ember-glow);font-variant-numeric:tabular-nums;line-height:1.4}
+  .phase .when em{display:block;font-style:normal;color:var(--gold);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+  .phase b{font-weight:600}
+  .phase .what{min-width:0}
+  .phase .sub{color:var(--ink-soft);font-size:13.5px}
+  .phase.live{border-color:rgba(214,136,71,.55);background:linear-gradient(180deg,rgba(200,121,62,.16),rgba(200,121,62,.05))}
+  .phase.sell{border-color:rgba(184,145,86,.5);background:rgba(45,25,40,0.55)}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--line-soft);border-radius:12px}
+  table{border-collapse:collapse;width:100%;min-width:720px;font-size:13.5px}
+  th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;padding:10px;border-bottom:1px solid var(--line-soft);background:rgba(5,18,17,0.6)}
+  td{padding:9px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.d{font-family:var(--mono);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--gold)}
+  td.d small{display:block;color:var(--ink-soft);font-size:10.5px}
+  .job{font-weight:600}
+  .ang{color:var(--ink-soft);font-size:12.5px;display:block;margin-top:2px}
+  td input[type=text]{padding:7px 9px;font-size:13.5px}
+  .chip{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;padding:2px 7px;border-radius:20px;margin:4px 4px 0 0;white-space:nowrap}
+  .chip.email{color:var(--gold);border:1px solid rgba(184,145,86,.55)}
+  .chip.ad{color:var(--sage);border:1px solid rgba(141,160,122,.55)}
+  .chip.dec{color:var(--ember-glow);border:1px solid rgba(214,136,71,.55)}
+  input[type=checkbox]{width:18px;height:18px;accent-color:var(--ember);flex:0 0 auto}
+
+  .prog{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin:-4px 0 14px}
+  .prog b{color:var(--ink)}
+  .cgroups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .cg{border:1px solid var(--line-soft);border-radius:12px;padding:13px 15px;background:rgba(5,18,17,0.5);min-width:0}
+  .cg.live{border-color:rgba(214,136,71,.45)}
+  .cg.sell{background:rgba(45,25,40,0.55);border-color:rgba(184,145,86,.4)}
+  .cg h3{margin:0;font-family:var(--serif);font-size:20px;font-weight:600}
+  .cg .cw{font-family:var(--mono);font-size:11px;color:var(--ember-glow);margin:2px 0 6px;font-variant-numeric:tabular-nums}
+  .cg label{display:flex;gap:10px;align-items:flex-start;padding:5px 0;font-size:14px;cursor:pointer}
+  .cg label input{margin-top:2px}
+  .cg .none{color:var(--ink-soft);font-size:13px;padding:4px 0}
+  .dailybtn{margin-top:8px;font-size:12.5px;padding:7px 12px;border-radius:20px;background:transparent;border:1px solid var(--line);color:var(--gold)}
+  .dailybtn[aria-expanded=true]{background:rgba(184,145,86,.12)}
+  .daily{margin-top:6px;padding:6px 0 0 12px;border-left:2px solid var(--line)}
+
+  .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+  button{font:inherit;font-size:14px;font-weight:600;border-radius:9px;padding:10px 16px;cursor:pointer;border:1px solid var(--line);background:rgba(5,18,17,0.6);color:var(--ink)}
+  button.primary{background:var(--holo-2);color:var(--bg-2);border-color:transparent}
+  button.quiet{background:transparent;color:var(--ink-soft);font-weight:500}
+  #prompt{min-height:320px;font-family:var(--mono);font-size:12.5px;line-height:1.5}
+  .toast{font-family:var(--mono);font-size:12px;color:var(--sage)}
+  .confirm{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--ember-glow)}
+  .stat{display:flex;flex-wrap:wrap;gap:10px 22px;margin:2px 0 16px;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+  .stat b{color:var(--ink);font-weight:600}
+  footer{position:relative;z-index:1;color:var(--ink-soft);font-size:12px;font-family:var(--mono);margin-top:26px}
+
+  @media (max-width:760px){
+    .grid,.cgroups{grid-template-columns:minmax(0,1fr)}
+    .colhead{display:none}
+    .dayrow{grid-template-columns:minmax(0,1fr)}
+    .dayrow .dl{flex-direction:row;gap:10px;align-items:baseline}
+    .phase{grid-template-columns:minmax(0,1fr);gap:4px}
+  }
+</style>
+</head>
+<body>
+
+
+<canvas id="cinders" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header>
+    <div class="kicker">Soul-Forged Founders · Build Studio</div>
+    <h1>3-Day Challenge Launch Planner</h1>
+    <p class="lede">Fill in your challenge, your deliverables, your offer and the day you go live. The planner works backward from Day 1 and lays out your warm-up, 14 days of promotion, every launch task with its date, and your enrollment window. Then copy the prompt at the bottom and Claude builds your launch command center from it.</p>
+    <div class="savebar"><span class="dot"></span><span id="savedNote">Saves on this device as you type</span></div>
+  </header>
+
+  <form id="plan" autocomplete="off">
+
+  <section class="step">
+    <div class="stephead"><span class="num">STEP 1</span><h2>Your challenge</h2></div>
+    <p class="hint">Three or five live days, one clear promise. Either way, you pitch your offer on Day 3 and close the cart on Day 7.</p>
+    <div class="seg" role="radiogroup" aria-label="How many live days">
+      <label><input type="radio" name="len" id="len3" value="3" checked><span>3 days</span></label>
+      <label><input type="radio" name="len" id="len5" value="5"><span>5 days</span></label>
+    </div>
+    <div class="grid">
+      <label class="f"><span class="lab">Challenge name</span><input type="text" id="cName" placeholder="Example: The Moon Journal Reset"></label>
+      <label class="f"><span class="lab">Who it's for</span><input type="text" id="cWho" placeholder="Example: tarot readers who freeze reading for other people"></label>
+      <label class="f full"><span class="lab">Your bold promise: what they walk away with</span><input type="text" id="cPromise" placeholder="Example: a daily three-card practice they trust and their first reading for a friend"></label>
+      <label class="f"><span class="lab">Theme</span><input type="text" id="cTheme" placeholder="Example: a moonlit garden"></label>
+      <label class="f"><span class="lab">How you'll go live, and what time</span><input type="text" id="cWhere" placeholder="Example: StreamYard to YouTube, 11am PT"></label>
+      <label class="f full"><span class="lab">Launch aesthetics: colors, fonts, mood, symbols</span><textarea id="aesthetics" placeholder="Example: deep plum and gold, an elegant serif for headings, calm and mystical, moon phases and candles"></textarea></label>
+    </div>
+    <div class="colhead" aria-hidden="true"><span>Day</span><span>Topic</span><span>Deliverable 1</span><span>Deliverable 2</span></div>
+    <div class="dayrows" id="dayrows"></div>
+    <div class="grid" style="margin-top:14px">
+      <label class="f"><span class="lab">Where the group lives</span><input type="text" id="cGroup" placeholder="Example: a pop-up Facebook group"></label>
+      <label class="f"><span class="lab">Where sign-ups go</span><input type="text" id="cSignup" placeholder="Example: a MailerLite landing page and tag"></label>
+    </div>
+  </section>
+
+  <section class="step plum">
+    <div class="stephead"><span class="num">STEP 2</span><h2>The offer it leads into</h2></div>
+    <p class="hint">The offer should be the obvious next step after the challenge. Someone who just finished Day 3 should think, "yes, I want more of exactly this."</p>
+    <div class="grid">
+      <label class="f"><span class="lab">Offer name</span><input type="text" id="oName" placeholder="Example: Moon Journal Circle"></label>
+      <label class="f"><span class="lab">Price</span><input type="text" id="oPrice" placeholder="Example: $27/month"></label>
+      <label class="f"><span class="lab">Checkout link</span><input type="text" id="oLink" placeholder="https://"></label>
+      <label class="f"><span class="lab">Upgrade option (optional)</span><input type="text" id="oUpgrade" placeholder="Example: the full mastermind at $59/month"></label>
+      <label class="f"><span class="lab">Launch bonus for joining by Day 7</span><input type="text" id="oBonus" placeholder="Example: 30 bonus spreads"></label>
+      <label class="f" id="trainingField"><span class="lab">Bonus training ideas (you pick one by Day 3)</span><input type="text" id="oTraining" placeholder="Example: a live Q&amp;A, or whatever questions keep coming up"></label>
+      <label class="f full"><span class="lab">The through line: how the challenge leads into the offer</span><input type="text" id="oThrough" placeholder="Example: they finish Day 3 reading three cards daily; the Circle gives them a group to keep practicing with"></label>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="stephead"><span class="num">STEP 3</span><h2>Pick Day 1. Everything else follows.</h2></div>
+    <p class="hint">Pick your own date. Give yourself about five weeks from today. Your ads go to new people who haven't found you yet, because a live launch exists to bring in fresh sign-ups.</p>
+    <div class="grid">
+      <label class="f"><span class="lab">Day 1 of the challenge</span><input type="date" id="day1"></label>
+      <label class="f"><span class="lab">Ad budget per day (14 days)</span><input type="number" id="adDay" min="0" step="1" placeholder="5"></label>
+    </div>
+    <div class="stat" style="margin-top:16px"><span>Ad money to set aside: <b id="adTotal">$70</b></span><span>Days until Day 1: <b id="untilDay1">pick a date</b></span></div>
+    <div class="phases" id="phases"></div>
+  </section>
+
+  <section class="step">
+    <div class="stephead"><span class="num">STEP 4</span><h2>Your 14 days of promotion</h2></div>
+    <p class="hint">This is when the sign-up link goes out. One post a day, each with a job, plus two invite emails to your list. Write your idea next to each day and tick it when it's posted.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Date</th><th>The post's job</th><th>My post idea</th><th>Posted</th></tr></thead>
+      <tbody id="cal"></tbody>
+    </table></div>
+  </section>
+
+  <section class="step">
+    <div class="stephead"><span class="num">STEP 5</span><h2>Your launch checklist</h2></div>
+    <p class="hint">Every task from planning to the debrief, dated from your Day 1. Live days and enrollment days keep their daily tasks behind a button. All of it goes into your command center.</p>
+    <p class="prog"><b id="ckDone">0</b> of <b id="ckTotal">0</b> done</p>
+    <div class="cgroups" id="checks"></div>
+  </section>
+
+  <section class="step plum">
+    <div class="stephead"><span class="num">STEP 6</span><h2>Build your launch command center</h2></div>
+    <p class="hint">Copy the prompt and paste it into Claude. It carries everything above, asks Claude to check the through line from your challenge to your offer, and builds a plan to finish your deliverables on time.</p>
+    <label class="f"><span class="lab">Your prompt</span><textarea id="prompt" readonly></textarea></label>
+    <div class="btns">
+      <button type="button" class="primary" id="copyBtn">Copy the prompt</button>
+      <span class="toast" id="toast" hidden>Copied. Paste it into Claude.</span>
+      <button type="button" class="quiet" id="clearBtn">Start over</button>
+      <span class="confirm" id="confirm" hidden>Clear everything you entered? <button type="button" id="yesClear">Clear it</button><button type="button" class="quiet" id="noClear">Keep it</button></span>
+    </div>
+  </section>
+  </form>
+
+  <footer>Soul-Forged Founders · what you type stays in this browser on this device.</footer>
+</div>
+
+<script>
+(function(){
+  var KEY='sff-challenge-launch-planner-v5';
+  var TYPES=['Checklist','Planner','Guide','Workbook','Template','Tool','Journal prompts','Worksheet','Cheat sheet','Printable cards','Tarot spread','Tracker','Meditation or audio','Other'];
+  var JOBS=[
+    ['Announce','Name the challenge, the dates and the sign-up link.'],
+    ['Teach','One small tip from your Day 1 topic.'],
+    ['Story','Why you made this challenge, in a few lines.'],
+    ['Proof','A student result or a kind word someone sent you.'],
+    ['Question','Ask what they struggle with around this topic.'],
+    ['Teach','One small tip from your Day 2 topic.'],
+    ['Behind the scenes','Show a deliverable being made.'],
+    ['Invite','Who it is for and what they leave with.'],
+    ['Common mistake','A mistake people make with this, and the fix.'],
+    ['Proof','A second result or quote.'],
+    ['Teach','One small tip from your Day 3 topic.'],
+    ['Countdown','Three days out: what each day covers.'],
+    ['Story','What changed for you when you learned this.'],
+    ['Last call','It starts tomorrow. The link, one more time.']
+  ];
+  var EMAILS={0:'Invite email 1: the announcement',13:'Invite email 2: starts tomorrow'};
+  var LIVE_TASKS=['Excitement post in the group','Post the day\'s deliverables','Reminder email about 2 hours before','Go live','Replay up','Email with the replay and the deliverables','Group engagement'];
+  var SELL_TASKS=['Answer questions in the group','An engagement post in the group','Check sign-ups and sales'];
+  var LABELS={3:['The big idea','Your method','Practice + pitch'],5:['The big idea','Your method','Practice + pitch','Go deeper','Bring it together']};
+  var PRE=[
+    ['plan','Plan',-35,-29,['Decide your timeline for promo and launch','Define the transformation and your bold promise','Map out the topic for each day','Choose two deliverables for each day','Decide your theme, name and launch aesthetics','Decide how you will deliver the lives (Facebook or StreamYard)','Decide your launch bonus','Write your through line from the challenge to the offer']],
+    ['build','Build',-28,-15,['Images and graphics in your launch aesthetics','Sales page for your offer','Sign-up page and thank-you page','Create your group and link it on the thank-you page','Create the list or tag in your email tool','Welcome email','Set up the automation','Promo post','The two invite emails','Lead ad set up, with your promo post text as the ad copy','Collect student testimonials','Pitch, enrollment and closing emails and group posts written']],
+    ['dlv','Make your deliverables',-28,-8,null],
+    ['promo','Promotion starts',-14,-14,['Lead ad on, to new audiences','Sign-ups open','Promo posts start (calendar in Step 4)','Invite email 1 to your list']],
+    ['week','The week before',-7,-2,['Every deliverable finished','Schedule each live as an event in the group','Check the ads and adjust','Lock in your launch bonus and offer details']],
+    ['eve','The day before',-1,-1,['Invite email 2: it starts tomorrow','Let people into the group','Email that the group is open, with the schedule','Welcome post and an engagement post asking about their experience']]
+  ];
+  // b: only with a Day 5 bonus training (3-day). f: only on a 5-day.
+  var DAYS={
+    1:[],
+    2:[['Note the questions people ask. Your bonus training topic may be in them','b']],
+    3:[['Test your automation'],['Test your sales page and run a test transaction'],['Open the cart'],['Pitch the offer live and present the launch bonus'],['Pitch post and pitch banner in the group'],['Pitch email with the replay and the checkout link'],['Lead ad off'],['Pick your bonus training topic from what came up on Days 2 and 3','b'],['Evening: announce the Day 5 bonus training','b']],
+    4:[['Prepare the bonus training','b'],['Schedule the bonus training as an event in the group','b'],['Who it\'s a good fit for: group post'],['Who it\'s a good fit for: email'],['Prep tomorrow\'s bonus training reminder post and email','b']],
+    5:[['Bonus training reminder email','b'],['Bonus training reminder post','b'],['Go live with the bonus training and invite them into the offer','b'],['Replay up, and email it with the checkout link','b'],['Group post: the replay and what members are saying','b'],['Student result or testimonial post','f']],
+    6:[['Student result or testimonial post','b'],['Answer objections in a group post'],['One-day warning email: the cart closes tomorrow'],['One-day warning post in the group']],
+    7:[['Morning email: the cart closes tonight'],['Morning group post: last day'],['Two-hour warning email'],['Two-hour warning post in the group'],['One-hour warning email'],['One-hour warning post in the group'],['Close the cart'],['Thank-you post in the group']],
+    8:[['Close the group'],['Switch your profile and page banners back'],['Write your launch debrief: sign-ups, attendance, sales, what you\'d change']]
+  };
+  var DAYTITLE={3:'Pitch day',5:'Bonus training',7:'Cart closes',8:'Debrief'};
+
+  function $(id){return document.getElementById(id);}
+  var form=$('plan');
+  var st={};
+  try{st=JSON.parse(localStorage.getItem(KEY))||{};}catch(e){st={};}
+  st.ck=st.ck||{};st.f=st.f||{};
+  var openDaily={};
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function parseDay(v){if(!v)return null;var p=v.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function add(d,n){var x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()+n);return x;}
+  var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmt(d){return DOW[d.getDay()]+' '+MON[d.getMonth()]+' '+d.getDate();}
+  function range(a,b){return a.getTime()===b.getTime()?fmt(a):fmt(a)+' to '+fmt(b);}
+  function val(id){var e=$(id);return e?(e.value||'').trim():'';}
+  function or(v,f){return v||f;}
+  function len(){return $('len5').checked?5:3;}
+  function hasBonus(){return len()===3;}
+  function adDay(){var a=parseFloat($('adDay').value);return isNaN(a)?5:a;}
+
+  var rows=$('dayrows'),opts='<option value="">Type</option>'+TYPES.map(function(t){return '<option>'+t+'</option>';}).join('');
+  for(var i=1;i<=5;i++){
+    var r=document.createElement('div');r.className='dayrow';r.id='row'+i;
+    r.innerHTML='<div class="dl"><span class="dn">Day '+i+'</span><span class="dj" id="dj'+i+'"></span></div>'+
+      '<label class="f"><input type="text" id="d'+i+'" placeholder="Day '+i+' topic" aria-label="Day '+i+' topic"></label>'+
+      [1,2].map(function(k){return '<div class="dlv"><select id="t'+i+'_'+k+'" aria-label="Day '+i+' deliverable '+k+' type">'+opts+'</select><input type="text" id="n'+i+'_'+k+'" placeholder="Name it" aria-label="Day '+i+' deliverable '+k+' name"></div>';}).join('');
+    rows.appendChild(r);
+  }
+
+  var cal=$('cal');
+  JOBS.forEach(function(j,i){
+    var tr=document.createElement('tr'),chips='';
+    if(EMAILS[i]!==undefined) chips+='<span class="chip email">'+EMAILS[i]+'</span>';
+    if(i===0) chips+='<span class="chip ad">Lead ad starts</span>';
+    if(i===7) chips+='<span class="chip dec">Lock in your bonus and offer details</span>';
+    tr.innerHTML='<td class="d" id="cd'+i+'"></td><td><span class="job">'+j[0]+'</span><span class="ang">'+j[1]+'</span>'+chips+'</td><td><input type="text" id="post'+i+'" placeholder="My idea"></td><td><input type="checkbox" id="done'+i+'" aria-label="Posted"></td>';
+    cal.appendChild(tr);
+  });
+
+  Array.prototype.forEach.call(form.elements,function(el){
+    if(!el.id||!(el.id in st.f))return;
+    if(el.type==='checkbox'||el.type==='radio')el.checked=!!st.f[el.id];else el.value=st.f[el.id];
+  });
+
+  function deliverables(){
+    var out=[];
+    for(var i=1;i<=len();i++)for(var k=1;k<=2;k++){
+      var t=val('t'+i+'_'+k),n=val('n'+i+'_'+k);
+      if(t||n)out.push({day:i,k:k,label:'Day '+i+': '+(t||'Deliverable')+(n?', '+n:'')});
+    }
+    return out;
+  }
+  function slug(s){return s.slice(0,28).replace(/\W/g,'');}
+  function checklist(d1){
+    var G=[],n=len(),bonus=hasBonus();
+    PRE.forEach(function(p){
+      var items=p[0]==='dlv'?deliverables().map(function(x){return {id:'dlv_'+x.day+'_'+x.k,text:'Finish '+x.label};}):p[4].map(function(t,j){return {id:p[0]+'_'+j,text:t};});
+      G.push({key:p[0],title:p[1],when:d1?range(add(d1,p[2]),add(d1,p[3])):'',items:items,cls:''});
+    });
+    for(var day=1;day<=8;day++){
+      var items=DAYS[day].filter(function(x){return !x[1]||(x[1]==='b'&&bonus)||(x[1]==='f'&&!bonus);}).map(function(x){return {id:'day'+day+'_'+slug(x[0]),text:x[0]};});
+      var live=day<=n,selling=day>=3&&day<=7;
+      var title='Day '+day+(DAYTITLE[day]&&!(day===5&&!bonus)?' · '+DAYTITLE[day]:'');
+      var daily=null,dl='';
+      if(live){daily=LIVE_TASKS.map(function(t,j){return {id:'live'+day+'_'+j,text:t};});dl='Daily live tasks';}
+      else if(selling){daily=SELL_TASKS.map(function(t,j){return {id:'sell'+day+'_'+j,text:t};});dl='Daily enrollment tasks';}
+      G.push({key:'day'+day,title:title,when:d1?fmt(add(d1,day-1)):'',items:items,daily:daily,dailyLabel:dl,cls:live?'live':(selling?'sell':'')});
+    }
+    return G;
+  }
+
+  function renderChecks(d1){
+    var G=checklist(d1),html='',total=0,done=0;
+    G.forEach(function(g){
+      html+='<div class="cg '+g.cls+'"><h3>'+esc(g.title)+'</h3><div class="cw">'+esc(g.when||'Pick your Day 1')+'</div>';
+      if(!g.items.length&&!g.daily&&g.key==='dlv')html+='<div class="none">Your deliverables from Step 1 show up here.</div>';
+      g.items.forEach(function(it){total++;if(st.ck[it.id])done++;html+='<label><input type="checkbox" data-ck="'+it.id+'"'+(st.ck[it.id]?' checked':'')+'><span>'+esc(it.text)+'</span></label>';});
+      if(g.daily){
+        var open=!!openDaily[g.key],dd=0;
+        g.daily.forEach(function(it){total++;if(st.ck[it.id]){done++;dd++;}});
+        html+='<button type="button" class="dailybtn" data-daily="'+g.key+'" aria-expanded="'+open+'">'+g.dailyLabel+' · '+dd+' of '+g.daily.length+'</button>';
+        html+='<div class="daily"'+(open?'':' hidden')+'>'+g.daily.map(function(it){return '<label><input type="checkbox" data-ck="'+it.id+'"'+(st.ck[it.id]?' checked':'')+'><span>'+esc(it.text)+'</span></label>';}).join('')+'</div>';
+      }
+      html+='</div>';
+    });
+    $('checks').innerHTML=html;$('ckDone').textContent=done;$('ckTotal').textContent=total;
+  }
+
+  function render(){
+    var n=len(),bonus=hasBonus();
+    for(var i=1;i<=5;i++){$('row'+i).hidden=i>n;$('dj'+i).textContent=LABELS[n][i-1]||'';}
+    $('trainingField').hidden=!bonus;
+    var d1=parseDay($('day1').value),ad=adDay();
+    var adTot='$'+(Math.round(ad*14*100)/100);
+    $('adTotal').textContent=adTot;
+    var ph=$('phases');
+    if(!d1){
+      ph.innerHTML='<div class="phase"><span class="when">No date yet</span><span class="what">Pick your Day 1 date to see your timeline.</span></div>';
+      $('untilDay1').textContent='pick a date';
+      JOBS.forEach(function(j,i){$('cd'+i).textContent='Pick a date';});
+    }else{
+      var t=new Date();t=new Date(t.getFullYear(),t.getMonth(),t.getDate());
+      var until=Math.round((d1-t)/86400000);
+      $('untilDay1').textContent=until>=0?until:'already passed';
+      var topics=[];for(var i=1;i<=n;i++)topics.push('Day '+i+' '+esc(or(val('d'+i),'topic')));
+      var R=[
+        ['','Warm up',range(add(d1,-35),add(d1,-15)),'<b>Plan, build, and post about your topic.</b> <span class="sub">No sign-up link yet. These posts teach new followers what you know, so the invitation lands when it comes. Your deliverables get made in this window too.</span>'],
+        ['','By',fmt(add(d1,-16)),'<b>Set aside the ad money.</b> <span class="sub">'+adTot+' for 14 days at $'+ad+' a day, shown to new people.</span>'],
+        ['','Promotion',range(add(d1,-14),add(d1,-1)),'<b>The sign-up link goes out.</b> <span class="sub">Sign-ups open, the lead ad runs, one post a day and two invite emails. The calendar is in Step 4.</span>'],
+        ['','By',fmt(add(d1,-7)),'<b>Every deliverable finished. Lock in your bonus and offer details.</b> <span class="sub">Settle the offer while you\'re calm, before the urge to discount shows up.</span>'],
+        ['live','Day 1 to Day '+n,range(d1,add(d1,n-1)),'<b>The challenge is live.</b> <span class="sub">'+topics.join(' · ')+'.</span>'],
+        ['sell','Day 3',fmt(add(d1,2)),'<b>Pitch day. Enrollment opens.</b> <span class="sub">'+esc(or(val('oName'),'Your offer'))+(val('oPrice')?' at '+esc(val('oPrice')):'')+(val('oBonus')?', with '+esc(val('oBonus'))+' for joining by Day 7':'')+'.</span>']
+      ];
+      if(bonus)R.push(['sell','Day 5',fmt(add(d1,4)),'<b>Bonus training.</b> <span class="sub">'+(val('oTraining')?'Ideas going in: '+esc(val('oTraining'))+'. ':'')+'Pick the topic from what comes up on Days 2 and 3, announce it on the evening of Day 3, teach it live and invite them into the offer again.</span>']);
+      R.push(['sell','Day 7',fmt(add(d1,6)),'<b>The cart closes.</b> <span class="sub">One-day warning on Day 6, then a morning email, a two-hour warning and a one-hour warning, by email and in the group.</span>']);
+      R.push(['','Day 8',fmt(add(d1,7)),'<b>Debrief.</b> <span class="sub">Close the group and write down what worked while it\'s fresh.</span>']);
+      ph.innerHTML=R.map(function(r){return '<div class="phase '+r[0]+'"><span class="when"><em>'+r[1]+'</em>'+r[2]+'</span><span class="what">'+r[3]+'</span></div>';}).join('');
+      JOBS.forEach(function(j,i){$('cd'+i).innerHTML=fmt(add(d1,i-14))+'<small>'+(14-i)+' day'+(14-i===1?'':'s')+' out</small>';});
+    }
+    renderChecks(d1);
+    $('prompt').value=buildPrompt(d1,ad);
+  }
+
+  function buildPrompt(d1,ad){
+    var L=[],n=len(),bonus=hasBonus();
+    var name=or(val('cName'),'[challenge name]');
+    L.push('Build me an interactive launch command center artifact for my free '+n+'-day live challenge, "'+name+'". I will open it every day of my launch, so put today\'s tasks at the top, and save my progress in the browser.');
+    L.push('');
+    L.push('FIRST, CHECK THE THROUGH LINE');
+    L.push('Before you build, look at the challenge, '+(bonus?'the Day 5 bonus training, ':'')+'the launch bonus and the offer together. Write out the through line in plain steps: what someone believes or can do by the end of Day 3, why the offer is the natural next step for exactly that person, and how '+(bonus?'the bonus training and ':'')+'the launch bonus help them say yes. If any link is weak (for example, a mindset challenge that pitches a cleanse program), say so plainly and suggest how to tighten it. Then put a "Through line" card at the top of the command center with what you found, flagged "keep working on this" if anything is weak. Build the full command center either way.');
+    L.push('');
+    L.push('THE CHALLENGE');
+    L.push('- Who it is for: '+or(val('cWho'),'[fill in]'));
+    L.push('- Bold promise: '+or(val('cPromise'),'[fill in]'));
+    if(val('cTheme'))L.push('- Theme: '+val('cTheme'));
+    for(var i=1;i<=n;i++){
+      var dv=[];for(var k=1;k<=2;k++){var t=val('t'+i+'_'+k),nm=val('n'+i+'_'+k);if(t||nm)dv.push((t||'Deliverable')+(nm?' ('+nm+')':''));}
+      L.push('- Day '+i+': '+or(val('d'+i),'[topic]')+(i===3?', ends with the pitch':'')+'. Deliverables: '+(dv.length?dv.join(' and '):'[not chosen yet]'));
+    }
+    L.push('- Going live: '+or(val('cWhere'),'[fill in]'));
+    L.push('- Group: '+or(val('cGroup'),'[fill in]'));
+    L.push('- Sign-ups go to: '+or(val('cSignup'),'[fill in]'));
+    L.push('');
+    L.push('THE OFFER');
+    L.push('- '+or(val('oName'),'[offer name]')+(val('oPrice')?', '+val('oPrice'):''));
+    if(val('oLink'))L.push('- Checkout link: '+val('oLink'));
+    if(val('oUpgrade'))L.push('- Upgrade option: '+val('oUpgrade'));
+    if(val('oBonus'))L.push('- Launch bonus for joining by Day 7: '+val('oBonus'));
+    if(bonus)L.push('- Bonus training on Day 5, topic picked by Day 3 from what comes up in the challenge'+(val('oTraining')?'. Ideas going in: '+val('oTraining'):''));
+    L.push('- My through line so far: '+or(val('oThrough'),'[not written yet]'));
+    L.push('');
+    if(d1){
+      L.push('KEY DATES');
+      L.push('- Warm up, plan and build: '+range(add(d1,-35),add(d1,-15))+' (posts about the topic, no sign-up link yet)');
+      L.push('- Set aside ad money by '+fmt(add(d1,-16))+': $'+(Math.round(ad*14*100)/100)+' ($'+ad+' a day for 14 days), cold audiences only');
+      L.push('- Promotion and lead ad: '+range(add(d1,-14),add(d1,-1))+', two invite emails ('+fmt(add(d1,-14))+' and '+fmt(add(d1,-1))+')');
+      L.push('- Every deliverable finished, bonus and offer locked in: '+fmt(add(d1,-7)));
+      L.push('- Challenge live: '+range(d1,add(d1,n-1)));
+      L.push('- Day 3, pitch day and enrollment opens: '+fmt(add(d1,2)));
+      if(bonus)L.push('- Day 5, bonus training: '+fmt(add(d1,4)));
+      L.push('- Day 7, cart closes: '+fmt(add(d1,6)));
+      L.push('- Day 8, debrief: '+fmt(add(d1,7)));
+      L.push('');
+      L.push('MY 14-DAY PROMO CALENDAR');
+      JOBS.forEach(function(j,i){
+        var idea=val('post'+i);
+        L.push('- '+fmt(add(d1,i-14))+': '+j[0]+(idea?': '+idea:' ('+j[1]+')')+(EMAILS[i]!==undefined?' + '+EMAILS[i]:'')+($('done'+i).checked?' [posted]':''));
+      });
+      L.push('');
+    }
+    L.push('MY LAUNCH CHECKLIST ([done] means finished)');
+    checklist(d1).forEach(function(g){
+      L.push(g.title+(g.when?' ('+g.when+')':'')+':');
+      if(!g.items.length&&!g.daily)L.push('  - [nothing yet]');
+      g.items.forEach(function(it){L.push('  - '+it.text+(st.ck[it.id]?' [done]':''));});
+      if(g.daily)L.push('  - '+g.dailyLabel+': '+g.daily.map(function(it){return it.text+(st.ck[it.id]?' [done]':'');}).join('; '));
+    });
+    L.push('');
+    L.push('WHAT THE COMMAND CENTER NEEDS');
+    L.push('1. The through line card at the top.');
+    L.push('2. A countdown to Day 1 and a "today" panel that pulls today\'s post, email and checklist tasks from the dates above.');
+    L.push('3. A deliverables plan: every deliverable with a due date, spread across the build weeks so all of them are finished by '+(d1?fmt(add(d1,-7)):'the week before Day 1')+', with the steps to make each one and a checkbox.');
+    L.push('4. The full launch checklist, grouped and dated as above, with daily tasks behind a button on each live and enrollment day, and my [done] items already ticked.');
+    L.push('5. The 14-day promo calendar with a checkbox for each day.');
+    L.push('6. An ad tracker: daily spend and sign-ups, with cost per sign-up worked out for me.');
+    L.push('7. A results tracker: sign-ups, live attendance each day, and sales each day from Day 3 to Day 7.');
+    L.push('8. A debrief section for what worked, so my next launch is easier.');
+    L.push('');
+    L.push('LOOK AND FEEL: match my launch aesthetics exactly. '+or(val('aesthetics'),'Warm, calm and easy to read.')+' One page that works on my phone.');
+    return L.join('\n');
+  }
+
+  var saveT;
+  function save(){
+    var f={};
+    Array.prototype.forEach.call(form.elements,function(el){if(!el.id||el.id==='prompt'||(el.dataset&&el.dataset.ck))return;f[el.id]=(el.type==='checkbox'||el.type==='radio')?el.checked:el.value;});
+    st.f=f;
+    try{localStorage.setItem(KEY,JSON.stringify(st));$('savedNote').textContent='Saved on this device';}catch(e){$('savedNote').textContent='This browser is not saving. Copy your prompt before you leave.';}
+  }
+  form.addEventListener('input',function(e){if(e.target.dataset&&e.target.dataset.ck)return;render();clearTimeout(saveT);saveT=setTimeout(save,300);});
+  form.addEventListener('change',function(e){
+    if(e.target.dataset&&e.target.dataset.ck){
+      st.ck[e.target.dataset.ck]=e.target.checked;
+      var d1=parseDay($('day1').value);renderChecks(d1);$('prompt').value=buildPrompt(d1,adDay());save();return;
+    }
+    render();save();
+  });
+  $('checks').addEventListener('click',function(e){
+    var b=e.target.closest('[data-daily]');if(!b)return;
+    var k=b.dataset.daily;openDaily[k]=!openDaily[k];
+    b.nextElementSibling.hidden=!openDaily[k];b.setAttribute('aria-expanded',String(!!openDaily[k]));
+  });
+  form.addEventListener('submit',function(e){e.preventDefault();});
+
+  $('copyBtn').addEventListener('click',function(){
+    var t=$('prompt');
+    function shown(msg){$('toast').textContent=msg;$('toast').hidden=false;setTimeout(function(){$('toast').hidden=true;},2800);}
+    function fallback(){t.focus();t.select();shown('Selected. Press Ctrl+C or Cmd+C to copy.');}
+    try{navigator.clipboard.writeText(t.value).then(function(){shown('Copied. Paste it into Claude.');},fallback);}catch(e){fallback();}
+  });
+  $('clearBtn').addEventListener('click',function(){$('confirm').hidden=false;});
+  $('noClear').addEventListener('click',function(){$('confirm').hidden=true;});
+  $('yesClear').addEventListener('click',function(){
+    try{localStorage.removeItem(KEY);}catch(e){}
+    st={ck:{},f:{}};form.reset();$('confirm').hidden=true;render();save();
+  });
+
+  render();
+
+  /* rising embers */
+  (function(){
+    var c=$('cinders'),ctx=c.getContext('2d'),w,h,parts=[];
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var COLORS=[[214,136,71],[184,145,86],[200,121,62],[140,107,112]];
+    function size(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;}
+    function make(){var col=COLORS[Math.floor(Math.random()*COLORS.length)];return {x:Math.random()*w,y:h+Math.random()*40,r:Math.random()*1.5+0.4,vy:-(Math.random()*0.26+0.08),vx:(Math.random()-0.5)*0.13,a:Math.random()*0.5+0.14,t:Math.random()*Math.PI*2,c:col};}
+    function init(){size();var n=Math.max(16,Math.min(42,Math.round(w/36)));parts=[];for(var i=0;i<n;i++){var p=make();p.y=Math.random()*h;parts.push(p);}}
+    function frame(){
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<parts.length;i++){
+        var p=parts[i];
+        if(!reduce){p.y+=p.vy;p.t+=0.012;p.x+=p.vx+Math.sin(p.t)*0.15;}
+        if(p.y<-12){parts[i]=make();continue;}
+        var fl=0.65+Math.sin(p.t*2.1)*0.35,c3=p.c.join(',');
+        var g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4.5);
+        g.addColorStop(0,'rgba('+c3+','+(p.a*fl)+')');g.addColorStop(0.4,'rgba('+c3+','+(p.a*fl*0.42)+')');g.addColorStop(1,'rgba('+c3+',0)');
+        ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.r*4.5,0,Math.PI*2);ctx.fill();
+      }
+      if(!reduce)requestAnimationFrame(frame);
+    }
+    init();window.addEventListener('resize',function(){init();if(reduce)frame();});frame();
+  })();
+})();
+</script>
+
+</body>
+</html>
