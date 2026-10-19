@@ -154,7 +154,7 @@
   /* The training video: put the YouTube id here once it's uploaded. */
   var VIDEO_ID = '';
   /* Sunny's brand board template: put its share link here. */
-  var TEMPLATE_URL = 'https://canva.link/kdhvk0rz0593zjl';
+  var TEMPLATE_URL = 'https://canva.link/cepb1n6dhhw0h33';
   if (VIDEO_ID) {
     document.getElementById('video').innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '" title="Forge Your Own Content Kit" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>';
   }
@@ -183,10 +183,10 @@
      how:'Open a new chat in <b>ChatGPT Work</b> and paste this. Do every step after this <b>in this same chat</b>, so ChatGPT has all your pieces when you build the board at the end.',
      prompt:function(){ return 'Create a brand palette and font pairing for '+F('name')+', '+F('what')+' for '+F('who')+'. The brand should feel '+F('vibe')+'.'+((state.f.colors||'').trim()?' Start from these colors: '+F('colors')+'.':'')+'\n\nGive me eight colors with hex codes in these roles: two primary, two secondary, one light neutral, one dark neutral and two small accents. Then give me three Google Fonts: one for headings, one for subheadings and labels, one for body text. For each color and each font, add one line on where it goes on my posts and pages.\n\nThen create one image: the eight colors as circles in different sizes, each labeled with its role, on a plain white background.'; },
      tip:'Save the palette image. It goes in with every prompt from here on, so your whole board stays in these colors.'},
-    {short:'Logo', title:'Your logo', get:'You get a square logo with your name, plus the emblem alone for your profile picture.',
+    {short:'Logo', title:'Your logo', get:'You get eight square logo options on white to choose from, plus a no-text version of your favorite for your profile picture.',
      how:'In the same chat, attach your palette image and paste:',
-     prompt:function(){ return 'Use the attached palette as my colors. Create a square 1:1 logo for '+F('name')+'. Make it an illustrated emblem built from '+F('symbols')+', with '+F('vibe')+' detail, and set the name '+F('name')+' beneath it in an elegant serif from my font list. Center it on a plain white background with clear space around the edges so it still reads small. Spell the name exactly as written.\n\nThen create a second version: the emblem alone, with no text, for my profile picture.'; },
-     tip:'Ask for three versions if the first one misses, then keep your favorite. To change one detail, circle it and say what to change.'},
+     prompt:function(){ return 'Use the attached palette as my colors. Create eight possible square 1:1 logos for '+F('name')+', one at a time, each as its own downloadable file. Draw on '+F('symbols')+' and make them feel '+F('vibe')+'. Make the eight truly different from each other, in layout, style and how the name and the symbol come together.\n\nIsolate every logo on a plain white background. Spell '+F('name')+' exactly as written.\n\nWhen I tell you which one I pick, create a version of it with no text, for my profile picture.'; },
+     tip:'Tell ChatGPT the number of the one you want. To change one detail on it, circle it and say what to change.'},
     {short:'Features', title:'Feature backgrounds', get:'You get four wide 16:9 images (1920 by 1080) for your website header, sales page, YouTube and email banners.',
      how:'In the same chat, attach your palette and your logo and paste:',
      prompt:function(){ return 'Use the attached palette and logo as my colors and style. Create four wide 16:9 feature images for '+F('name')+', one at a time, each as its own downloadable file. Each one shows '+F('scene')+', in a world that feels '+F('vibe')+', with '+F('symbols')+' in the setting. Vary the moment and the framing across the four.\n\nKeep one side of every image calmer and darker so a headline can sit on it. Match all four in light, color and mood.'; },
