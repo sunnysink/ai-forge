@@ -155,6 +155,7 @@
   var VIDEO_ID = '';
   /* Sunny's brand board template: put its share link here. */
   var TEMPLATE_URL = 'https://canva.link/kdhvk0rz0593zjl';
+  var KIT_TEMPLATE_URL = 'https://canva.link/cepb1n6dhhw0h33';
   if (VIDEO_ID) {
     document.getElementById('video').innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '" title="Forge Your Own Content Kit" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>';
   }
@@ -231,7 +232,7 @@
   function render(){
     drawStrip();
     if (state.step >= STEPS.length) {
-      stage.innerHTML = '<div class="step finished"><div class="count">All eight steps done</div><h3>Your brand board is built</h3><p>Post it in the community so we can all see it, and bring it to Build Studio on Friday if you want a second pair of eyes.</p><div class="nav"><button class="ghost" type="button" id="back">← Back to step 8</button></div></div>';
+      stage.innerHTML = '<div class="step finished"><div class="count">All eight steps done</div><h3>Your brand board is built</h3><p>Now put your pieces into the content kit template in Canva: make your own copy and swap in your images.</p><p><a class="btn" style="display:inline-block;text-decoration:none" href="'+KIT_TEMPLATE_URL+'" target="_blank" rel="noopener">Open the content kit template</a></p><p>Post your board in the community so we can all see it, and bring it to Build Studio on Friday if you want a second pair of eyes.</p><div class="nav"><button class="ghost" type="button" id="back">← Back to step 8</button></div></div>';
       document.getElementById('back').onclick = function(){ state.step = STEPS.length-1; save(); render(); };
       return;
     }
