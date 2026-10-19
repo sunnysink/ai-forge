@@ -229,11 +229,50 @@
     });
   }
 
+
+  var SOCIAL = [
+    {title:'Make a new image in your style', how:'Drop your brand board into ChatGPT and paste:',
+     text:'Use the attached image as the color palette and style. Create an image of [what you need] for my [Instagram post / sales page / freebie cover], [1:1 for a post / 3:2 for a sales page / 9:16 for a story].',
+     tip:'The size bracket sets the shape, so your image fits where it is going.'},
+    {title:'Build a matching set', how:'Do this one in <b>ChatGPT Work</b>. Drop in any image from your board and paste:',
+     text:'Use this image as the style. Create a set of ten images that match it for my [your kind of business]. Then give me three matching backgrounds I can put text on.',
+     tip:'When an image misses, ask again in different words. To take something out, tell ChatGPT what to remove and circle the spot so it knows exactly where.'},
+    {title:'Plan a seven-part series: step 1, plan it', how:'Four steps, all in one <b>ChatGPT Work</b> chat. Start a new chat with no image attached and paste:',
+     text:'Help me plan a seven-part series for my [Instagram / Facebook / wherever you post] for my [your kind of business] on [your topic]. It should teach my followers [what they will learn].\n\nFor each of the seven posts, give me a headline of 3 to 6 words that names the idea of that post, and one practical tip, one or two short sentences, that a follower can use today.\n\nKeep it to text for now. We\'ll make the images next.',
+     tip:'Pick a topic your people already ask you about. Read all seven and change any headline or tip that doesn\'t sound like you, until you\'d post every one.'},
+    {title:'Step 2, make the images', how:'In the same chat, drop in your brand board and paste:',
+     text:'Use the attached image as the color palette and style. Create the seven images for this series, one at a time, each as its own square file. Put each post\'s headline and tip on its image, spelled exactly as we wrote them, with clear space around the edges and large enough to read on a phone. Keep the palette, light and look the same across all seven.',
+     tip:'ChatGPT pulls different scenes from your board for each post, so the seven look like one set without repeating.'},
+    {title:'Step 3, write the captions', how:'Same chat:',
+     text:'Now write a caption for each of the seven posts, for [Instagram / Facebook]. Open each one with a line that makes someone stop scrolling, teach the tip in a few short sentences, and end with [what you want them to do: comment, save, visit your link]. Keep each caption under 150 words.',
+     tip:'Paste in a caption you\'ve written before and ask ChatGPT to match how you write.'},
+    {title:'Step 4, make the story graphics', how:'Same chat:',
+     text:'Please turn all seven of the images into Instagram story size.',
+     tip:'Post the feed image and its story on the same day. Seven days of posts and stories from one chat.'}
+  ];
+  function socialHTML(){
+    return '<h3 style="margin-top:18px">Prompts for your social media</h3><p>The same prompts that come with every content kit, pointed at your brand board.</p>' +
+      SOCIAL.map(function(x,i){ return '<h4 style="margin:12px 0 0;font-family:var(--serif);font-size:21px;font-weight:600">'+x.title+'</h4><p class="how">'+x.how+'</p><div class="box" id="sbox'+i+'">'+x.text.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'<button class="copy" type="button" data-s="'+i+'">Copy</button></div><p class="tip">'+x.tip+'</p>'; }).join('');
+  }
+  function bindSocial(){
+    document.querySelectorAll('[data-s]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var box = document.getElementById('sbox'+btn.getAttribute('data-s')), text = '';
+        box.childNodes.forEach(function(nd){ if (nd !== btn) text += nd.textContent; });
+        text = text.trim();
+        function done(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy'; },1800); }
+        function fallback(){ var r = document.createRange(); r.selectNodeContents(box); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); btn.textContent = 'Selected, press copy'; setTimeout(function(){ btn.textContent = 'Copy'; },2600); }
+        try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done,fallback); else fallback(); } catch(e){ fallback(); }
+      });
+    });
+  }
+
   function render(){
     drawStrip();
     if (state.step >= STEPS.length) {
-      stage.innerHTML = '<div class="step finished"><div class="count">All eight steps done</div><h3>Your brand board is built</h3><p>Now put your pieces into the content kit template in Canva: make your own copy and swap in your images.</p><p><a class="btn" style="display:inline-block;text-decoration:none" href="'+KIT_TEMPLATE_URL+'" target="_blank" rel="noopener">Open the content kit template</a></p><p>Post your board in the community so we can all see it, and bring it to Build Studio on Friday if you want a second pair of eyes.</p><div class="nav"><button class="ghost" type="button" id="back">← Back to step 8</button></div></div>';
+      stage.innerHTML = '<div class="step finished"><div class="count">All eight steps done</div><h3>Your brand board is built</h3><p>Now put your pieces into the content kit template in Canva: make your own copy and swap in your images.</p><p><a class="btn" style="display:inline-block;text-decoration:none" href="'+KIT_TEMPLATE_URL+'" target="_blank" rel="noopener">Open the content kit template</a></p>'+socialHTML()+'<p>Post your board in the community so we can all see it, and bring it to Build Studio on Friday if you want a second pair of eyes.</p><div class="nav"><button class="ghost" type="button" id="back">← Back to step 8</button></div></div>';
       document.getElementById('back').onclick = function(){ state.step = STEPS.length-1; save(); render(); };
+      bindSocial();
       return;
     }
     var st = STEPS[state.step], n = state.step;
