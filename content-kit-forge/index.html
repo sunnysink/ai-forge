@@ -152,13 +152,13 @@
 </main>
 
 <script>
-  /* The training video: put the YouTube id here once it's uploaded. */
-  var VIDEO_ID = '';
+  /* The training video: put the Loom id here (the code after /share/ in the Loom link). */
+  var LOOM_ID = 'cd69819c1af3409c937d51cb2e30bf1c';
   /* Sunny's brand board template: put its share link here. */
   var TEMPLATE_URL = 'https://canva.link/kdhvk0rz0593zjl';
   var KIT_TEMPLATE_URL = 'https://canva.link/cepb1n6dhhw0h33';
-  if (VIDEO_ID) {
-    document.getElementById('video').innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '" title="Forge Your Own Content Kit" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  if (LOOM_ID) {
+    document.getElementById('video').innerHTML = '<iframe src="https://www.loom.com/embed/' + LOOM_ID + '?hide_owner=true&hide_share=true&hideEmbedTopBar=true" title="Forge Your Own Content Kit" allow="fullscreen" allowfullscreen></iframe>';
   }
 
   var KEY = 'content-kit-forge-board';
