@@ -52,13 +52,18 @@
   .btn{padding:14px 22px;border-radius:999px;border:0;font:600 15.5px var(--sans);cursor:pointer;background:linear-gradient(135deg,var(--gold),var(--ember));color:var(--bg-2)}
   .btn[disabled]{opacity:.6;cursor:wait}
   .btn:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-  .about{margin:22px 0 0;font-size:15.5px;color:var(--ink-dim)}
+  .about{margin-top:22px;padding:18px 20px;border:1px solid var(--edge);border-radius:10px;background:rgba(14,8,14,0.6);display:grid;gap:8px;font-size:15.5px;color:var(--ink-dim)}
+  .about p{margin:0}
   .about strong{color:var(--ink);font-weight:600}
+  .about-k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .about a{color:var(--gold);font-weight:600;text-decoration:none}
+  .about a:hover,.about a:focus-visible{text-decoration:underline}
+  .about-mob{display:none}
   .fine{font-size:13px;color:var(--ink-dim);margin:0}
   .success h2{font-family:var(--serif);font-size:30px;margin:0 0 6px;font-weight:600}
   .success p{margin:0}
   footer{grid-column:1/-1;font-size:13px;color:var(--ink-dim)}
-  @media (max-width:760px){.wrap{grid-template-columns:1fr;gap:28px;padding-block:32px 52px}.art{order:-1}}
+  @media (max-width:760px){.wrap{grid-template-columns:1fr;gap:28px;padding-block:32px 52px}.art{order:-1}.about-desk{display:none}.about-mob{display:grid}}
 </style>
 </head>
 <body>
@@ -75,8 +80,6 @@
       <li>The replay, if you can't make it live</li>
     </ul>
 
-    <p class="about"><strong>Soul-Forged Founders</strong> is my Skool community where tarot readers, coaches and healers learn to run their business with Claude. Lessons from your first prompt onward, a new challenge board every month, and 30 ready-made AI tools.</p>
-
     <div class="formcard" id="formcard">
       <label for="party-email">Save your spot. The party link comes to your inbox right away.</label>
       <form class="row" id="party-form" novalidate>
@@ -89,10 +92,20 @@
       <h2>You're in</h2>
       <p>Check your inbox for an email from Sunny Sink. If it isn't there in a few minutes, look in promotions or spam.</p>
     </div>
+    <div class="about about-mob">
+      <p class="about-k">Who's throwing the party</p>
+      <p><strong>Soul-Forged Founders</strong> is my Skool community where tarot readers, coaches and healers learn to run their business with Claude. Lessons from your first prompt onward, a new challenge board every month, and 30 ready-made AI tools.</p>
+      <a href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">See inside Soul-Forged Founders →</a>
+    </div>
   </section>
 
   <div class="art">
     <img src="hero.jpg" alt="SFF Halloween Party graphic: three smiling ghosts with a spellbook, a wand and a glowing cauldron among candles and pumpkins, under the words FREE and We're giving away 15 prompts for spiritual business owners." width="900" height="1125">
+    <div class="about about-desk">
+      <p class="about-k">Who's throwing the party</p>
+      <p><strong>Soul-Forged Founders</strong> is my Skool community where tarot readers, coaches and healers learn to run their business with Claude. Lessons from your first prompt onward, a new challenge board every month, and 30 ready-made AI tools.</p>
+      <a href="https://www.skool.com/soul-forged-founders/about" target="_blank" rel="noopener">See inside Soul-Forged Founders →</a>
+    </div>
   </div>
 
   <footer>✦ Sunny Sink · Soul-Forged Founders</footer>
