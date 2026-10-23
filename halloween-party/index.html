@@ -52,6 +52,8 @@
   .btn{padding:14px 22px;border-radius:999px;border:0;font:600 15.5px var(--sans);cursor:pointer;background:linear-gradient(135deg,var(--gold),var(--ember));color:var(--bg-2)}
   .btn[disabled]{opacity:.6;cursor:wait}
   .btn:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .about{margin:22px 0 0;font-size:15.5px;color:var(--ink-dim)}
+  .about strong{color:var(--ink);font-weight:600}
   .fine{font-size:13px;color:var(--ink-dim);margin:0}
   .success h2{font-family:var(--serif);font-size:30px;margin:0 0 6px;font-weight:600}
   .success p{margin:0}
@@ -73,8 +75,10 @@
       <li>The replay, if you can't make it live</li>
     </ul>
 
+    <p class="about"><strong>Soul-Forged Founders</strong> is my Skool community where tarot readers, coaches and healers learn to run their business with Claude. Lessons from your first prompt onward, a new challenge board every month, and 30 ready-made AI tools.</p>
+
     <div class="formcard" id="formcard">
-      <label for="party-email">Save your spot. The party link comes to your inbox the day before.</label>
+      <label for="party-email">Save your spot. The party link comes to your inbox right away.</label>
       <form class="row" id="party-form" novalidate>
         <input id="party-email" type="email" name="fields[email]" placeholder="Your email" autocomplete="email" required aria-required="true">
         <button class="btn" type="submit" id="party-btn">Save my spot</button>
