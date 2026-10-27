@@ -206,7 +206,8 @@
       if(p.numbered && p.numbered.indexOf(k) > -1){ idx[k] = (idx[k]||0)+1; k = k + ' ' + idx[k]; label = label + ' ' + idx[k]; }
       var v = (st.vals[k]||'').trim();
       if(html) return v ? '<span class="val">'+esc(v)+'</span>' : '<span class="gap">['+esc(label)+']</span>';
-      return v ? v : '['+label+']';
+      /* a blank copies as its field name only, never the examples after the colon */
+      return v ? v : '['+label.split(':')[0].trim()+']';
     }).replace(/\s+$/,'');
   }
   function isLong(label){ return /paste|describe|sentences|notes|explanation/i.test(label); }
