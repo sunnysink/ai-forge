@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The 2027 Content Calendar</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="A post for every day from November 2026 through December 2027, made for spiritual business owners and coaches. Fill in your business once and every prompt is ready for Claude or ChatGPT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Forge at Twilight (SFF). One column of setup steps, then a month grid; a day opens a sheet with its prompts. */
+  :root{
+    color-scheme:dark;
+    --bg:#0B2422; --bg2:#071715; --ink:#EFE2CE; --ink-dim:rgba(239,226,206,.72);
+    --copper:#B89156; --copper-lt:#B89156; --ember:#C8793E; --ember-glow:#D68847;
+    --forest:#596248; --sage:#8DA07A; --mauve:#8C6B70; --plum:#4A2B43; --gold:#B89156;
+    --card:rgba(11,36,34,.72); --card-plum:rgba(45,25,40,.72); --line:rgba(184,145,86,.26); --well:rgba(5,18,17,.55);
+    --holo:linear-gradient(135deg,#B89156 0%,#C8793E 45%,#EFE2CE 100%);
+    --holo-2:linear-gradient(135deg,#D68847,#C8793E,#B89156);
+    --on-accent:#071715;
+    --serif:'Cormorant Garamond','Hoefler Text',Georgia,serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none!important}
+  html,body{background:var(--bg)}
+  body{font-family:var(--sans);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(ellipse at 15% 0%,rgba(200,121,62,.08) 0%,transparent 45%),radial-gradient(ellipse at 85% 0%,rgba(74,43,67,.44) 0%,transparent 50%),radial-gradient(ellipse at 40% 5%,rgba(140,107,112,.20) 0%,transparent 50%),radial-gradient(ellipse at 50% 100%,rgba(184,145,86,.14) 0%,transparent 50%),radial-gradient(ellipse at 90% 80%,rgba(140,107,112,.28) 0%,transparent 55%);background-attachment:fixed;
+    min-height:100vh;padding-block:40px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .wrap{max-width:980px;margin:0 auto;display:grid;gap:22px}
+  header{text-align:center;display:grid;gap:8px}
+  .eyebrow{font:500 11.5px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--copper)}
+  h1{font:600 clamp(38px,7vw,64px)/1.02 var(--serif);text-wrap:balance}
+  h1 em{font-style:italic;background:var(--holo);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font:italic 500 19px var(--serif);color:var(--ink-dim)}
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .strip button{all:unset;cursor:pointer;text-align:center;padding:10px 6px;border-radius:999px;border:1px solid var(--line);font:500 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+  .strip button[aria-current="step"]{background:var(--holo-2);color:var(--on-accent);border-color:transparent}
+  .strip button.done{color:var(--copper-lt)}
+  .strip button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .panel{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:16px}
+  .panel h2{font:600 28px/1.15 var(--serif)}
+  .panel p.lead{color:var(--ink-dim)}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .field{display:grid;gap:6px;min-width:0}
+  .field.wide{grid-column:1/-1}
+  label.lab{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--copper-lt)}
+  .field small{color:var(--ink-dim);font-size:12.5px}
+  input[type=text],textarea{width:100%;background:var(--well);border:1px solid var(--line);border-radius:12px;color:var(--ink);font:400 15px var(--sans);padding:11px 13px}
+  textarea{min-height:70px;resize:vertical}
+  input:focus,textarea:focus{outline:2px solid var(--copper);outline-offset:1px}
+  .btn{all:unset;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:999px;font:600 14.5px var(--sans);background:var(--holo-2);color:var(--on-accent)}
+  .btn.line{background:none;border:1px solid var(--line);color:var(--ink)}
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .acts{display:flex;flex-wrap:wrap;gap:10px}
+  .toggles{display:grid;gap:12px}
+  .tog{display:flex;gap:14px;align-items:flex-start;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--well);cursor:pointer}
+  .tog input{width:20px;height:20px;margin-top:3px;accent-color:var(--ember);flex:none}
+  .tog b{font:600 17px var(--sans)}
+  .tog span{display:block;color:var(--ink-dim);font-size:14px}
+  .count{font:500 12px var(--mono);color:var(--gold)}
+  .total{font:600 20px var(--serif);color:var(--copper-lt)}
+  .stack{display:grid;gap:18px}
+  .center{justify-content:center;text-align:center}
+  .calhead{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;text-align:center}
+  .calhead h2{font:600 34px/1.1 var(--serif)}
+  .theme{color:var(--ink-dim);font:italic 500 17px var(--serif)}
+  .navb{all:unset;cursor:pointer;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:18px;color:var(--copper-lt)}
+  .navb:disabled{opacity:.3;cursor:default}
+  .navb:focus-visible{outline:2px solid var(--gold)}
+  .grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+  .dow{font:500 10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);text-align:center;padding-bottom:4px}
+  .day{all:unset;cursor:pointer;min-height:96px;border:1px solid var(--line);border-radius:12px;background:var(--well);padding:8px;display:flex;flex-direction:column;gap:4px;min-width:0}
+  .day:hover{border-color:var(--copper)}
+  .day:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .day.blank{visibility:hidden}
+  .day.today{border-color:var(--ember);box-shadow:0 0 0 1px var(--ember) inset}
+  .day.posted{opacity:.55}
+  .num{font:600 20px var(--serif);display:flex;justify-content:space-between;align-items:center}
+  .num .tick{font:600 12px var(--sans);color:var(--gold)}
+  .type{font:500 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--copper-lt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .idea{font-size:12px;color:var(--ink-dim);line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .dots{display:flex;gap:4px;margin-top:auto}
+  .dot{width:7px;height:7px;border-radius:50%}
+  .dot.cosmic{background:var(--gold)} .dot.spiritual{background:var(--mauve)} .dot.holiday{background:var(--ember)}
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;font-size:13px;color:var(--ink-dim)}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+  .soon{padding:40px 16px;text-align:center;color:var(--ink-dim);border:1px dashed var(--line);border-radius:14px}
+  .veil{position:fixed;inset:0;background:rgba(5,18,17,.7);display:grid;place-items:end center;z-index:20;padding:16px}
+  .sheet{width:100%;max-width:720px;max-height:88vh;overflow:auto;background:rgba(45,25,40,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:14px;margin-bottom:env(safe-area-inset-bottom,0px)}
+  @media(min-width:760px){.veil{place-items:center}}
+  .sheet header{text-align:left;gap:4px}
+  .sheet h3{font:600 28px/1.15 var(--serif)}
+  .pbox{white-space:pre-wrap;background:var(--well);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14.5px;min-width:0;overflow-wrap:anywhere}
+  .chip{display:inline-block;font:500 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--copper-lt)}
+  .chip.cosmic{color:var(--gold)} .chip.spiritual{color:#C4A9AE} .chip.holiday{color:var(--ember-glow)}
+  .tracker{display:grid;gap:12px;justify-items:center;text-align:center;padding:18px;border-radius:16px;background:var(--well);border:1px solid var(--line)}
+  .trow{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:8px 18px}
+  .big{font:600 30px/1 var(--serif)}
+  .big small{font:500 14px var(--sans);color:var(--ink-dim);margin-left:6px}
+  .pips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+  .pip{width:14px;height:14px;border-radius:50%;border:1px solid var(--line);background:transparent}
+  .pip.single{background:#B89156;border-color:#B89156} .pip.carousel{background:#C8793E;border-color:#C8793E} .pip.video{background:#8DA07A;border-color:#8DA07A} .pip.story{background:#C4A9AE;border-color:#C4A9AE}
+  .pip.now{box-shadow:0 0 0 2px var(--bg2),0 0 0 3px var(--ember-glow)}
+  .fcount i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+  .fcount{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+  .fcount span{font:500 12.5px var(--mono);padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-dim)}
+  .fcount b{color:var(--ink);font-weight:600}
+  .streak{font:500 13px var(--mono);color:var(--gold)}
+  .saved.one{min-height:0}
+  .saved{width:100%;min-height:90px;background:var(--well);border:1px solid var(--line);border-radius:12px;color:var(--ink);font:400 14.5px var(--sans);padding:11px 13px;resize:vertical}
+  .sff{display:grid;gap:10px;justify-items:center;text-align:center;padding:18px;border-radius:16px;background:var(--card-plum);border:1px solid var(--gold);box-shadow:0 0 14px rgba(184,145,86,.32)}
+  .sff .eyebrow{color:var(--gold)}
+  .sff p{color:var(--ink)}
+  #sff-big{padding:28px 22px;gap:14px}
+  #sff-big p{font-size:17px;max-width:none}
+  #sff-big p.note{font-size:13px}
+  .sffh{font:600 clamp(34px,6vw,48px)/1.05 var(--serif)}
+  .sffh em{font-style:italic;background:var(--holo);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sff a.btn{text-decoration:none}
+  .recap canvas{width:100%;max-width:420px;height:auto;border-radius:14px;justify-self:center}
+  .fmt{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .fmt button{all:unset;cursor:pointer;padding:8px 14px;border-radius:999px;border:1px solid var(--line);font:500 14px var(--sans);color:var(--ink-dim)}
+  .fmt button[aria-pressed="true"]{background:var(--copper);border-color:var(--copper);color:var(--on-accent)}
+  .fmt button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .block{display:grid;gap:8px}
+  .block h4{font:600 17px var(--sans)}
+  .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--copper);color:var(--on-accent);font-weight:600;padding:10px 18px;border-radius:999px;z-index:30}
+  .note{font-size:13px;color:var(--ink-dim)}
+  @media(max-width:640px){
+    .fields{grid-template-columns:1fr}
+    .day{min-height:58px;padding:6px}
+    .idea,.type{display:none}
+    .num{font-size:17px}
+    .panel{padding:18px}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Soul-Forged Founders · Free</div>
+    <h1>The 2027 <em>Content</em> Calendar</h1>
+    <p class="sub">A post for every day, November 2026 through December 2027.</p>
+  </header>
+
+  <nav class="strip" aria-label="Steps">
+    <button type="button" data-step="1">1 · Your business</button>
+    <button type="button" data-step="2">2 · Your add-ons</button>
+    <button type="button" data-step="3">3 · Your calendar</button>
+  </nav>
+
+  <section class="panel" id="step1">
+    <h2>Tell it about your business</h2>
+    <p class="lead">Fill this in once. Every prompt in the calendar uses it, so what you get back is about your work. Leave a box empty and the prompt keeps a [bracket] for you to fill in later.</p>
+    <div class="fields">
+      <div class="field"><label class="lab" for="f-me">Your name</label><input type="text" id="f-me" data-k="me" placeholder="Luna Reyes"></div>
+      <div class="field"><label class="lab" for="f-name">Your business name</label><input type="text" id="f-name" data-k="name" placeholder="Moonlit Coaching"></div>
+      <div class="field wide"><label class="lab" for="f-what">What you do and who you serve</label><input type="text" id="f-what" data-k="what" placeholder="a tarot reader for women leaving corporate jobs"></div>
+      <div class="field"><label class="lab" for="f-result">The result you help them get</label><input type="text" id="f-result" data-k="result" placeholder="trust their own decisions"></div>
+      <div class="field"><label class="lab" for="f-offer">Your main offer</label><input type="text" id="f-offer" data-k="offer" placeholder="a 3-month coaching program"></div>
+      <div class="field"><label class="lab" for="f-free">Your free thing</label><input type="text" id="f-free" data-k="freebie" placeholder="a free guide, quiz or class"></div>
+      <div class="field"><label class="lab" for="f-plat">Where you post</label><input type="text" id="f-plat" data-k="platform" placeholder="Instagram and Facebook"></div>
+      <div class="field"><label class="lab" for="f-voice">Three words for how you sound</label><input type="text" id="f-voice" data-k="voice" placeholder="warm, direct, a little funny"></div>
+      <div class="field wide"><label class="lab" for="f-more">Anything else every post should know</label><textarea id="f-more" data-k="more" placeholder="I never post about politics. I call my clients my circle."></textarea><small>Optional. Your words go into every prompt.</small></div>
+    </div>
+    <div class="acts"><button class="btn" type="button" id="to2">Save and continue</button></div>
+  </section>
+
+  <section class="panel" id="step2" hidden>
+    <h2>Pick your add-ons</h2>
+    <p class="lead">Every day already has a post that works for any business. Turn on the extras that fit yours and they show up on their days as bonus prompts.</p>
+    <p class="lead"><b>You don't have to post every day.</b> Pick the ones you'll make. Three posts a week, every week, grows a business faster than seven one week and none the next.</p>
+    <div class="toggles">
+      <label class="tog"><input type="checkbox" data-layer="holiday"><div><b>Everyday holidays</b> <span class="count" data-c="holiday"></span><span>New Year, Valentine's, Mother's Day, back to school, Black Friday: the days every business can post about.</span></div></label>
+      <label class="tog"><input type="checkbox" data-layer="cosmic"><div><b>Cosmic days</b> <span class="count" data-c="cosmic"></span><span>New and full moons, eclipses, retrogrades, equinoxes and solstices.</span></div></label>
+      <label class="tog"><input type="checkbox" data-layer="spiritual"><div><b>Witchy and spiritual days</b> <span class="count" data-c="spiritual"></span><span>The Wheel of the Year and other spiritual days.</span></div></label>
+    </div>
+    <p class="total" id="total"></p>
+    <div class="acts"><button class="btn" type="button" id="to3">Open my calendar</button><button class="btn line" type="button" id="back1">Back</button></div>
+  </section>
+
+  <section class="stack" id="step3" hidden>
+    <div class="panel">
+      <div class="calhead">
+        <button type="button" class="navb" id="prev" aria-label="Previous month">‹</button>
+        <div><h2 id="mtitle"></h2><p class="theme" id="mtheme"></p></div>
+        <button type="button" class="navb" id="next" aria-label="Next month">›</button>
+      </div>
+      <div class="legend" id="legend"></div>
+      <div id="cal"></div>
+      <div class="tracker" id="tracker"></div>
+    </div>
+    <div class="acts center">
+      <button class="btn line" type="button" id="today">Today</button>
+      <button class="btn line" type="button" id="ics">Add to Google Calendar</button>
+      <button class="btn line" type="button" id="export">Download as a spreadsheet</button>
+      <button class="btn line" type="button" id="backup">Save a backup</button>
+      <button class="btn line" type="button" id="restore">Load a backup</button>
+      <input type="file" id="restore-file" accept="application/json,.json" hidden>
+    </div>
+    <p class="note center">Everything you fill in and mark is saved in this browser. Save a backup to move it to another phone or computer.</p>
+    <div class="sff" id="sff-big"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  var KEY='sff-content-calendar-2027-v1';
+  var TYPES={teach:'Teach',story:'Story',proof:'Proof',talk:'Conversation',invite:'Invitation',bts:'Behind the scenes',reflect:'Reflection'};
+  var ASK={teach:'Ask people to save it for later or send it to a friend who needs it.',story:'Ask people to share a moment like it in the comments.',proof:'Invite anyone who wants the same result to send me a message.',talk:'Ask people to answer in the comments.',invite:'End by asking people to comment one word or send me a message to get the details, so the sale starts as a conversation.',bts:'Ask people what they want to see next.',reflect:'Ask people to share their own answer in the comments.'};
+  // Only posts built on the person's own experience stop to ask a question.
+  var ASKS_FIRST={story:1,proof:1,reflect:1};
+  // Whether the post points at the offer or the free thing.
+  // The format each post type does best in (research 10/25): carousels get saved, videos reach new people.
+  var SUGGEST={teach:'carousel',proof:'carousel',story:'video',reflect:'video',invite:'video',talk:'single',bts:'video'};
+  var LEAD={teach:'You can mention my free thing in one line before the action.',proof:'You can name my main offer in one line before the action.',invite:''};
+  var LAYERS={cosmic:'Cosmic day',spiritual:'Spiritual day',holiday:'Holiday'};
+  var FORMATS={
+    single:{lab:'Single image',a:'a single-image post',how:'give me the hook for the image, under ten words and different from the caption\'s first line. After that, write the caption as one piece of text, ready to paste, opening on a hook line, one clear idea, one action at the end and a few hashtags.'},
+    carousel:{lab:'Carousel',a:'a carousel post',how:'write the slides: 5 to 7 of them, a hook on the first slide, one point per slide in a few words, and the action on the last slide. After that, write the caption as one piece of text, ready to paste, opening on a hook line, then the same action at the end and a few hashtags.'},
+    video:{lab:'Short video',a:'a short video (a reel or a TikTok)',how:'write the video: a hook to say in the first three seconds and the words to put on screen with it, then three to five short beats to say on camera, under 45 seconds in all, with the action at the end. After that, write the caption as one piece of text, ready to paste, opening on a hook line, then the same action at the end and a few hashtags.'},
+    story:{lab:'Story',a:'a set of stories',how:'write 3 to 5 story frames with a few words on each: a hook on the first frame and one clear idea across the rest.'}
+  };
+  var MONTHS=[
+    {y:2026,m:10,theme:'Gratitude, proof and your holiday offer'},
+    {y:2026,m:11,theme:'Closing the year: gifts, rest and what comes next'},
+    {y:2027,m:0,theme:'Fresh starts and a clear offer'},{y:2027,m:1,theme:'Love for your people: connection and care'},{y:2027,m:2,theme:'Growth and being seen'},{y:2027,m:3,theme:'Trust and proof'},
+    {y:2027,m:4,theme:'Community and support'},{y:2027,m:5,theme:'Halfway through the year'},{y:2027,m:6,theme:'Freedom and simplicity'},{y:2027,m:7,theme:'Back to basics'},
+    {y:2027,m:8,theme:'A new season of learning'},{y:2027,m:9,theme:'Shadow and transformation'},{y:2027,m:10,theme:'Gratitude, proof and your holiday offer'},{y:2027,m:11,theme:'Celebrate the year and plan the next'}
+  ];
+  // Core: one per day. t = post type, i = the idea.
+  // The week: Sun story or reflection, Mon/Tue/Thu teach (Tue is a mistake or myth), Wed proof, Fri invitation, Sat conversation.
+  var CORE={
+    '2026-11-01':['reflect','Share three things you are grateful for in your work this year.'],
+    '2026-11-02':['teach','Teach one thing your people can do this month to finish the year strong.'],
+    '2026-11-03':['teach','Teach a common mistake people make in your area of work and what to do instead.'],
+    '2026-11-04':['proof','Share a thank-you message a client sent you and what that moment meant to you. [paste the message, no names unless they said yes]'],
+    '2026-11-05':['teach','Teach the first step someone should take if they want the result you help people get.'],
+    '2026-11-06':['invite','Tell people what you are offering for the rest of the year and the date it closes.'],
+    '2026-11-07':['talk','Ask your people what they are most grateful for this season, and share yours first.'],
+    '2026-11-08':['story','Tell the story of the first person who ever paid you for this work.'],
+    '2026-11-09':['teach','Teach a simple gratitude practice connected to your work that takes five minutes or less.'],
+    '2026-11-10':['teach','Teach a myth about your work that you hear all the time, and the truth your clients need to hear.'],
+    '2026-11-11':['proof','Share a before and after: where a client started and where they are now. [describe it]'],
+    '2026-11-12':['teach','Teach one small thing your clients can do between sessions that moves them toward the result they want.'],
+    '2026-11-13':['invite','Share a gift idea from your business, a session, a product or a gift card, and who it is perfect for. [describe it]'],
+    '2026-11-14':['talk','Ask what has been hardest for your people this year, and answer each reply with one encouraging line.'],
+    '2026-11-15':['reflect','Share how this work has changed you.'],
+    '2026-11-16':['teach','Teach how to get through the busy holiday season using what you know from your work.'],
+    '2026-11-17':['teach','Teach the question people should ask before they hire someone in your field, and what a good answer sounds like.'],
+    '2026-11-18':['proof','Share a real number you are proud of from this year: people helped, sessions held or years in practice. [your number]'],
+    '2026-11-19':['teach','Teach how to pick one goal for the last six weeks of the year and actually keep it.'],
+    '2026-11-20':['invite','Give your followers early access to your holiday offer, with the date it opens to everyone.'],
+    '2026-11-21':['talk','Ask what your people want to have done before the year ends, and offer to cheer them on.'],
+    '2026-11-22':['story','Tell the story of someone who helped you along the way: a mentor, a teacher or a friend.'],
+    '2026-11-23':['teach','Teach three questions your people can ask themselves before the new year.'],
+    '2026-11-24':['teach','Teach the holiday-season mistake you see people make in your area of work, and what to do instead.'],
+    '2026-11-25':['proof','Share three short client reviews in one post. [paste them]'],
+    '2026-11-26':['teach','Teach one question your people can bring to a holiday gathering that starts a real conversation.'],
+    '2026-11-27':['invite','Make your biggest offer of the season: what it is, the price, the deadline and how to say yes.'],
+    '2026-11-28':['talk','Ask your people to share one small win from this year in the comments.'],
+    '2026-11-29':['reflect','Share what you are letting go of before December.'],
+    '2026-11-30':['teach','Teach the one habit you would recommend to anyone starting the new year in your area of work.'],
+    '2026-12-01':["teach","Teach a common end-of-year money or time mistake your people make, and what to do instead."],
+    '2026-12-02':["proof","Share a message from a client that shows the change they made this year. [paste it, no names unless they said yes]"],
+    '2026-12-03':["teach","Teach a quick practice your people can do in a busy week to feel calmer."],
+    '2026-12-04':["invite","Share the gifts people can give from your business this season and the last day to order. [describe them]"],
+    '2026-12-05':["talk","Ask your people how they want to feel by the end of the year."],
+    '2026-12-06':["reflect","Share the moment this year when you knew your work was making a difference."],
+    '2026-12-07':["teach","Teach how to wind down the year and still look after the clients who rely on you."],
+    '2026-12-08':["teach","Teach a myth about rest or slowing down that your clients believe, and the truth."],
+    '2026-12-09':["proof","Share your year in numbers: clients, sessions, students, products or posts. [your numbers]"],
+    '2026-12-10':["teach","Teach how to make a simple plan for the first month of the new year."],
+    '2026-12-11':["invite","Tell people about your offer for January and invite them onto the waitlist."],
+    '2026-12-12':["talk","Ask your people what they are giving themselves this holiday season."],
+    '2026-12-13':["story","Tell the story of a hard day in your business this year and what got you through it."],
+    '2026-12-14':["teach","Teach one simple way your people can look after themselves through the holidays."],
+    '2026-12-15':["teach","Teach the mistake people make when they set new year goals, and what works better."],
+    '2026-12-16':["proof","Share something a client made, wrote or achieved with your help. [describe it]"],
+    '2026-12-17':["teach","Teach a short end-of-year practice anyone can do, connected to your work."],
+    '2026-12-18':["invite","Make a last call for your holiday offer, with the deadline and how to say yes."],
+    '2026-12-19':["talk","Ask your people to share one word for their year."],
+    '2026-12-20':["reflect","Share how you rest and refill during the darkest weeks of the year."],
+    '2026-12-21':["teach","Teach three questions that show your people what worked for them this year."],
+    '2026-12-22':["teach","Teach a myth about the holidays and your area of work that you hear every December."],
+    '2026-12-23':["proof","Share the kindest thing a client said to you this year. [paste it]"],
+    '2026-12-24':["teach","Teach how to stay present with family over the holidays using something from your work."],
+    '2026-12-25':["invite","Thank your people for this year and tell them when you are back and how to book in the new year."],
+    '2026-12-26':["talk","Ask your people what they want to leave behind in this year."],
+    '2026-12-27':["story","Tell the story of a client who stayed with you all year and what changed for them. [no names unless they said yes]"],
+    '2026-12-28':["teach","Teach how to choose the one focus that matters most for the new year."],
+    '2026-12-29':["teach","Teach the planning mistake that makes January feel overwhelming, and how to avoid it."],
+    '2026-12-30':["proof","Share the biggest win one of your clients had this year. [describe it, no names unless they said yes]"],
+    '2026-12-31':["teach","Teach how to write a letter to yourself to open next December."],
+    '2027-01-01':["invite","Tell people what you are offering this year: your main offer, who it is for and how to start."],
+    '2027-01-02':["talk","Ask your people what they want more of this year."],
+    '2027-01-03':["reflect","Share your word or intention for this year and why you chose it."],
+    '2027-01-04':["teach","Teach how to set one goal for the year that your people will keep."],
+    '2027-01-05':["teach","Teach why most new year resolutions fade by February, and what to do instead."],
+    '2027-01-06':["proof","Share a client result that started with a new year decision. [describe it]"],
+    '2027-01-07':["teach","Teach a five-minute morning or evening practice connected to your work."],
+    '2027-01-08':["invite","Invite people to grab your free thing as a fresh start for the year."],
+    '2027-01-09':["talk","Ask your people which goal they are most excited about."],
+    '2027-01-10':["story","Tell the story of why you started this work."],
+    '2027-01-11':["teach","Teach the first thing someone should do when they want the result you help people get."],
+    '2027-01-12':["teach","Teach a myth about getting started in your area of work."],
+    '2027-01-13':["proof","Share a testimonial about what it is like to work with you. [paste it]"],
+    '2027-01-14':["teach","Teach how to track progress toward a goal in a way that feels good."],
+    '2027-01-15':["invite","Open the doors on your main offer: what they get, the price and how to say yes."],
+    '2027-01-16':["talk","Ask your people what support would make the biggest difference to them this year."],
+    '2027-01-17':["reflect","Share what you are doing differently in your business this year."],
+    '2027-01-18':["teach","Teach a simple weekly habit that supports the result you help people get."],
+    '2027-01-19':["teach","Teach the mistake people make when they try to do this on their own."],
+    '2027-01-20':["proof","Share how long you have done this work and the training behind it. [your details]"],
+    '2027-01-21':["teach","Teach the question you ask every new client, and why it matters."],
+    '2027-01-22':["invite","Answer the three questions people ask most before they buy from you. [your questions]"],
+    '2027-01-23':["talk","Ask a this-or-that question about your area of work. [your two options]"],
+    '2027-01-24':["story","Tell the story of a time you almost quit and what made you stay."],
+    '2027-01-25':["teach","Teach how someone can tell they are ready to get help with this."],
+    '2027-01-26':["teach","Teach a myth about how long change takes, and what is realistic."],
+    '2027-01-27':["proof","Share a before and after from a client's first month with you. [describe it]"],
+    '2027-01-28':["teach","Teach how to get back on track after a slip."],
+    '2027-01-29':["invite","Share a bonus for anyone who starts with you this month, and the deadline. [your bonus]"],
+    '2027-01-30':["talk","Ask your people what they are proud of from January."],
+    '2027-01-31':["reflect","Share what the first month of the year taught you."],
+    '2027-02-01':["teach","Teach how your people can show themselves some care this month."],
+    '2027-02-02':["teach","Teach a myth about self-care that your clients believe."],
+    '2027-02-03':["proof","Share a love note from a client: a message, review or card. [paste it]"],
+    '2027-02-04':["teach","Teach a quick practice for feeling more connected to the people around you."],
+    '2027-02-05':["invite","Tell people about your free thing and who will love it most."],
+    '2027-02-06':["talk","Ask your people who they would love to thank this month."],
+    '2027-02-07':["story","Tell the story of the client who made you fall in love with this work."],
+    '2027-02-08':["teach","Teach one way your work helps someone's relationships: with family, a partner, coworkers or themselves."],
+    '2027-02-09':["teach","Teach the mistake people make when they always put everyone else first."],
+    '2027-02-10':["proof","Share how a client's relationships changed after working with you. [describe it, no names unless they said yes]"],
+    '2027-02-11':["teach","Teach a simple way to say thank you that people remember."],
+    '2027-02-12':["invite","Share a Valentine's gift idea from your business, for a partner, a friend or themselves. [describe it]"],
+    '2027-02-13':["talk","Ask your people how they are showing themselves love this Valentine's weekend."],
+    '2027-02-14':["reflect","Share what care looks like in your business: how you look after the people you serve."],
+    '2027-02-15':["teach","Teach how to ask for support without feeling like a burden."],
+    '2027-02-16':["teach","Teach a myth about connection or relationships that comes up in your work."],
+    '2027-02-17':["proof","Share a time a client sent a friend your way and what that meant to you. [describe it]"],
+    '2027-02-18':["teach","Teach how to set a kind boundary, with the words to use."],
+    '2027-02-19':["invite","Invite people to book with you as a gift to themselves, and how to say yes."],
+    '2027-02-20':["talk","Ask your people what makes them feel truly supported."],
+    '2027-02-21':["story","Tell the story of a relationship that shaped your business: a friend, partner, mentor or peer."],
+    '2027-02-22':["teach","Teach a simple self-check your people can do when they feel stretched thin."],
+    '2027-02-23':["teach","Teach why waiting for the perfect time to start keeps people stuck, and what to do instead."],
+    '2027-02-24':["proof","Share the result you are most proud of helping someone reach. [describe it]"],
+    '2027-02-25':["teach","Teach how to check in with yourself in under five minutes."],
+    '2027-02-26':["invite","Invite people into your main offer, with what is included and the next start date."],
+    '2027-02-27':["talk","Ask your people to share the best advice they have ever been given."],
+    '2027-02-28':["reflect","Share how you take care of yourself so you can take care of your clients."],
+    '2027-03-01':["teach","Teach one small step your people can take this week toward something they have put off."],
+    '2027-03-02':["teach","Teach the mistake people make when they try to change everything at once."],
+    '2027-03-03':["proof","Share how a client grew over the last few months. [describe it]"],
+    '2027-03-04':["teach","Teach a spring-cleaning practice for the mind, the home or the business, connected to your work."],
+    '2027-03-05':["invite","Share something new in your business: an offer, a class, a product or a change. [describe it]"],
+    '2027-03-06':["talk","Ask your people what they want to grow this season."],
+    '2027-03-07':["reflect","Share what a new season means for your business this year."],
+    '2027-03-08':["teach","Teach how to start a habit now that pays off by summer."],
+    '2027-03-09':["teach","Teach a myth about confidence that keeps people small."],
+    '2027-03-10':["proof","Share a client's words about the moment it clicked for them. [paste it]"],
+    '2027-03-11':["teach","Teach how to make room in a busy week for what matters."],
+    '2027-03-12':["invite","Invite people to a free class, event or call, with the date and how to sign up. [your event]"],
+    '2027-03-13':["talk","Ask your people what they have been nervous to try."],
+    '2027-03-14':["story","Tell the story of the first time you put yourself out there for your business."],
+    '2027-03-15':["teach","Teach how to notice the progress they are already making."],
+    '2027-03-16':["teach","Teach why comparing their progress to someone else's slows people down."],
+    '2027-03-17':["proof","Share a milestone in your business this year so far. [your milestone]"],
+    '2027-03-18':["teach","Teach the habit that makes the biggest difference for the people you help."],
+    '2027-03-19':["invite","Invite people into your main offer, with who it is perfect for and how to start."],
+    '2027-03-20':["talk","Ask your people what they would do if they knew it would work."],
+    '2027-03-21':["reflect","Share something new you are trying this season."],
+    '2027-03-22':["teach","Teach how to prepare for a big change in your area of work."],
+    '2027-03-23':["teach","Teach a myth about what it takes to get results in your area of work."],
+    '2027-03-24':["proof","Share a short case study: the problem, what you did together and the result. [describe it]"],
+    '2027-03-25':["teach","Teach how to celebrate a small win so it sticks."],
+    '2027-03-26':["invite","Share a spring offer or bonus, with the deadline. [describe it]"],
+    '2027-03-27':["talk","Ask your people to share a recent win, big or small."],
+    '2027-03-28':["story","Tell the story of someone whose courage inspires your work."],
+    '2027-03-29':["teach","Teach the signs someone is ready for the next level of the work you do."],
+    '2027-03-30':["teach","Teach the mistake people make right before a breakthrough."],
+    '2027-03-31':["proof","Share three words clients use to describe working with you. [your three words]"],
+    '2027-04-01':["teach","Teach something surprising about your work that most people do not know."],
+    '2027-04-02':["invite","Answer the questions people ask before they work with you. [your questions]"],
+    '2027-04-03':["talk","Ask your people what helps them trust someone new."],
+    '2027-04-04':["story","Tell the story of a time you trusted your gut in your business and it paid off."],
+    '2027-04-05':["teach","Teach how to tell whether someone is the right person to help them, in your field."],
+    '2027-04-06':["teach","Teach a myth about your field that makes people wary, and the truth."],
+    '2027-04-07':["proof","Share three short client reviews about what made them feel safe working with you. [paste them]"],
+    '2027-04-08':["teach","Teach a simple practice that builds trust in yourself."],
+    '2027-04-09':["invite","Share how working with you goes, step by step, and how to start."],
+    '2027-04-10':["talk","Ask your people what question they would love you to answer next."],
+    '2027-04-11':["reflect","Share the belief about your work that guides every session."],
+    '2027-04-12':["teach","Teach how to trust yourself when making a big decision."],
+    '2027-04-13':["teach","Teach the mistake people make when choosing a coach, healer or teacher."],
+    '2027-04-14':["proof","Share a before and after from a client. [describe it]"],
+    '2027-04-15':["teach","Teach how to tell progress is happening, even when it feels slow."],
+    '2027-04-16':["invite","Invite people to try your free thing so they can see how you work."],
+    '2027-04-17':["talk","Ask your people what they would tell their younger self about this."],
+    '2027-04-18':["story","Tell the story of a client who doubted they could change, and what happened."],
+    '2027-04-19':["teach","Teach what happens in a first session or first week of working with you."],
+    '2027-04-20':["teach","Teach a myth about results in your area of work that you wish people would stop believing."],
+    '2027-04-21':["proof","Share your training, certifications or experience and why you chose them. [your details]"],
+    '2027-04-22':["teach","Teach a grounding practice your people can do outside."],
+    '2027-04-23':["invite","Open your spots for May, with how many there are and how to claim one. [your spots]"],
+    '2027-04-24':["talk","Ask your people to rate how they feel about their goals, from 1 to 10."],
+    '2027-04-25':["reflect","Share what the people you serve have taught you about trust."],
+    '2027-04-26':["teach","Teach how to get the most out of working with someone like you."],
+    '2027-04-27':["teach","Teach the mistake people make when they stop too early."],
+    '2027-04-28':["proof","Share a message a client sent you months after you worked together. [paste it]"],
+    '2027-04-29':["teach","Teach the one question you would ask anyone who feels stuck."],
+    '2027-04-30':["invite","Make a clear offer: what it is, the price and the deadline."],
+    '2027-05-01':["talk","Ask your people what is blooming in their lives this spring."],
+    '2027-05-02':["reflect","Share who supports you in your business and how."],
+    '2027-05-03':["teach","Teach how to build a support system around the change your people want."],
+    '2027-05-04':["teach","Teach the mistake people make when they try to do everything alone."],
+    '2027-05-05':["proof","Share how your community or group has helped someone. [describe it]"],
+    '2027-05-06':["teach","Teach a practice your people can share with a friend or family member."],
+    '2027-05-07':["invite","Share a Mother's Day gift idea from your business. [describe it]"],
+    '2027-05-08':["talk","Ask your people to tag someone who supports them."],
+    '2027-05-09':["story","Tell the story of a mother, mother figure or caregiver who shaped you."],
+    '2027-05-10':["teach","Teach a simple way to care for the caregivers in their lives."],
+    '2027-05-11':["teach","Teach a myth about stress or overwhelm that comes up in your work."],
+    '2027-05-12':["proof","Share a thank-you message from a client. [paste it, no names unless they said yes]"],
+    '2027-05-13':["teach","Teach a quick reset for an overwhelming day."],
+    '2027-05-14':["invite","Invite people into your community, group or membership. [describe it]"],
+    '2027-05-15':["talk","Ask your people what kind of support they wish was easier to find."],
+    '2027-05-16':["reflect","Share what community means to you and your work."],
+    '2027-05-17':["teach","Teach how to tell when someone needs rest and when they need a push."],
+    '2027-05-18':["teach","Teach what happens when people push through burnout, and what helps instead."],
+    '2027-05-19':["proof","Share a moment from your work this spring that made you proud. [describe it]"],
+    '2027-05-20':["teach","Teach how to support someone going through what your clients go through."],
+    '2027-05-21':["invite","Invite people to bring a friend: share your referral offer or a two-person option. [describe it]"],
+    '2027-05-22':["talk","Ask your people how they recharge."],
+    '2027-05-23':["story","Tell the story of a time a stranger or client showed you kindness."],
+    '2027-05-24':["teach","Teach how to ask for help in a way that gets a yes."],
+    '2027-05-25':["teach","Teach a myth about what support looks like."],
+    '2027-05-26':["proof","Share a result a client reached with support that they could not reach alone. [describe it]"],
+    '2027-05-27':["teach","Teach a small daily habit that helps your people feel grounded."],
+    '2027-05-28':["invite","Share your summer offer and when it starts. [describe it]"],
+    '2027-05-29':["talk","Ask your people what they are looking forward to this summer."],
+    '2027-05-30':["reflect","Share what you want to protect your energy for this summer."],
+    '2027-05-31':["teach","Teach one thing to do on a long weekend to come back refreshed."],
+    '2027-06-01':["teach","Teach the mistake people make when they reach the middle of a goal."],
+    '2027-06-02':["proof","Share a client who made big progress in the first half of the year. [describe it]"],
+    '2027-06-03':["teach","Teach a midsummer practice for gratitude and celebration."],
+    '2027-06-04':["invite","Share a mid-year offer for people ready to start now. [describe it]"],
+    '2027-06-05':["talk","Ask your people how their year is going so far, from 1 to 10."],
+    '2027-06-06':["reflect","Share where you are halfway through the year compared to where you hoped to be."],
+    '2027-06-07':["teach","Teach how to do a mid-year check-in on their goals."],
+    '2027-06-08':["teach","Teach a myth about motivation that keeps people stuck."],
+    '2027-06-09':["proof","Share your own mid-year numbers: what grew in your business. [your numbers]"],
+    '2027-06-10':["teach","Teach how to keep momentum when the routine changes."],
+    '2027-06-11':["invite","Invite people to a free class, challenge or call this month. [your event]"],
+    '2027-06-12':["talk","Ask your people what they would like to let go of before July."],
+    '2027-06-13':["story","Tell the story of a goal you changed this year and why."],
+    '2027-06-14':["teach","Teach how to adjust a goal and keep going with it."],
+    '2027-06-15':["teach","Teach why trying to make up for lost time backfires."],
+    '2027-06-16':["proof","Share a testimonial about a specific moment in working with you. [paste it]"],
+    '2027-06-17':["teach","Teach a quick practice for clarity before a decision."],
+    '2027-06-18':["invite","Share a Father's Day gift idea from your business. [describe it]"],
+    '2027-06-19':["talk","Ask your people what their perfect summer day looks like."],
+    '2027-06-20':["story","Tell the story of a father, father figure or mentor who shaped how you work."],
+    '2027-06-21':["teach","Teach how to use the longest days of the year for what matters most."],
+    '2027-06-22':["teach","Teach a myth about summer and slowing down in your area of work."],
+    '2027-06-23':["proof","Share a client who came back to work with you again, and why. [describe it]"],
+    '2027-06-24':["teach","Teach how to rest and keep the progress they have made."],
+    '2027-06-25':["invite","Open your spots for July, with how to claim one."],
+    '2027-06-26':["talk","Ask your people what they are proud of from the first half of the year."],
+    '2027-06-27':["reflect","Share what you want the second half of your year to feel like."],
+    '2027-06-28':["teach","Teach how to plan a summer that supports their goals."],
+    '2027-06-29':["teach","Teach why looking back is the step most people skip, and how to do it in ten minutes."],
+    '2027-06-30':["proof","Share a client's win from this month. [describe it]"],
+    '2027-07-01':["teach","Teach a practice your people can do in five minutes on a summer day."],
+    '2027-07-02':["invite","Share a simple summer offer, with what is included and the price. [describe it]"],
+    '2027-07-03':["talk","Ask your people how they are spending their summer."],
+    '2027-07-04':["reflect","Share what freedom means to you in your work and your life."],
+    '2027-07-05':["teach","Teach how to simplify one area of life this month."],
+    '2027-07-06':["teach","Teach the mistake people make when they overcomplicate the thing you help with."],
+    '2027-07-07':["proof","Share a client who got results from one simple change. [describe it]"],
+    '2027-07-08':["teach","Teach the one habit that does the most for the result you help people get."],
+    '2027-07-09':["invite","Invite people to try your free thing this weekend."],
+    '2027-07-10':["talk","Ask your people what they would stop doing if they could."],
+    '2027-07-11':["story","Tell the story of something you stopped doing in your business that made life easier."],
+    '2027-07-12':["teach","Teach how to do less and get more of the result you help people get."],
+    '2027-07-13':["teach","Teach a myth about needing more time, money or tools before they start."],
+    '2027-07-14':["proof","Share a review that mentions how easy or clear working with you felt. [paste it]"],
+    '2027-07-15':["teach","Teach how to clear mental clutter before bed."],
+    '2027-07-16':["invite","Tell people about a short program or single session they can book now. [describe it]"],
+    '2027-07-17':["talk","Ask your people for their favorite simple pleasure."],
+    '2027-07-18':["reflect","Share the simplest thing that made the biggest difference for you this year."],
+    '2027-07-19':["teach","Teach how to say no to something good to make room for something better."],
+    '2027-07-20':["teach","Teach the mistake people make on vacation that undoes their progress."],
+    '2027-07-21':["proof","Share a quick win a client had in their first week. [describe it]"],
+    '2027-07-22':["teach","Teach one thing anyone can do today to get a step closer to the result you help with."],
+    '2027-07-23':["invite","Share an early look at your fall offer and how to get on the list. [describe it]"],
+    '2027-07-24':["talk","Ask your people a this-or-that question about summer and your work. [your two options]"],
+    '2027-07-25':["story","Tell the story of a summer that changed how you work."],
+    '2027-07-26':["teach","Teach a simple routine for the rest of the summer."],
+    '2027-07-27':["teach","Teach a myth about busy meaning productive."],
+    '2027-07-28':["proof","Share a number that shows your impact this year. [your number]"],
+    '2027-07-29':["teach","Teach how to keep a routine when the schedule changes for summer."],
+    '2027-07-30':["invite","Make a clear offer with a deadline at the end of July."],
+    '2027-07-31':["talk","Ask your people how they want to feel by the end of summer."],
+    '2027-08-01':["reflect","Share the one habit that has carried your business this year."],
+    '2027-08-02':["teach","Teach the basics of what you do, as if to someone brand new."],
+    '2027-08-03':["teach","Teach the beginner mistake you see most often."],
+    '2027-08-04':["proof","Share a client who started as a total beginner and where they are now. [describe it]"],
+    '2027-08-05':["teach","Teach a beginner-friendly practice your people can try today."],
+    '2027-08-06':["invite","Invite beginners to your free thing, with what they will learn."],
+    '2027-08-07':["talk","Ask your people what they wish they had known when they started."],
+    '2027-08-08':["story","Tell the story of the basic lesson you had to learn the hard way."],
+    '2027-08-09':["teach","Teach the three things everyone should know before they start in your area of work."],
+    '2027-08-10':["teach","Teach a myth beginners believe about your area of work."],
+    '2027-08-11':["proof","Share the training and practice behind what you do. [your details]"],
+    '2027-08-12':["teach","Teach the words or terms in your field people should know."],
+    '2027-08-13':["invite","Share your offer for beginners and first-timers. [describe it]"],
+    '2027-08-14':["talk","Ask your people the basic question they have always wanted to ask about your work."],
+    '2027-08-15':["reflect","Share the foundation your business is built on: your values and your why."],
+    '2027-08-16':["teach","Teach the first step of the change you help people make, in plain words."],
+    '2027-08-17':["teach","Teach the mistake people make when they skip the basics."],
+    '2027-08-18':["proof","Share a testimonial from someone who was nervous to start. [paste it]"],
+    '2027-08-19':["teach","Teach how to tell what level they are at and where to start."],
+    '2027-08-20':["invite","Open enrollment or bookings for fall, with dates and how to join."],
+    '2027-08-21':["talk","Ask your people how they are getting ready for fall."],
+    '2027-08-22':["story","Tell the story of your first client, first sale or first class."],
+    '2027-08-23':["teach","Teach how to build a routine for the new school year or season."],
+    '2027-08-24':["teach","Teach a myth about being too late to start."],
+    '2027-08-25':["proof","Share what people get from your free thing, with a reply or result from someone who used it. [describe it]"],
+    '2027-08-26':["teach","Teach how to prepare for a fresh start in September."],
+    '2027-08-27':["invite","Make a back-to-school offer with a deadline. [describe it]"],
+    '2027-08-28':["talk","Ask your people to describe their ideal routine in three words."],
+    '2027-08-29':["reflect","Share what you are getting ready for this fall."],
+    '2027-08-30':["teach","Teach how to start again with the basics after a hard season."],
+    '2027-08-31':["teach","Teach what goes wrong when people take advice from too many places."],
+    '2027-09-01':["proof","Share what a student or client learned from you that they still use. [describe it]"],
+    '2027-09-02':["teach","Teach a short practice for focus at the start of the day."],
+    '2027-09-03':["invite","Share your fall offer, with what is included and the start date. [describe it]"],
+    '2027-09-04':["talk","Ask your people what they want to learn this fall."],
+    '2027-09-05':["reflect","Share what you are learning right now and why."],
+    '2027-09-06':["teach","Teach how to rest well on a day off so it refreshes them."],
+    '2027-09-07':["teach","Teach the mistake people make when they start a new routine."],
+    '2027-09-08':["proof","Share a review from someone who took your class, course or program. [paste it]"],
+    '2027-09-09':["teach","Teach one lesson from your work that everyone should learn."],
+    '2027-09-10':["invite","Invite people to a class, workshop or challenge this month. [your event]"],
+    '2027-09-11':["talk","Ask your people what routine they are starting this season."],
+    '2027-09-12':["story","Tell the story of a teacher who changed your life."],
+    '2027-09-13':["teach","Teach how to build a fall routine that supports the result you help people get."],
+    '2027-09-14':["teach","Teach a myth about learning or growth that holds people back."],
+    '2027-09-15':["proof","Share a before and after from a client this year. [describe it]"],
+    '2027-09-16':["teach","Teach how to practice what you teach between sessions."],
+    '2027-09-17':["invite","Tell people about your free thing and how it helps with fall routines."],
+    '2027-09-18':["talk","Ask your people to share their favorite fall ritual or tradition."],
+    '2027-09-19':["reflect","Share what balance looks like in your work right now."],
+    '2027-09-20':["teach","Teach how to learn something new without feeling overwhelmed."],
+    '2027-09-21':["teach","Teach why chasing perfect balance wears people out."],
+    '2027-09-22':["proof","Share a milestone in your business this year. [your milestone]"],
+    '2027-09-23':["teach","Teach a seasonal practice for letting go and settling in."],
+    '2027-09-24':["invite","Make a last call for fall enrollment, with the deadline."],
+    '2027-09-25':["talk","Ask your people what they are most curious about in your work."],
+    '2027-09-26':["story","Tell the story of a new beginning in your business."],
+    '2027-09-27':["teach","Teach how to find a rhythm between work, rest and everything else."],
+    '2027-09-28':["teach","Teach a myth about the fall season and your area of work."],
+    '2027-09-29':["proof","Share a client's words about how they feel now. [paste it]"],
+    '2027-09-30':["teach","Teach how to set up the last three months of the year to go well."],
+    '2027-10-01':["invite","Share your offer for people ready for real change. [describe it]"],
+    '2027-10-02':["talk","Ask your people what scares them most about change."],
+    '2027-10-03':["reflect","Share something you have been afraid of in your business and how you are facing it."],
+    '2027-10-04':["teach","Teach how to face a fear one small step at a time."],
+    '2027-10-05':["teach","Teach a myth about transformation that makes people give up."],
+    '2027-10-06':["proof","Share a big before and after from a client. [describe it]"],
+    '2027-10-07':["teach","Teach a journaling practice for looking at what they avoid."],
+    '2027-10-08':["invite","Invite people to a seasonal event, class or offer. [describe it]"],
+    '2027-10-09':["talk","Ask your people what one thing they would transform in their life if they could."],
+    '2027-10-10':["story","Tell the story of a big change in your life that led you to this work."],
+    '2027-10-11':["teach","Teach how to sit with a hard feeling and learn from it."],
+    '2027-10-12':["teach","Teach the mistake people make when change gets uncomfortable."],
+    '2027-10-13':["proof","Share a client's words about the hardest part of their journey and what came next. [paste it]"],
+    '2027-10-14':["teach","Teach a practice for courage before a hard conversation."],
+    '2027-10-15':["invite","Share what is included in working with you, step by step."],
+    '2027-10-16':["talk","Ask your people to share their favorite fall or Halloween tradition."],
+    '2027-10-17':["reflect","Share a part of yourself you have learned to accept."],
+    '2027-10-18':["teach","Teach the stages people go through when they change, from what you see in your work."],
+    '2027-10-19':["teach","Teach a myth about fear and what it is telling them."],
+    '2027-10-20':["proof","Share your own transformation and what it taught you about your clients."],
+    '2027-10-21':["teach","Teach a simple way to close one chapter and start the next."],
+    '2027-10-22':["invite","Give early notice of your holiday offer and how to get on the list."],
+    '2027-10-23':["talk","Ask your people what they have outgrown this year."],
+    '2027-10-24':["story","Tell the story of a client's transformation that still moves you. [no names unless they said yes]"],
+    '2027-10-25':["teach","Teach how to let go of an old habit or story."],
+    '2027-10-26':["teach","Teach the mistake people make when they hide the parts of themselves they dislike."],
+    '2027-10-27':["proof","Share a result that surprised you. [describe it]"],
+    '2027-10-28':["teach","Teach a practice to honor the people who came before them."],
+    '2027-10-29':["invite","Make a spooky-season offer with a deadline. [describe it]"],
+    '2027-10-30':["talk","Ask your people what costume their business would wear."],
+    '2027-10-31':["reflect","Share what you are ready to bury before the year ends."],
+    '2027-11-01':["teach","Teach how to keep a gratitude habit through a busy season."],
+    '2027-11-02':["teach","Teach a myth about gratitude that makes it feel forced."],
+    '2027-11-03':["proof","Share a client message that made you grateful for this work. [paste it, no names unless they said yes]"],
+    '2027-11-04':["teach","Teach a five-minute gratitude practice connected to your work."],
+    '2027-11-05':["invite","Share your offers for the rest of the year, who each one is for and the last day to join."],
+    '2027-11-06':["talk","Ask your people what they are most grateful for this year."],
+    '2027-11-07':["reflect","Share three people you are grateful for in your work this year."],
+    '2027-11-08':["teach","Teach how to finish the year with energy left over."],
+    '2027-11-09':["teach","Teach the mistake people make in the busy season."],
+    '2027-11-10':["proof","Share a client's before and after from this year. [describe it]"],
+    '2027-11-11':["teach","Teach how to write a thank-you note that means something."],
+    '2027-11-12':["invite","Share a gift idea from your business and who it is perfect for. [describe it]"],
+    '2027-11-13':["talk","Ask your people which holiday tradition they look forward to most."],
+    '2027-11-14':["story","Tell the story of a client who taught you something."],
+    '2027-11-15':["teach","Teach how to handle holiday stress using what you know from your work."],
+    '2027-11-16':["teach","Teach a myth about the holidays and your area of work."],
+    '2027-11-17':["proof","Share your year so far in numbers. [your numbers]"],
+    '2027-11-18':["teach","Teach a calming practice for busy family gatherings."],
+    '2027-11-19':["invite","Give your followers early access to your holiday offer."],
+    '2027-11-20':["talk","Ask your people to share one small win from this year."],
+    '2027-11-21':["reflect","Share the moment this year you felt most proud of your work."],
+    '2027-11-22':["teach","Teach how to give a meaningful gift on any budget."],
+    '2027-11-23':["teach","Teach the mistake people make when they wait until January to start."],
+    '2027-11-24':["proof","Share a review or message that made your week. [paste it]"],
+    '2027-11-25':["teach","Teach a gratitude question people can ask around the table."],
+    '2027-11-26':["invite","Make your Black Friday offer: what it is, the price, the deadline and how to say yes."],
+    '2027-11-27':["talk","Ask your people to shout out a small business they love."],
+    '2027-11-28':["story","Tell the story of a thank-you you will never forget."],
+    '2027-11-29':["teach","Teach how to plan for real rest in December."],
+    '2027-11-30':["teach","Teach the end-of-year mistake you see every year."],
+    '2027-12-01':["proof","Share the highlights of your year in numbers. [your numbers]"],
+    '2027-12-02':["teach","Teach a quick practice for staying grounded through the holidays."],
+    '2027-12-03':["invite","Share your holiday gift options and the last day to order. [describe them]"],
+    '2027-12-04':["talk","Ask your people what made this year special."],
+    '2027-12-05':["reflect","Share your favorite moment from this year in your business."],
+    '2027-12-06':["teach","Teach how to celebrate the year before planning the next one."],
+    '2027-12-07':["teach","Teach the mistake people make when they rush into new year plans."],
+    '2027-12-08':["proof","Share the best thing a client said to you this year. [paste it]"],
+    '2027-12-09':["teach","Teach how to give yourself credit for the year."],
+    '2027-12-10':["invite","Tell people what you are offering in January and how to get on the list."],
+    '2027-12-11':["talk","Ask your people what they want to carry into next year."],
+    '2027-12-12':["story","Tell the story of how your business changed this year."],
+    '2027-12-13':["teach","Teach how to review a whole year in one hour."],
+    '2027-12-14':["teach","Teach a myth about rest in December."],
+    '2027-12-15':["proof","Share a client's whole-year transformation. [describe it]"],
+    '2027-12-16':["teach","Teach how to keep kind boundaries over the holidays."],
+    '2027-12-17':["invite","Make a last call for your holiday offer."],
+    '2027-12-18':["talk","Ask your people to describe their year as a movie title."],
+    '2027-12-19':["reflect","Share what you are celebrating as the year closes."],
+    '2027-12-20':["teach","Teach a winter practice for rest and reflection."],
+    '2027-12-21':["teach","Teach why looking only at what went wrong gives a false picture of the year."],
+    '2027-12-22':["proof","Share your favorite review of the year. [paste it]"],
+    '2027-12-23':["teach","Teach a simple practice for the quiet days between the holidays."],
+    '2027-12-24':["invite","Thank your people for this year and tell them when you are back."],
+    '2027-12-25':["talk","Ask your people how they are spending the day, and share yours."],
+    '2027-12-26':["story","Tell the story of the holiday tradition that means the most to you."],
+    '2027-12-27':["teach","Teach how to choose a word or theme for the new year."],
+    '2027-12-28':["teach","Teach a myth about new year resolutions."],
+    '2027-12-29':["proof","Share something you achieved this year that once felt out of reach. [describe it]"],
+    '2027-12-30':["teach","Teach how to write next year's plan on one page."],
+    '2027-12-31':["invite","Invite people to start the new year with you, with your offer for January."]
+  };
+
+  // Add-ons: [date, layer, label, idea]
+  var EXTRA=[
+    ['2026-11-01','holiday','Clocks fall back (US)','You get an extra hour today. Share what you would do with one extra hour for your business or your wellbeing, and ask what your people would do with theirs.'],
+    ['2026-11-01','spiritual','Día de los Muertos','Honor the people who came before you and how they shaped who you are in your work.'],
+    ['2026-11-08','cosmic','New Moon in Scorpio','Under the Scorpio new moon, post about letting one thing end so something new can begin, in your business or for your clients.'],
+    ['2026-11-11','holiday','Veterans Day (US) and Remembrance Day','Share gratitude for someone who served, or for the people whose quiet work makes yours possible.'],
+    ['2026-11-24','cosmic','Full Moon in Gemini','Under the Gemini full moon, share a conversation or a message that changed things for you or a client.'],
+    ['2026-11-26','holiday','Thanksgiving (US)','Thank your people. Share who and what you are thankful for in your business this year.'],
+    ['2026-11-27','holiday','Black Friday','If you are running a sale, post it plainly: what it is, the price, the deadline. If you are not, tell people what you are doing instead.'],
+    ['2026-11-28','holiday','Small Business Saturday (US)','Remind people that buying from a small business like yours is a real choice, and tell them what supporting you makes possible.'],
+    ['2026-11-30','holiday','Cyber Monday','Post a last call for your holiday offer, or share a free resource for anyone who sat out the sales. [your offer or freebie]'],
+    ["2026-11-13","cosmic","Mercury and Venus turn direct","Mercury and Venus both turn direct today. Share something you reworked these past weeks, and invite people to say yes to a plan they paused."],
+    ["2026-12-01","holiday","Giving Tuesday","Share a cause you support and why it matters to your work, and invite people to give with you."],
+    ["2026-12-04","holiday","Hanukkah begins","For those who celebrate, share a message of light for the season and what light means in your work."],
+    ["2026-12-08","cosmic","New Moon in Sagittarius","Under the Sagittarius new moon, invite your people to set an intention around learning, adventure and the big picture, and share yours."],
+    ["2026-12-21","cosmic","Winter solstice","The winter solstice is the longest night of the year. Share how you are resting and what you are looking forward to as the light returns."],
+    ["2026-12-21","spiritual","Yule","Celebrate Yule and the return of the light. Share a Yule ritual, or how your work helps people through the dark season."],
+    ["2026-12-23","cosmic","Full Moon in Cancer","Under the Cancer full moon, share something you are celebrating or releasing around home, care and feeling safe, and ask your people what they are ready to let go of."],
+    ["2026-12-24","holiday","Christmas Eve","Share a warm holiday message and one wish you have for your people."],
+    ["2026-12-25","holiday","Christmas Day","Wish your people a merry Christmas and share how you are spending the day."],
+    ["2026-12-26","holiday","Kwanzaa begins","Share one of your business values and how you live it."],
+    ["2026-12-31","holiday","New Year's Eve","Thank your people for the year and share what you are excited about next."],
+    ["2027-01-01","holiday","New Year's Day","Share your hope for your people this year."],
+    ["2027-01-07","cosmic","New Moon in Capricorn","Under the Capricorn new moon, invite your people to set an intention around goals, structure and long-term success, and share yours."],
+    ["2027-01-10","cosmic","Mars retrograde begins","Mars goes retrograde until April 1. Share how you are pacing your energy, and ask your people what they are slowing down on."],
+    ["2027-01-18","holiday","Martin Luther King Jr. Day (US)","Share a lesson about service that guides your work."],
+    ["2027-01-22","cosmic","Full Moon in Leo","Under the Leo full moon, share something you are celebrating or releasing around being seen, creativity and joy, and ask your people what they are ready to let go of."],
+    ["2027-02-01","spiritual","Imbolc","Imbolc marks the first stirrings of spring. Share a small ritual for new beginnings, or what is quietly starting to grow in your business."],
+    ["2027-02-06","cosmic","Solar eclipse, New Moon in Aquarius","The solar eclipse in Aquarius is about sudden new chapters. Share a change you are making around community, new ideas and doing it your way, and invite your people to name theirs."],
+    ["2027-02-06","holiday","Lunar New Year","Wish people a happy Lunar New Year and share what you are welcoming into your business this year."],
+    ["2027-02-09","cosmic","Mercury retrograde begins","Mercury goes retrograde until March 3. Teach your people one way to slow down and double-check, and share an old offer or post worth bringing back."],
+    ["2027-02-14","holiday","Valentine's Day","Share some love for your clients: what you appreciate about the people you serve."],
+    ["2027-02-20","cosmic","Lunar eclipse, Full Moon in Virgo","The lunar eclipse in Virgo brings endings and turning points. Share something around routines, health and getting organized that has come to a close for you, and what it made room for."],
+    ["2027-03-03","cosmic","Mercury turns direct","Mercury turns direct today. Share something you reworked during the retrograde, or invite people to move forward on a plan they paused."],
+    ["2027-03-08","cosmic","New Moon in Pisces","Under the Pisces new moon, invite your people to set an intention around intuition, rest and compassion, and share yours."],
+    ["2027-03-08","holiday","International Women's Day","Celebrate a woman who inspires your work, or the women you serve."],
+    ["2027-03-14","holiday","Clocks spring forward (US)","You lose an hour today. Share one thing your people can drop this week to win that hour back."],
+    ["2027-03-17","holiday","St. Patrick's Day","Share what you feel lucky about in your business."],
+    ["2027-03-20","cosmic","Spring equinox","The spring equinox brings equal day and night. Share what balance looks like in your business and what you are planting this season."],
+    ["2027-03-20","spiritual","Ostara","Celebrate Ostara and the balance of light and dark. Share a ritual for planting intentions."],
+    ["2027-03-22","cosmic","Full Moon in Libra","Under the Libra full moon, share something you are celebrating or releasing around balance, partnerships and fairness, and ask your people what they are ready to let go of."],
+    ["2027-03-28","holiday","Easter","Share a message of renewal and new beginnings for the season."],
+    ["2027-04-01","cosmic","Mars turns direct","Mars turns direct after almost three months. Share the plan you are ready to put into action."],
+    ["2027-04-01","holiday","April Fools' Day","Share a funny truth about your work, or the silliest myth you have heard about it."],
+    ["2027-04-06","cosmic","New Moon in Aries","Under the Aries new moon, invite your people to set an intention around courage and starting something bold, and share yours."],
+    ["2027-04-20","cosmic","Full Moon in Scorpio","Under the Scorpio full moon, share something you are celebrating or releasing around depth, trust and letting go, and ask your people what they are ready to let go of."],
+    ["2027-04-22","holiday","Earth Day","Share one way your business cares for the earth, or a practice that connects people with nature."],
+    ["2027-05-01","spiritual","Beltane","Beltane celebrates fire, passion and fertility. Share what you are passionate about in your work right now."],
+    ["2027-05-06","cosmic","New Moon in Taurus","Under the Taurus new moon, invite your people to set an intention around steady growth, money and comfort, and share yours."],
+    ["2027-05-09","holiday","Mother's Day","Honor the mothers and mother figures in your community."],
+    ["2027-05-20","cosmic","Full Moon in Scorpio","Under the Scorpio full moon, share something you are celebrating or releasing around depth, trust and letting go, and ask your people what they are ready to let go of."],
+    ["2027-05-25","spiritual","International Tarot Day","Share what first drew you to your work, and one change you have watched it make for a client."],
+    ["2027-05-31","holiday","Memorial Day (US)","Share a message of remembrance and gratitude."],
+    ["2027-06-04","cosmic","New Moon in Gemini","Under the Gemini new moon, invite your people to set an intention around conversations, ideas and messages, and share yours."],
+    ["2027-06-10","cosmic","Mercury retrograde begins","Mercury goes retrograde until July 4. Teach your people one way to slow down and double-check, and share an old offer or post worth bringing back."],
+    ["2027-06-18","cosmic","Full Moon in Sagittarius","Under the Sagittarius full moon, share something you are celebrating or releasing around learning, adventure and the big picture, and ask your people what they are ready to let go of."],
+    ["2027-06-19","holiday","Juneteenth","Honor Juneteenth and share a voice or business you have learned from."],
+    ["2027-06-20","holiday","Father's Day","Honor the fathers and father figures in your community."],
+    ["2027-06-21","cosmic","Summer solstice","The summer solstice is the longest day of the year. Share what is in full bloom in your business and celebrate it."],
+    ["2027-06-21","spiritual","Litha","Litha is the height of the sun. Share a ritual for celebrating everything you have grown."],
+    ["2027-07-03","cosmic","New Moon in Cancer","Under the Cancer new moon, invite your people to set an intention around home, care and feeling safe, and share yours."],
+    ["2027-07-04","cosmic","Mercury turns direct","Mercury turns direct today. Share something you reworked during the retrograde, or invite people to move forward on a plan they paused."],
+    ["2027-07-04","holiday","Independence Day (US)","Share what independence looks like for the people you serve."],
+    ["2027-07-18","cosmic","Lunar eclipse, Full Moon in Capricorn","The lunar eclipse in Capricorn brings endings and turning points. Share something around goals, structure and long-term success that has come to a close for you, and what it made room for."],
+    ["2027-08-01","spiritual","Lammas","Lammas is the first harvest. Share what you have harvested in your business this year and give thanks for it."],
+    ["2027-08-02","cosmic","Solar eclipse, New Moon in Leo","The solar eclipse in Leo is about sudden new chapters. Share a change you are making around being seen, creativity and joy, and invite your people to name theirs."],
+    ["2027-08-13","spiritual","Friday the 13th","Friday the 13th is a lucky day for witches. Share a superstition, a protection ritual or a lucky charm for your business."],
+    ["2027-08-16","holiday","Back-to-school season","Share how your work helps families, students or teachers start the school year well."],
+    ["2027-08-17","cosmic","Lunar eclipse, Full Moon in Aquarius","The lunar eclipse in Aquarius brings endings and turning points. Share something around community, new ideas and doing it your way that has come to a close for you, and what it made room for."],
+    ["2027-08-31","cosmic","New Moon in Virgo","Under the Virgo new moon, invite your people to set an intention around routines, health and getting organized, and share yours."],
+    ["2027-09-06","holiday","Labor Day (US)","Thank the people whose work makes yours possible."],
+    ["2027-09-15","cosmic","Full Moon in Pisces","Under the Pisces full moon, share something you are celebrating or releasing around intuition, rest and compassion, and ask your people what they are ready to let go of."],
+    ["2027-09-22","cosmic","Fall equinox","The fall equinox brings balance before the darker half of the year. Share what you are harvesting and what you are letting go."],
+    ["2027-09-22","spiritual","Mabon","Mabon is the witches' Thanksgiving. Share a gratitude ritual and what you are harvesting this season."],
+    ["2027-09-29","cosmic","New Moon in Libra","Under the Libra new moon, invite your people to set an intention around balance, partnerships and fairness, and share yours."],
+    ["2027-10-07","cosmic","Mercury retrograde begins","Mercury goes retrograde until October 28. Teach your people one way to slow down and double-check, and share an old offer or post worth bringing back."],
+    ["2027-10-15","cosmic","Full Moon in Aries","Under the Aries full moon, share something you are celebrating or releasing around courage and starting something bold, and ask your people what they are ready to let go of."],
+    ["2027-10-28","cosmic","Mercury turns direct","Mercury turns direct today. Share something you reworked during the retrograde, or invite people to move forward on a plan they paused."],
+    ["2027-10-29","cosmic","New Moon in Scorpio","Under the Scorpio new moon, invite your people to set an intention around depth, trust and letting go, and share yours."],
+    ["2027-10-31","holiday","Halloween","Have some fun: share a spooky-season version of your work, or the scariest myth in your field."],
+    ["2027-10-31","spiritual","Samhain","Samhain is the witches' new year, when the veil is thin. Honor your ancestors or share a ritual for releasing the year."],
+    ["2027-11-02","spiritual","Día de los Muertos","Honor the people who came before you and how they shaped who you are in your work."],
+    ["2027-11-07","holiday","Clocks fall back (US)","You get an extra hour today. Share what you would do with one extra hour for your business or your wellbeing, and ask your people about theirs."],
+    ["2027-11-11","holiday","Veterans Day (US) and Remembrance Day","Share gratitude for someone who served, or for the people whose quiet work makes yours possible."],
+    ["2027-11-13","cosmic","Full Moon in Taurus","Under the Taurus full moon, share something you are celebrating or releasing around steady growth, money and comfort, and ask your people what they are ready to let go of."],
+    ["2027-11-25","holiday","Thanksgiving (US)","Thank your people. Share who and what you are thankful for in your business this year."],
+    ["2027-11-26","holiday","Black Friday","If you are running a sale, post it plainly: what it is, the price, the deadline. If you are skipping the sales, tell people what you are doing instead."],
+    ["2027-11-27","cosmic","New Moon in Sagittarius","Under the Sagittarius new moon, invite your people to set an intention around learning, adventure and the big picture, and share yours."],
+    ["2027-11-27","holiday","Small Business Saturday (US)","Remind people that buying from a small business like yours is a real choice, and tell them what supporting you makes possible."],
+    ["2027-11-29","holiday","Cyber Monday","Post a last call for your holiday offer, or share a free resource for anyone who sat out the sales. [your offer or freebie]"],
+    ["2027-11-30","holiday","Giving Tuesday","Share a cause you support and why it matters to your work, and invite people to give with you."],
+    ["2027-12-13","cosmic","Full Moon in Gemini","Under the Gemini full moon, share something you are celebrating or releasing around conversations, ideas and messages, and ask your people what they are ready to let go of."],
+    ["2027-12-21","cosmic","Winter solstice","The winter solstice is the longest night of the year. Share what this year taught you and what you want the light to bring next."],
+    ["2027-12-21","spiritual","Yule","Celebrate Yule and the longest night. Share how you welcome the light back, in your life and your business."],
+    ["2027-12-24","holiday","Christmas Eve","Share a warm holiday message and one wish you have for your people."],
+    ["2027-12-24","holiday","Hanukkah begins","For those who celebrate, share a message of light for the season and what light means in your work."],
+    ["2027-12-25","holiday","Christmas Day","Wish your people a merry Christmas and share how you are spending the day."],
+    ["2027-12-26","holiday","Kwanzaa begins","Share one of your business values and how you live it."],
+    ["2027-12-27","cosmic","New Moon in Capricorn","Under the Capricorn new moon, invite your people to set an intention around goals, structure and long-term success, and share yours."],
+    ["2027-12-31","holiday","New Year's Eve","Thank your people for the year and share what you are excited about next."]
+  ];
+
+  var ICON={single:'▣',carousel:'❐',video:'▶',story:'◷'};
+  var ONE={single:'single image',carousel:'carousel',video:'short video',story:'story'};
+  var MANY={single:'single images',carousel:'carousels',video:'short videos',story:'stories'};
+  var SFF_URL='https://www.skool.com/soul-forged-founders';
+  var SFF_HTML='<div class="eyebrow">Soul-Forged Founders</div><p>Want more business tools like this one? Soul-Forged Founders gives you the Alchemist\'s AI Toolkit: 30+ tools and templates built for spiritual business owners.</p><a class="btn" href="'+SFF_URL+'" target="_blank" rel="noopener">Start your 7-day free trial</a><p class="note">$8/month after that.</p>';
+
+  var st={profile:{},layers:{holiday:true,cosmic:false,spiritual:false},posted:{},saved:{},links:{},step:1,month:0,format:'single'};
+  function load(o){
+    st.profile=o.profile||{}; st.layers=o.layers||st.layers; st.posted=o.posted||{}; st.saved=o.saved||{}; st.links=o.links||{}; st.step=o.step||1; st.month=o.month||0; st.format=FORMATS[o.format]?o.format:'single';
+    if(st.profile.who){st.profile.what=[st.profile.what,st.profile.who].filter(Boolean).join(' for ');delete st.profile.who;}
+    // Posts marked before formats were tracked count as single images.
+    Object.keys(st.posted).forEach(function(k){if(typeof st.posted[k]==='string')st.posted[k]={d:st.posted[k],f:'single'};});
+  }
+  try{var raw=localStorage.getItem(KEY); if(raw) load(JSON.parse(raw));}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  function $(id){return document.getElementById(id);}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function toast(msg,ms){var t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove();},ms||1800);}
+  function copy(text){
+    function fallback(){var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copied');}catch(e){toast('Select the text and copy it');}ta.remove();}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){toast('Copied');},fallback);}else fallback();
+  }
+  function iso(y,m,d){return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');}
+  var MNAMES=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function pretty(d){var p=d.split('-');var dt=new Date(+p[0],+p[1]-1,+p[2]);return dt.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});}
+  function P(k,fallback){var v=(st.profile[k]||'').trim();return v||'['+fallback+']';}
+  function dl(name,blob){var url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},800);}
+  function todayKey(){var n=new Date();return iso(n.getFullYear(),n.getMonth(),n.getDate());}
+  function addDays(k,n){var p=k.split('-');var d=new Date(+p[0],+p[1]-1,+p[2]+n);return iso(d.getFullYear(),d.getMonth(),d.getDate());}
+  function monthOf(k){for(var i=0;i<MONTHS.length;i++){if(iso(MONTHS[i].y,MONTHS[i].m,1).slice(0,7)===k.slice(0,7))return i;}return -1;}
+  function fmtLabel(f,n){return n===1?ONE[f]:MANY[f];}
+  // Streaks count weeks (Sun to Sat) with at least GOAL posts, since steady weeks beat daily posting.
+  var GOAL=3;
+  function weekStart(k){var p=k.split('-');return addDays(k,-new Date(+p[0],+p[1]-1,+p[2]).getDay());}
+  function weekCount(ws){var n=0;for(var i=0;i<7;i++){if(st.posted[addDays(ws,i)])n++;}return n;}
+  function streakNow(){var ws=weekStart(todayKey());if(weekCount(ws)<GOAL)ws=addDays(ws,-7);var n=0;while(weekCount(ws)>=GOAL){n++;ws=addDays(ws,-7);}return n;}
+  function streakBest(){var keys=Object.keys(CORE).sort(),ws=weekStart(keys[0]),end=keys[keys.length-1],best=0,run=0;while(ws<=end){run=weekCount(ws)>=GOAL?run+1:0;if(run>best)best=run;ws=addDays(ws,7);}return best;}
+  function monthStats(M){
+    var pre=iso(M.y,M.m,1).slice(0,7),days=Object.keys(CORE).filter(function(k){return k.indexOf(pre)===0;}),by={},n=0;
+    Object.keys(FORMATS).forEach(function(f){by[f]=0;});
+    days.forEach(function(k){var p=st.posted[k];if(p){n++;by[p.f]=(by[p.f]||0)+1;}});
+    return {n:n,total:days.length,by:by};
+  }
+
+  function renderTracker(){
+    var M=MONTHS[st.month],s=monthStats(M);
+    if(!s.total){$('tracker').hidden=true;return;}
+    $('tracker').hidden=false;
+    var pre=iso(M.y,M.m,1).slice(0,7),t=todayKey(),now=streakNow(),best=streakBest();
+    var pips=Object.keys(CORE).sort().filter(function(k){return k.indexOf(pre)===0;}).map(function(k){var p=st.posted[k];return '<span class="pip'+(p?' '+p.f:'')+(k===t?' now':'')+'" title="'+esc(pretty(k))+(p?', '+ONE[p.f]:'')+'"></span>';}).join('');
+    $('tracker').innerHTML='<div class="pips" aria-hidden="true">'+pips+'</div>'+
+      '<div class="trow"><div class="big">'+s.n+'<small>of '+s.total+' posted in '+MNAMES[M.m]+'</small></div><div class="streak">This week: '+Math.min(weekCount(weekStart(t)),GOAL)+' of '+GOAL+' · '+(now?'🔥 '+now+(now===1?' week':' weeks')+' in a row':'3 posts this week starts your streak')+(best>1?' · best '+best:'')+'</div></div>'+
+      '<div class="fcount">'+Object.keys(FORMATS).map(function(f){return '<span><i class="pip '+f+'"></i><b>'+s.by[f]+'</b> '+fmtLabel(f,s.by[f])+'</span>';}).join('')+'</div>'+
+      (s.n?'<button class="btn line" type="button" id="recap">Make my '+MNAMES[M.m]+' recap card</button>':'');
+    if(s.n) $('recap').addEventListener('click',function(){recap(M,s);});
+  }
+  function drawRecap(cv,M,s){
+    var x=cv.getContext('2d'),W=cv.width,H=cv.height,best=streakBest();
+    var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#0B2422');g.addColorStop(1,'#071715');x.fillStyle=g;x.fillRect(0,0,W,H);
+    [[W*.85,0,W*.9,'74,43,67',.8],[W*.1,H*.35,W*.6,'140,107,112',.25],[W*.5,H,W*.8,'184,145,86',.22]].forEach(function(r){var rg=x.createRadialGradient(r[0],r[1],0,r[0],r[1],r[2]);rg.addColorStop(0,'rgba('+r[3]+','+r[4]+')');rg.addColorStop(1,'rgba('+r[3]+',0)');x.fillStyle=rg;x.fillRect(0,0,W,H);});
+    x.strokeStyle='rgba(184,145,86,.7)';x.lineWidth=3;x.strokeRect(48,48,W-96,H-96);
+    x.textAlign='center';
+    if('letterSpacing' in x) x.letterSpacing='8px';
+    x.fillStyle='#B89156';x.font='500 30px "JetBrains Mono", monospace';x.fillText((MNAMES[M.m]+' '+M.y).toUpperCase(),W/2,190);
+    if('letterSpacing' in x) x.letterSpacing='0px';
+    x.fillStyle='#EFE2CE';x.font='italic 500 96px "Cormorant Garamond", serif';x.fillText('I posted',W/2,340);
+    var gg=x.createLinearGradient(W/2-200,420,W/2+200,640);gg.addColorStop(0,'#D68847');gg.addColorStop(.5,'#C8793E');gg.addColorStop(1,'#B89156');
+    x.fillStyle=gg;x.font='700 280px "Cormorant Garamond", serif';x.fillText(String(s.n),W/2,590);
+    x.fillStyle='#EFE2CE';x.font='italic 500 96px "Cormorant Garamond", serif';x.fillText(s.n===1?'time':'times',W/2,800);
+    var y=905;x.font='500 40px "Hanken Grotesk", sans-serif';x.fillStyle='rgba(239,226,206,.82)';
+    Object.keys(FORMATS).forEach(function(f){if(s.by[f]){x.fillText(s.by[f]+' '+fmtLabel(f,s.by[f]),W/2,y);y+=54;}});
+    if(best>0){x.fillStyle='#D68847';x.fillText('Best streak: '+best+(best===1?' week':' weeks')+' of 3+ posts',W/2,y+12);}
+    if('letterSpacing' in x) x.letterSpacing='6px';
+    x.fillStyle='#B89156';x.font='500 26px "JetBrains Mono", monospace';x.fillText('THE 2027 CONTENT CALENDAR',W/2,H-150);
+    if('letterSpacing' in x) x.letterSpacing='0px';
+    x.fillStyle='rgba(239,226,206,.72)';x.font='500 30px "Hanken Grotesk", sans-serif';x.fillText('Free from @SoulForgedFounders',W/2,H-100);
+  }
+  function recap(M,s){
+    var v=document.createElement('div');v.className='veil';
+    v.innerHTML='<div class="sheet recap" role="dialog" aria-modal="true" aria-label="Your '+MNAMES[M.m]+' recap card"><canvas width="1080" height="1350"></canvas><p class="note">Save it and share it, or take a screenshot.</p><div class="acts"><button class="btn" type="button" id="rc-save">Save the image</button><button class="btn line" type="button" id="rc-close">Close</button></div></div>';
+    document.body.appendChild(v);
+    var cv=v.querySelector('canvas');
+    (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){drawRecap(cv,M,s);});
+    function close(){v.remove();document.removeEventListener('keydown',onKey);}
+    function onKey(e){if(e.key==='Escape')close();}
+    document.addEventListener('keydown',onKey);
+    v.addEventListener('click',function(e){if(e.target===v)close();});
+    v.querySelector('#rc-close').addEventListener('click',close);
+    v.querySelector('#rc-save').addEventListener('click',function(){cv.toBlob(function(b){dl('my-'+MNAMES[M.m].toLowerCase()+'-'+M.y+'-posts.png',b);toast('Image saved');});});
+    v.querySelector('#rc-save').focus();
+  }
+
+  function prompt(date,type,idea,label){
+    var intro='My name is '+P('me','your name')+' and my business is '+P('name','your business name')+'. I am '+P('what','what you do and who you serve')+', and I help them '+P('result','the result you help them get')+'. My main offer is '+P('offer','your main offer')+' and my free thing is '+P('freebie','your free thing')+'. Write as me, in first person.';
+    var more=(st.profile.more||'').trim();
+    var ask=ASK[type].replace('{offer}',P('offer','your main offer'));
+    var f=FORMATS[st.format]||FORMATS.single;
+    var lead=type in LEAD?LEAD[type]:'Leave my offer and free thing out of this one.';
+    return intro+(more?' '+more:'')+'\n\n'+
+      'Write a '+TYPES[type].toLowerCase()+' post for '+P('platform','where you post')+' for '+pretty(date)+(label?' ('+label+')':'')+'. Make it '+f.a+'.\n'+
+      'Today\'s idea: '+idea+'\n\n'+
+      (ASKS_FIRST[type]?'Use only the details I give you here. Where a real moment, quote or number is missing, leave a [bracket] for me to fill in.':'Write it now from what you know about my business. Leave out any story, number or client result I have not given you.')+' My voice is '+P('voice','three words for how you sound')+'. Keep the post on my client\'s life and the change they want, and leave out how-to for my own method or tools, like how to read cards, lay out a spread or run a session. Write to my reader as someone who can do this, without telling them they are capable. Say what things are, and leave out lines about what they are not, like "it\'s not X, it\'s Y" or "not the plan, the next step." If you point people to my free thing or a link, leave a [bracket] for where to find it.\n'+
+      (type==='teach'?'Make it something people would save for later or send to a friend who needs it.\n':'')+
+      'Give me only these parts, in this order, with no intro: '+f.how+' Label each part so I know which is which, and keep labels and notes out of the parts themselves. '+(st.format==='story'?'On the last frame, add a poll or a question box so people can answer.':ask)+(lead?' '+lead:'');
+  }
+
+  function counts(){var c={cosmic:0,spiritual:0,holiday:0};EXTRA.forEach(function(e){c[e[1]]++;});return c;}
+  function renderStep(){
+    [1,2,3].forEach(function(n){$('step'+n).hidden=(st.step!==n);});
+    [].forEach.call(document.querySelectorAll('.strip button'),function(b){var n=+b.dataset.step;b.removeAttribute('aria-current');b.classList.toggle('done',n<st.step);if(n===st.step)b.setAttribute('aria-current','step');});
+    if(st.step===2) renderToggles();
+    if(st.step===3) renderCal();
+    save();
+  }
+  function renderToggles(){
+    var c=counts(),core=Object.keys(CORE).length,tot=core;
+    [].forEach.call(document.querySelectorAll('[data-layer]'),function(i){i.checked=!!st.layers[i.dataset.layer]; if(i.checked) tot+=c[i.dataset.layer];});
+    [].forEach.call(document.querySelectorAll('[data-c]'),function(s){s.textContent='+'+c[s.dataset.c]+' prompts';});
+    $('total').textContent=tot+' prompts in your calendar';
+  }
+  function renderCal(){
+    renderTracker();
+    var M=MONTHS[st.month]; $('mtitle').textContent=MNAMES[M.m]+' '+M.y; $('mtheme').textContent=M.theme;
+    $('prev').disabled=st.month===0; $('next').disabled=st.month===MONTHS.length-1;
+    var on=Object.keys(LAYERS).filter(function(k){return st.layers[k];});
+    $('legend').innerHTML='<span>Bonus prompts:</span>'+(on.length?on.map(function(k){var col={cosmic:'var(--gold)',spiritual:'var(--mauve)',holiday:'var(--ember)'}[k];return '<span><i style="background:'+col+'"></i>'+LAYERS[k]+'</span>';}).join(''):'<span>none on</span>');
+    var first=new Date(M.y,M.m,1).getDay(), days=new Date(M.y,M.m+1,0).getDate();
+    var has=Object.keys(CORE).some(function(d){return d.indexOf(iso(M.y,M.m,1).slice(0,7))===0;});
+    if(!has){$('cal').innerHTML='<div class="soon">'+MNAMES[M.m]+' is being written.</div>';return;}
+    var now=new Date(), todayIso=iso(now.getFullYear(),now.getMonth(),now.getDate());
+    var h='<div class="grid">'+['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(function(d){return '<div class="dow">'+d+'</div>';}).join('');
+    for(var b=0;b<first;b++) h+='<div class="day blank" aria-hidden="true"></div>';
+    for(var d=1;d<=days;d++){
+      var k=iso(M.y,M.m,d),c=CORE[k]; if(!c){h+='<div class="day blank"></div>';continue;}
+      var ex=EXTRA.filter(function(e){return e[0]===k&&st.layers[e[1]];});
+      h+='<button type="button" class="day'+(k===todayIso?' today':'')+(st.posted[k]?' posted':'')+'" data-d="'+k+'" aria-label="'+esc(pretty(k)+', '+TYPES[c[0]])+'">'+
+        '<span class="num">'+d+(st.posted[k]?'<span class="tick">'+ICON[st.posted[k].f]+' ✓</span>':'')+'</span><span class="type">'+TYPES[c[0]]+'</span><span class="idea">'+esc(c[1])+'</span>'+
+        '<span class="dots">'+ex.map(function(e){return '<span class="dot '+e[1]+'"></span>';}).join('')+'</span></button>';
+    }
+    $('cal').innerHTML=h+'</div>';
+    [].forEach.call(document.querySelectorAll('.day[data-d]'),function(el){el.addEventListener('click',function(){openDay(el.dataset.d);});});
+  }
+  function openDay(k){
+    var c=CORE[k], ex=EXTRA.filter(function(e){return e[0]===k&&st.layers[e[1]];});
+    st.format=st.posted[k]?st.posted[k].f:(SUGGEST[c[0]]||'single');
+    var blocks=[{t:c[0],i:c[1],chip:TYPES[c[0]],cls:'',lab:''}].concat(ex.map(function(e){return {t:c[0],i:e[3],chip:e[2],cls:e[1],lab:e[2]};}));
+    var v=document.createElement('div');v.className='veil';
+    v.innerHTML='<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-t"><header><div class="eyebrow">'+esc(pretty(k))+'</div><h3 id="sh-t">'+esc(c[1])+'</h3></header>'+
+      '<div class="fmt" role="group" aria-label="Post format"><span class="lab">Make it a</span>'+Object.keys(FORMATS).map(function(f){return '<button type="button" data-f="'+f+'" aria-pressed="'+(st.format===f)+'">'+FORMATS[f].lab+(SUGGEST[c[0]]===f?' ✦':'')+'</button>';}).join('')+'</div>'+
+      blocks.map(function(b,n){return '<div class="block"><div><span class="chip '+b.cls+'">'+esc(b.chip)+'</span></div>'+(n?'<h4>'+esc(b.i)+'</h4>':'')+'<div class="pbox" id="pb'+n+'"></div><div class="acts"><button class="btn" type="button" data-cp="'+n+'">Copy the prompt</button></div></div>';}).join('')+
+      '<div class="block"><label class="lab" for="sh-saved">What you posted</label><textarea class="saved" id="sh-saved" placeholder="Paste the caption you used. It stays here with this day."></textarea></div>'+
+      '<div class="block"><label class="lab" for="sh-link">Link to the post</label><input type="url" class="saved one" id="sh-link" placeholder="https://"><a class="note" id="sh-open" target="_blank" rel="noopener" hidden>Open the post</a></div>'+
+      '<p class="note" id="sh-pnote"></p>'+
+      '<div class="acts"><button class="btn line" type="button" id="sh-post">'+(st.posted[k]?'Mark as not posted':'I posted it')+'</button><button class="btn line" type="button" id="sh-close">Close</button></div>'+
+      '<div class="sff">'+SFF_HTML+'</div></div>';
+    document.body.appendChild(v);
+    var texts;
+    function fill(){texts=blocks.map(function(b){return prompt(k,b.t,b.i,b.lab);});texts.forEach(function(t,n){v.querySelector('#pb'+n).textContent=t;});}
+    fill();
+    function pnote(){v.querySelector('#sh-pnote').textContent=st.posted[k]?'Posted as a '+ONE[st.posted[k].f]+'. Reply to every comment today. To change the format, pick another one above.':'✦ marks the format this kind of post does best in. Any of them works.';}
+    pnote();
+    var sv=v.querySelector('#sh-saved');sv.value=st.saved[k]||'';
+    sv.addEventListener('input',function(){if(sv.value.trim())st.saved[k]=sv.value;else delete st.saved[k];save();});
+    var lk=v.querySelector('#sh-link'),op=v.querySelector('#sh-open');
+    function showOpen(){var u=(st.links[k]||'').trim();op.hidden=!/^https?:\/\//i.test(u);if(!op.hidden)op.href=u;}
+    lk.value=st.links[k]||'';showOpen();
+    lk.addEventListener('input',function(){if(lk.value.trim())st.links[k]=lk.value.trim();else delete st.links[k];save();showOpen();});
+    [].forEach.call(v.querySelectorAll('[data-f]'),function(btn){btn.addEventListener('click',function(){st.format=btn.dataset.f;if(st.posted[k]){st.posted[k].f=st.format;pnote();renderCal();}save();[].forEach.call(v.querySelectorAll('[data-f]'),function(b){b.setAttribute('aria-pressed',String(b===btn));});fill();});});
+    [].forEach.call(v.querySelectorAll('[data-cp]'),function(btn){btn.addEventListener('click',function(){copy(texts[+btn.dataset.cp]);});});
+    function close(){v.remove();document.removeEventListener('keydown',onKey);}
+    function onKey(e){if(e.key==='Escape')close();}
+    document.addEventListener('keydown',onKey);
+    v.addEventListener('click',function(e){if(e.target===v)close();});
+    v.querySelector('#sh-close').addEventListener('click',close);
+    v.querySelector('#sh-post').addEventListener('click',function(){if(st.posted[k])delete st.posted[k];else st.posted[k]={d:todayKey(),f:st.format};save();close();renderCal();toast(st.posted[k]?'Posted ✓ Now reply to every comment today':'Unmarked',st.posted[k]?3200:1800);});
+    v.querySelector('#sh-close').focus({preventScroll:true});
+  }
+  function exportCsv(){
+    var rows=[['Date','Type','Add-on','Idea','Prompt','Posted','Format','What you posted','Link']];
+    Object.keys(CORE).sort().forEach(function(k){
+      var c=CORE[k],p=st.posted[k];
+      rows.push([k,TYPES[c[0]],'',c[1],prompt(k,c[0],c[1],''),p?p.d:'',p?FORMATS[p.f].lab:'',st.saved[k]||'',st.links[k]||'']);
+      EXTRA.filter(function(e){return e[0]===k&&st.layers[e[1]];}).forEach(function(e){rows.push([k,TYPES[c[0]],e[2],e[3],prompt(k,c[0],e[3],e[2]),'','','','']);});
+    });
+    var csv=rows.map(function(r){return r.map(function(x){return '"'+String(x).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+    dl('content-calendar-2027.csv',new Blob([csv],{type:'text/csv'}));toast('Spreadsheet saved');
+  }
+  function icsEsc(t){return String(t).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');}
+  function fold(l){var out=[];while(l.length>73){out.push(l.slice(0,73));l=' '+l.slice(73);}out.push(l);return out.join('\r\n');}
+  function exportIcs(){
+    var stamp=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
+    var link=location.protocol.indexOf('http')===0?'\n\nCopy the prompt: '+location.href.split('#')[0]:'';
+    var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Soul-Forged Founders//2027 Content Calendar//EN','CALSCALE:GREGORIAN','X-WR-CALNAME:My 2027 Content Calendar'];
+    Object.keys(CORE).sort().forEach(function(k){
+      var c=CORE[k],ex=EXTRA.filter(function(e){return e[0]===k&&st.layers[e[1]];});
+      var desc=c[1]+ex.map(function(e){return '\n\n'+e[2]+': '+e[3];}).join('')+link;
+      L.push('BEGIN:VEVENT','UID:'+k+'@sff-content-calendar','DTSTAMP:'+stamp,'DTSTART;VALUE=DATE:'+k.replace(/-/g,''),'DTEND;VALUE=DATE:'+addDays(k,1).replace(/-/g,''),'SUMMARY:'+icsEsc(TYPES[c[0]]+' post: '+c[1]),'DESCRIPTION:'+icsEsc(desc),'TRANSP:TRANSPARENT','END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    dl('content-calendar-2027.ics',new Blob([L.map(fold).join('\r\n')],{type:'text/calendar'}));toast('Saved. In Google Calendar, open Settings, then Import.');
+  }
+  function fillFields(){[].forEach.call(document.querySelectorAll('[data-k]'),function(el){el.value=st.profile[el.dataset.k]||'';});}
+
+  fillFields();
+  [].forEach.call(document.querySelectorAll('[data-k]'),function(el){el.addEventListener('input',function(){st.profile[el.dataset.k]=el.value;save();});});
+  [].forEach.call(document.querySelectorAll('[data-layer]'),function(el){el.addEventListener('change',function(){st.layers[el.dataset.layer]=el.checked;renderToggles();save();});});
+  [].forEach.call(document.querySelectorAll('.strip button'),function(b){b.addEventListener('click',function(){st.step=+b.dataset.step;renderStep();});});
+  $('to2').addEventListener('click',function(){st.step=2;renderStep();window.scrollTo(0,0);});
+  $('back1').addEventListener('click',function(){st.step=1;renderStep();});
+  $('to3').addEventListener('click',function(){st.step=3;var tm=monthOf(todayKey());st.month=tm<0?0:tm;renderStep();window.scrollTo(0,0);if(CORE[todayKey()])openDay(todayKey());});
+  $('prev').addEventListener('click',function(){if(st.month>0){st.month--;renderCal();save();}});
+  $('next').addEventListener('click',function(){if(st.month<MONTHS.length-1){st.month++;renderCal();save();}});
+  $('today').addEventListener('click',function(){var i=monthOf(todayKey());st.month=i<0?0:i;renderCal();save();if(CORE[todayKey()])openDay(todayKey());});
+  $('export').addEventListener('click',exportCsv);
+  $('ics').addEventListener('click',exportIcs);
+  $('backup').addEventListener('click',function(){dl('content-calendar-backup.json',new Blob([JSON.stringify(st)],{type:'application/json'}));toast('Backup saved');});
+  $('restore').addEventListener('click',function(){$('restore-file').click();});
+  $('restore-file').addEventListener('change',function(){
+    var f=this.files[0];if(!f)return;var r=new FileReader();
+    r.onload=function(){try{var o=JSON.parse(r.result);if(!o||!o.profile)throw 0;load(o);save();fillFields();renderStep();toast('Backup loaded');}catch(e){toast('That file is not a calendar backup');}};
+    r.readAsText(f);this.value='';
+  });
+  $('sff-big').innerHTML=SFF_HTML.replace('<div class="eyebrow">Soul-Forged Founders</div>','<h2 class="sffh">Soul-Forged <em>Founders</em></h2>');
+  // Returning to the calendar opens on today's month with today's post open.
+  if(st.step===3){var tm=monthOf(todayKey());st.month=tm<0?0:tm;}
+  renderStep();
+  if(st.step===3&&CORE[todayKey()]) openDay(todayKey());
+})();
+</script>
+</body>
+</html>
