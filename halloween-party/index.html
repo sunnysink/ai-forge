@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SFF Halloween Party</title>
-<meta name="description" content="A free live Halloween party for spiritual business owners. Fri Oct 30, 1:00pm PT. 15 prompts for your content, your offers and your brand images.">
+<meta name="description" content="The SFF Halloween Party replay and 15 free prompts for spiritual business owners: your content, your offers and your brand images.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sunnysink.github.io/ai-forge/halloween-party/">
-<meta property="og:title" content="SFF Halloween Party · Free · Fri Oct 30">
-<meta property="og:description" content="15 prompts for spiritual business owners, three of them run live. 1:00pm PT.">
+<meta property="og:title" content="SFF Halloween Party · Free replay + 15 prompts">
+<meta property="og:description" content="15 prompts for spiritual business owners, plus the replay where three of them run live.">
 <meta property="og:image" content="https://sunnysink.github.io/ai-forge/halloween-party/preview.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SFF Halloween Party · Free · Fri Oct 30">
-<meta name="twitter:description" content="15 prompts for spiritual business owners, three of them run live. 1:00pm PT.">
+<meta name="twitter:title" content="SFF Halloween Party · Free replay + 15 prompts">
+<meta name="twitter:description" content="15 prompts for spiritual business owners, plus the replay where three of them run live.">
 <meta name="twitter:image" content="https://sunnysink.github.io/ai-forge/halloween-party/preview.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,24 +69,24 @@
 <body>
 <main class="wrap">
   <section>
-    <div class="eyebrow">Free · Live online</div>
+    <div class="eyebrow">Free · Replay + prompts</div>
     <h1>SFF Halloween <em>Party</em></h1>
-    <p class="when">Friday, October 30 · 1:00pm PT · one hour</p>
-    <p class="lede">Come celebrate with Soul-Forged Founders. I'm giving away 15 prompts for spiritual business owners and running three of them live on real businesses from the chat.</p>
+    <p class="when">The replay is up · watch anytime</p>
+    <p class="lede">The party's over and the goodies are still here. Get all 15 prompts for spiritual business owners, plus the replay where I run three of them live on real businesses from the chat.</p>
     <ul class="inside">
       <li>5 prompts for your content: posts, newsletters, your content pillars</li>
       <li>5 prompts for your offers: booking pages, welcome emails, your next product</li>
       <li>5 prompts for your brand images: colors, logos, feature images and posts</li>
-      <li>The replay, if you can't make it live</li>
+      <li>The full replay of the party</li>
     </ul>
 
     <div class="formcard" id="formcard">
-      <label for="party-email">Save your spot. The party link comes to your inbox right away.</label>
+      <label for="party-email">Pop in your email and the prompts and the replay come to your inbox right away.</label>
       <form class="row" id="party-form" novalidate>
         <input id="party-email" type="email" name="fields[email]" placeholder="Your email" autocomplete="email" required aria-required="true">
-        <button class="btn" type="submit" id="party-btn">Save my spot</button>
+        <button class="btn" type="submit" id="party-btn">Send me the prompts</button>
       </form>
-      <p class="fine">Costumes welcome. You'll also get my Soul-Forged Founders emails, and you can unsubscribe anytime.</p>
+      <p class="fine">You'll also get my Soul-Forged Founders emails, and you can unsubscribe anytime.</p>
     </div>
     <div class="formcard success" id="success" style="display:none">
       <h2>You're in</h2>
@@ -123,7 +123,7 @@
     body.append('fields[email]', email); body.append('ml-submit', '1'); body.append('anticsrf', 'true');
     function done(){ document.getElementById('formcard').style.display = 'none'; document.getElementById('success').style.display = ''; }
     fetch('https://assets.mailerlite.com/jsonp/451137/forms/201794238661265249/subscribe', {method:'POST', mode:'no-cors', body:body})
-      .then(done, function(){ btn.disabled = false; btn.textContent = 'Save my spot'; alert('That didn\'t go through. Check your connection and try again.'); });
+      .then(done, function(){ btn.disabled = false; btn.textContent = 'Send me the prompts'; alert('That didn\'t go through. Check your connection and try again.'); });
   });
 })();
 </script>
