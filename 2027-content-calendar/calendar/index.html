@@ -770,7 +770,15 @@
   var ONE={single:'single image',carousel:'carousel',video:'short video',story:'story'};
   var MANY={single:'single images',carousel:'carousels',video:'short videos',story:'stories'};
   var SFF_URL='https://www.skool.com/soul-forged-founders';
-  var SFF_HTML='<div class="eyebrow">Soul-Forged Founders</div><p>Want more business tools like this one? Soul-Forged Founders gives you the Alchemist\'s AI Toolkit: 30+ tools and templates built for spiritual business owners.</p><a class="btn" href="'+SFF_URL+'" target="_blank" rel="noopener">Start your 7-day free trial</a><p class="note">$8/month after that.</p>';
+  // One trial button, a different reason for each format: the day sheet shows the one for the format picked.
+  var SFF_WHY={
+    single:'Need a picture for this post? The Creator Vault inside Soul-Forged Founders has 150+ products, including 29 stock photo packs, made for spiritual business owners.',
+    carousel:'Want eyes on your carousel before it goes up? Share it in the Soul-Forged Founders feed and get feedback from Sunny and the community.',
+    video:'Want to build with Claude alongside other spiritual business owners? Build Studio is live every Friday at 1pm PT inside Soul-Forged Founders.',
+    story:'Want more business tools like this one? Soul-Forged Founders gives you the Alchemist\'s AI Toolkit: 30+ tools and templates built for spiritual business owners.',
+    all:'Everything that keeps you posting, in one place: the Creator Vault with 150+ products and 29 stock photo packs, the Alchemist\'s AI Toolkit, feedback on your posts from Sunny and the community, and Build Studio live every Friday at 1pm PT.'
+  };
+  function sffHtml(f){return '<div class="eyebrow">Soul-Forged Founders</div><p>'+SFF_WHY[f]+'</p><a class="btn" href="'+SFF_URL+'" target="_blank" rel="noopener">Start your 7-day free trial</a><p class="note">$8/month after that.</p>';}
 
   var st={profile:{},layers:{holiday:true,cosmic:false,spiritual:false},posted:{},saved:{},links:{},step:1,month:0,format:'single'};
   function load(o){
@@ -920,10 +928,10 @@
       '<div class="block"><label class="lab" for="sh-link">Link to the post</label><input type="url" class="saved one" id="sh-link" placeholder="https://"><a class="note" id="sh-open" target="_blank" rel="noopener" hidden>Open the post</a></div>'+
       '<p class="note" id="sh-pnote"></p>'+
       '<div class="acts"><button class="btn line" type="button" id="sh-post">'+(st.posted[k]?'Mark as not posted':'I posted it')+'</button><button class="btn line" type="button" id="sh-close">Close</button></div>'+
-      '<div class="sff">'+SFF_HTML+'</div></div>';
+      '<div class="sff" id="sh-sff"></div></div>';
     document.body.appendChild(v);
     var texts;
-    function fill(){texts=blocks.map(function(b){return prompt(k,b.t,b.i,b.lab);});texts.forEach(function(t,n){v.querySelector('#pb'+n).textContent=t;});}
+    function fill(){texts=blocks.map(function(b){return prompt(k,b.t,b.i,b.lab);});texts.forEach(function(t,n){v.querySelector('#pb'+n).textContent=t;});v.querySelector('#sh-sff').innerHTML=sffHtml(st.format);}
     fill();
     function pnote(){v.querySelector('#sh-pnote').textContent=st.posted[k]?'Posted as a '+ONE[st.posted[k].f]+'. Reply to every comment today. To change the format, pick another one above.':'✦ marks the format this kind of post does best in. Any of them works.';}
     pnote();
@@ -988,7 +996,7 @@
     r.onload=function(){try{var o=JSON.parse(r.result);if(!o||!o.profile)throw 0;load(o);save();fillFields();renderStep();toast('Backup loaded');}catch(e){toast('That file is not a calendar backup');}};
     r.readAsText(f);this.value='';
   });
-  $('sff-big').innerHTML=SFF_HTML.replace('<div class="eyebrow">Soul-Forged Founders</div>','<h2 class="sffh">Soul-Forged <em>Founders</em></h2>');
+  $('sff-big').innerHTML=sffHtml('all').replace('<div class="eyebrow">Soul-Forged Founders</div>','<h2 class="sffh">Soul-Forged <em>Founders</em></h2>');
   // Returning to the calendar opens on today's month with today's post open.
   if(st.step===3){var tm=monthOf(todayKey());st.month=tm<0?0:tm;}
   renderStep();
